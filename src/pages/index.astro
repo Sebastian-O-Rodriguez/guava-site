@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ThreeScene from '../components/ThreeScene.svelte';
+import Navigation from '../components/Navigation.astro';
+import HeroSection from '../components/HeroSection.astro';
+import AboutSection from '../components/AboutSection.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import CaseStudiesSection from '../components/CaseStudiesSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Footer from '../components/Footer.astro';
+import ScrollManager from '../components/ScrollManager.svelte';
+import LoadingAnimation from '../components/LoadingAnimation.svelte';
+import ScrollAnimation from '../components/ScrollAnimation.svelte';
+
+// Single source of truth for site-wide content
+const siteContent = {
+  hero: {
+    title: "Tech Consultancy",
+    subtitle: "Innovative Solutions for Digital Transformation",
+    description: "Helping businesses leverage technology to drive growth, innovation, and competitive advantage.",
+    abbreviation: "TC"
+  }
+};
+---
+
+<Layout title="Tech Consultancy | Business Solutions">
+  <!-- Loading Animation Wrapper -->
+  <LoadingAnimation client:only="svelte">
+    <!-- Scroll Manager - pass complete configuration -->
+    <ScrollManager 
+      client:only="svelte" 
+      offset={80} 
+      duration={150} 
+    />
+    
+    <!-- Main wrapper that manages layout -->
+    <div class="relative w-full">
+      <!-- Three.js scene container (fixed at the top) -->
+      <div class="fixed top-0 left-0 w-full h-screen z-10">
+        <ThreeScene client:only="svelte" />
+      </div>
+      
+      <!-- Content container -->
+      <div class="relative z-20">
+        <!-- Navigation menu - only passing navigation-relevant props -->
+        <Navigation title={siteContent.hero.title} />
+        
+        <!-- Hero section (overlaid on the Three.js scene) -->
+        <section id="hero">
+          <HeroSection 
+            title={siteContent.hero.title}
+            subtitle={siteContent.hero.subtitle}
+            description={siteContent.hero.description}
+          />
+        </section>
+        
+        <!-- Zoom spacer (this will trigger the zoom effect) -->
+        <div class="h-screen"></div>
+        
+        <!-- Content sections (appear after scrolling past the zoom effect) -->
+        <div class="relative bg-transparent pt-xl pb-md rounded-t-lg shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
+          <!-- About section - slightly transparent white background -->
+          <section id="about" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/70 backdrop-blur-md">
+            <ScrollAnimation animation="slide-up" delay={200} client:only="svelte">
+              <AboutSection />
+            </ScrollAnimation>
+          </section>
+          
+          <!-- Services section - blurred background white background -->
+          <section id="services" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/95 backdrop-blur-md">
+            <ScrollAnimation animation="fade-in" delay={100} client:only="svelte">
+              <ServicesSection />
+            </ScrollAnimation>
+          </section>
+          
+          <!-- Case studies section - slightly transparent white background (same as About) -->
+          <section id="case-studies" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/70 backdrop-blur-md">
+            <ScrollAnimation animation="slide-right" delay={200} client:only="svelte">
+              <CaseStudiesSection />
+            </ScrollAnimation>
+          </section>
+          
+          <!-- Contact section - blurred background white background -->
+          <section id="contact" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/95 backdrop-blur-md">
+            <ScrollAnimation animation="slide-up" delay={200} client:only="svelte">
+              <ContactSection />
+            </ScrollAnimation>
+          </section> 
+        </div>
+        <Footer />
+      </div>
+    </div>
+  </LoadingAnimation>
+
+  <script>
+    // Initialize the scroll sections in the store on page load
+    // This ensures the store has the correct sections before components load 
+    document.addEventListener('DOMContentLoaded', () => {
+      // This will be picked up by the ScrollManager component
+      window.dispatchEvent(new CustomEvent('initSections', { 
+        detail: { sections: ['hero', 'about', 'services', 'case-studies', 'contact'] }
+      }));
+    });
+  </script>
+</Layout>

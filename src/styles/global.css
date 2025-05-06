@@ -1,0 +1,129 @@
+/* Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Custom components */
+
+@layer base {
+  /* Selection styling */
+  ::selection {
+    @apply bg-accent-two text-white;
+  }
+  /* Button-specific selection style */
+  .btn-primary ::selection {
+    @apply bg-white text-accent-two;
+  }
+  /* Add base text wrapping for all paragraphs */
+  p {
+    @apply break-words whitespace-normal;
+  }
+}
+@layer components {
+  /* Section header with underline */
+  .section-header {
+    @apply relative text-3xl font-bold mb-2xl pb-2 text-text break-words whitespace-normal;
+  }
+  .section-header::after {
+    content: '';
+    @apply absolute left-0 -bottom-3 w-12 h-1 bg-accent-two;
+  }
+  
+  /* Reduced padding in section wrapper */
+  .section-wrapper {
+    @apply py-xs bg-transparent;
+  }
+  
+  /* New content-container class with minimal vertical padding */
+  .content-container {
+    @apply py-xs mb-xs overflow-visible;
+  }
+  
+  /* Typography */
+  .hero-heading {
+    @apply text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-md text-text break-words whitespace-normal;
+  }
+  
+  .text-enhanced {
+    @apply text-xl font-medium text-text break-words whitespace-normal;
+  }
+  
+  .text-reduced {
+    @apply text-sm text-text/80 break-words whitespace-normal;
+  }
+  
+  /* Layout - Updated container classes */
+  .container {
+    @apply w-full max-w-7xl mx-auto px-md md:px-lg lg:px-xl;
+  }
+  
+  .container--narrow {
+    @apply max-w-3xl;
+  }
+  
+  /* Buttons */
+  .btn {
+    @apply px-lg py-sm rounded-full font-semibold tracking-wider transition-all duration-300;
+  }
+  .btn:hover {
+    @apply -translate-y-0.5 shadow-lg;
+  }
+  /* Button 1: Using accent-two as main color with a border highlight effect */
+  .btn-primary {
+    @apply bg-accent-two/90 text-white border border-transparent
+          hover:bg-accent-two hover:border-white hover:border-2;
+  }
+  /* Button 2: Using text color with background highlight effect */
+  .btn-secondary {
+    @apply bg-secondary/90 text-background border border-transparent
+          hover:bg-text hover:border-background hover:border-2;
+  }
+  /* Additional button style option */
+  .btn-outline {
+    @apply bg-transparent/95 border border-text/20 text-text/70
+          hover:bg-white/5 hover:border-accent-two hover:text-accent-two;
+  }
+  /* Text link styling */
+  .text-link {
+    @apply text-accent-two/70 hover:text-accent-two hover:underline focus:outline-none focus:ring-2 focus:ring-accent-two/20 transition-colors;
+  }
+  
+  /* Card styling - updated with proper text wrapping */
+  .card {
+    @apply bg-white/5 p-md rounded-lg transition-all duration-300 border border-text/10 break-words;
+  }
+  .card:hover {
+    @apply -translate-y-1 border-accent-two/30 bg-accent/5;
+  }
+  
+  /* Form elements */
+  .form-input {
+    @apply w-full px-md py-sm rounded-md border border-text/20 focus:border-accent-two focus:ring-2 focus:ring-accent-two/20 bg-background;
+  }
+  .form-label {
+    @apply block text-text/80 mb-xs break-words;
+  }
+
+  /* Nav dot elements */
+  .scroll-indicator-container {
+    @apply fixed top-1/2 -translate-y-1/2 flex flex-col gap-[clamp(0.5rem,2vw,1rem)] z-50 md:flex hidden;
+    right: clamp(1.5rem, 5vw, 3rem);
+  }
+
+  .scroll-indicator-dot {
+    @apply w-[clamp(8px,1.5vw,12px)] h-[clamp(8px,1.5vw,12px)] rounded-full transition-all duration-300 hover:bg-accent hover:scale-150 bg-secondary/30;
+  }
+
+  .scroll-indicator-dot.active {
+    @apply bg-accent-two scale-150;
+  }
+  
+  /* Add a new text wrapping utility class */
+  .text-wrap {
+    @apply break-words whitespace-normal;
+  }
+  
+  /* Quotation container for testimonials */
+  .quote-container {
+    @apply relative pr-16 break-words whitespace-normal overflow-visible;
+  }
+}

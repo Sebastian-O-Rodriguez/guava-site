@@ -1,0 +1,92 @@
+---
+// Site navigation - matches header
+const navLinks = [
+  { href: "#hero", text: "Home" },
+  { href: "#about", text: "About" },
+  { href: "#services", text: "Services" },
+  { href: "#case-studies", text: "Case Studies" },
+  { href: "#contact", text: "Contact" }
+];
+---
+<footer class="w-full pt-xs pb-1 backdrop-blur-md transition-all duration-300 bg-background/100 shadow-[0_-1px_3px_rgba(0,0,0,0.05)]">
+  <div class="container pb-0">
+    <div class="flex flex-col gap-xs">
+      <!-- Brand and navigation section -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-xs">
+        <!-- Logo with copyright -->
+        <div class="flex items-center gap-xs">
+          <a 
+            href="#hero" 
+            aria-label="Back to top"
+            class="w-9 h-9 flex items-center justify-center text-md font-bold rounded-full border-2 border-text/10 
+                   bg-gradient-to-r from-accent to-accent-two bg-clip-text text-transparent 
+                   hover:scale-105 transition-transform duration-200"
+          >
+            TC
+          </a>
+          <p class="text-reduced text-xs">© 2025 Tech Consultancy. All Rights Reserved.</p>
+        </div>
+        
+        <!-- Main navigation -->
+        <nav class="flex flex-wrap justify-center md:justify-end gap-xs" aria-label="Footer navigation">
+          {navLinks.map(link => (
+            <a href={link.href} class="text-link text-xs">
+              {link.text}
+            </a>
+          ))}
+        </nav>
+      </div>
+      
+      <!-- Gradient divider -->
+      <div class="h-px w-full bg-gradient-to-r from-transparent via-text/5 to-transparent"></div>
+      
+      <!-- Legal links section -->
+      <div class="flex justify-center md:justify-end mb-xs">
+        <div class="flex flex-wrap justify-center gap-xs">
+          <a href="#" class="text-text/40 text-xs hover:text-text/60 transition-colors duration-200">
+            Privacy
+          </a>
+          <a href="#" class="text-text/40 text-xs hover:text-text/60 transition-colors duration-200">
+            Terms
+          </a>
+          <a href="#" class="text-text/40 text-xs hover:text-text/60 transition-colors duration-200">
+            Cookies
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const footer = document.querySelector('footer');
+    
+    if (footer) {
+      // Handle footer transparency based on scroll position
+      const handleScroll = () => {
+        const distanceFromBottom = document.documentElement.scrollHeight - 
+                                  (window.scrollY + window.innerHeight);
+        
+        // Toggle transparency class based on proximity to page bottom
+        if (distanceFromBottom < 100) {
+          footer.classList.replace('bg-background/30', 'bg-background/70');
+        } else {
+          footer.classList.replace('bg-background/70', 'bg-background/30');
+        }
+      };
+      
+      window.addEventListener('scroll', handleScroll);
+      handleScroll(); // Initialize on load
+      
+      // Handle smooth scrolling for anchor links
+      footer.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href^="#"]');
+        if (link) {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+  });
+</script>

@@ -1,0 +1,55 @@
+---
+import HamburgerMenu from './HamburgerMenu.svelte';
+// Define navigation links
+const navLinks = [
+  { href: "#hero", text: "Home" },
+  { href: "#about", text: "About" },
+  { href: "#services", text: "Services" },
+  { href: "#case-studies", text: "Case Studies" },
+  { href: "#contact", text: "Contact" }
+];
+---
+<!-- Navigation with hamburger menu -->
+<header class="fixed top-0 left-0 w-full z-50 py-sm bg-background/100 backdrop-blur-md transition-colors duration-300 shadow-sm">
+  <div class="container mx-0">
+    <nav class="flex items-center justify-between relative">
+      <!-- Logo/Brand - Positioned to mirror hamburger button -->
+      <a 
+        href="#hero" 
+        data-scroll="top"
+        class="fixed top-4 left-4 w-10 h-10 flex items-center justify-center text-large font-bold rounded-full border-2 border-text/10 
+               bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent 
+               hover:scale-105 transition-transform duration-300 z-[100]"
+      >
+        TC
+      </a>
+      
+      <!-- Empty space to maintain the nav layout -->
+      <div class="w-10 h-10 invisible"></div>
+      
+      <!-- Spacer to push the hamburger menu to the right -->
+      <div class="flex-grow"></div>
+      
+      <!-- Hamburger Menu (Svelte Component) - Always visible -->
+      <HamburgerMenu client:only="svelte" links={navLinks} />
+    </nav>
+  </div>
+</header>
+<script>
+  // Header background change on scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('header');
+    
+    if (header) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+          header.classList.add('bg-background/70');
+          header.classList.remove('bg-background/30');
+        } else {
+          header.classList.add('bg-background/30');
+          header.classList.remove('bg-background/70');
+        }
+      });
+    }
+  });
+</script>
