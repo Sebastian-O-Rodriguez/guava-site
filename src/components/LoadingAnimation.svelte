@@ -5,7 +5,7 @@
   import { quartOut } from 'svelte/easing';
   
   // Props with defaults
-  export let duration = 3500;
+  export let duration = 600;
   export let loadingStages = [
     "Loading assets...",
     "Setting up the scene...",
@@ -66,10 +66,10 @@
   // Complete loading process with transition
   function finalizeLoading() {
     // Animate to completion
-    animateProgressTo(1, Math.max(1500, duration * 0.35));
+    animateProgressTo(1, Math.max(600, duration * 0.35));
     
     // Transition sequence
-    const transitionDelay = Math.max(1500, duration * 0.2);
+    const transitionDelay = Math.max(1200, duration * 0.2);
     
     setTimeout(() => {
       contentVisible = true;
@@ -143,14 +143,14 @@
   style="background-color: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px);"
 >
   <!-- Loading Container -->
-  <div class="bg-background py-4 px-6 rounded-md shadow-md z-10 border border-accent-two/75 overflow-hidden transition-opacity duration-800 flex flex-col items-center" 
+  <div class="bg-background py-4 px-6 rounded-md shadow-md z-10 border border-accent-two/75 overflow-hidden transition-opacity duration-800 flex flex-col items-left" 
        style="opacity: {fadeOutStarted ? 0 : 1}">
     <!-- Status Text -->
-    <div class="z-10 text-center mb-md">
-      <div class="font-sans text-large text-accent-two font-semibold">
+    <div class="z-10 text-left mb-md">
+      <div class="font-sans text-left text-large text-accent-two font-semibold">
         {typewriterText}<span class="inline-block w-2 h-5 bg-accent-two ml-1 animate-[blink_0.9s_steps(1)_infinite]"></span>
       </div>
-      <p class="text-accent-two/80 text-small">{Math.round($progress * 100)}%</p>
+      <p class="text-accent-two/80 text-small text-right">{Math.round($progress * 100)}%</p>
     </div>
     
     <!-- Loading Bar -->

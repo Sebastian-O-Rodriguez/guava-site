@@ -126,4 +126,17 @@
   .quote-container {
     @apply relative pr-16 break-words whitespace-normal overflow-visible;
   }
+/* Enhanced visibility for titles and headlines - adds warmth and impact */
+  .text-shadow-title {
+    text-shadow: 0px 1px 2px rgba(178, 122, 100, 0.55),
+                0px 2px 3px rgba(24, 123, 67, 0.2),
+                1px 1px 3px rgba(57, 255, 20, 0.08);
+  }
+  
+  /* Subtle shadow for body text and smaller elements - improves readability */
+  .text-shadow-body {
+    text-shadow: 0px 0.5px 1px rgba(44, 40, 40, 0.4),
+                 0px 1px 2px rgba(244, 247, 251, 0.25),
+                 0.5px 0.5px 1.5px rgba(44, 40, 40, 0.25);
+   }
 }
