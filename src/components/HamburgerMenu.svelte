@@ -88,7 +88,7 @@
       id="hamburger"
       aria-label={isOpen ? 'Close menu' : 'Open menu'} 
       aria-expanded={isOpen} 
-      class="flex flex-col justify-center items-center w-10 h-10 cursor-pointer z-[100] focus:outline-none fixed top-4 right-4"
+      class="flex flex-col justify-left items-left w-10 h-10 cursor-pointer z-[100] focus:outline-none fixed top-4 left-4"
       on:click={toggleMenu}
     >
       <span class:transformed={isOpen} class="hamburger-line"></span>
@@ -100,14 +100,14 @@
     {#if isOpen}
       <div 
         transition:slide={{duration: 600, easing: quintOut}}
-        class="mobile-menu-container fixed top-0 right-0 w-[350px] h-auto bg-background/95 backdrop-blur-md z-[90] overflow-y-auto rounded-b-[clamp(8px,3vw,16px)] border-b border-x border-text/10"
+        class="mobile-menu-container fixed top-0 left-0 w-[200 px] h-auto bg-background/95 backdrop-blur-md z-[90] overflow-y-auto rounded-b-[clamp(8px,3vw,16px)] border-b border-x border-text/10"
       >
         <div class="p-md pt-[50px] relative">
-          <div class="flex flex-col w-full gap-3 py-4 mx-auto text-center">
+          <div class="flex flex-col w-full gap-3 py-4 mx-auto text-left">
             {#each links as link}
               <a 
                 href={link.href} 
-                class="mobile-nav-link text-xl font-medium py-4 border-b border-text/10 hover:text-accent-two hover:border-accent-two transition-colors text-center {isActive(link.href) ? 'text-accent-two border-accent-two' : ''}" 
+                class="mobile-nav-link text-xl font-medium py-4 border-b border-text/10 hover:text-accent-two hover:border-accent-two transition-colors text-left {isActive(link.href) ? 'text-accent-two border-accent-two' : ''}" 
                 on:click={(e) => handleNavClick(e, link.href)}
               >
                 {link.text}
