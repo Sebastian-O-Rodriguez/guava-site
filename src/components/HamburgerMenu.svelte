@@ -88,7 +88,7 @@
       id="hamburger"
       aria-label={isOpen ? 'Close menu' : 'Open menu'} 
       aria-expanded={isOpen} 
-      class="flex flex-col justify-left items-left w-10 h-10 cursor-pointer z-[100] focus:outline-none fixed top-4 left-4"
+      class="flex flex-col justify-left items-left w-10 h-10 cursor-pointer z-[100] focus:outline-none fixed top-6 left-4"
       on:click={toggleMenu}
     >
       <span class:transformed={isOpen} class="hamburger-line"></span>

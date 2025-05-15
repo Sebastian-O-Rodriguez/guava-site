@@ -147,7 +147,7 @@
        style="opacity: {fadeOutStarted ? 0 : 1}">
     <!-- Status Text -->
     <div class="z-10 text-left mb-md">
-      <div class="font-sans text-left text-large text-accent-two font-semibold">
+      <div class="font-sans text-left text-sm text-accent-two font-semibold">
         {typewriterText}<span class="inline-block w-2 h-5 bg-accent-two ml-1 animate-[blink_0.9s_steps(1)_infinite]"></span>
       </div>
       <p class="text-accent-two/80 text-small text-right">{Math.round($progress * 100)}%</p>
