@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 
 // Create stores for state management
 export const activeSection = writable('hero');
-export const sections = writable(['hero', 'about', 'services', 'case-studies', 'contact']);
+export const sections = writable(['hero', 'stakes', 'value-proposition', 'competency', 'plan', 'explain']);
 
 // Scroll configuration (could be made writable if you want to change it)
 export const scrollConfig = writable({

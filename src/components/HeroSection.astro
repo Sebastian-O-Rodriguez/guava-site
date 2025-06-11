@@ -13,12 +13,12 @@ const {
 } = Astro.props;
 ---
 
-<section id="hero" class="h-screen flex items-center justify-center bg-background/75 pointer-events-none section-wrapper">
+<section id="hero" class="h-screen flex items-center justify-center bg-background/80 pointer-events-none section-wrapper">
   <div class="container flex flex-col h-full">
     <div class="content-container text-center pointer-events-auto mt-[25vh] md:mt-[22vh] sm:mt-[18vh] xs:mt-[15vh]">
       <h1 class="hero-heading text-shadow-title">{title}</h1>
-      <p class="text-enhanced mb-sm text-shadow-title">{subtitle}</p>
-      {description && <p class="mb-lg text-shadow-body text-text/80 max-w-2xl mx-auto">{description}</p>}
+      <p class="text-enhanced mb-sm text-shadow-body">{subtitle}</p>
+      {description && <p class="mb-lg text-shadow-body text-text/80 max-w-2xl mx-auto text-shadow-body">{description}</p>}
     </div>
   </div>
 </section>

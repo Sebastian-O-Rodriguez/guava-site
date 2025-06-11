@@ -99,8 +99,8 @@
     numBodies: 35, // number of bodies
     bodyRange: 8.5, // distribution radius for better visibility
     bodyDensityMultiplier: 26.5, // Mass calculation factor
-    forceMultiplier: -0.3, // Centripetal force strength
-    mouseSize: 0.35, // Mouse interaction sphere radius
+    forceMultiplier: -0.01, // Centripetal force strength
+    mouseSize: 0.2, // Mouse interaction sphere radius
     mouseSensitivity: 4, // Mouse movement amplification
   };
 
@@ -124,8 +124,8 @@
       maxY: 30,         // Highest position
       fogStartDistance: -100, // Fog effect start distance
       fogEndDistance: -150,   // Fog effect maximum distance
-      speedMin: 0.9,          // Minimum movement speed
-      speedMax: 1.2,          // Maximum movement speed
+      speedMin: 0.5,          // Minimum movement speed
+      speedMax: 0.9,          // Maximum movement speed
       // Define exclusion zone - ensure clouds don't appear in central physics area
       exclusionZoneRadius: PHYSICS.bodyRange * 3, // Making it slightly larger than physics range for visual clarity
     }
@@ -687,7 +687,7 @@
     materials.mouseBody = new THREE.MeshPhysicalMaterial({
       color: COLORS.objects.mouseBody,
       emissive: COLORS.objects.mouseEmissive,
-      emissiveIntensity: 0.9,
+      emissiveIntensity: 0.09,
       metalness: 0.4,
       roughness: 0.7,
       clearcoat: 0.7,
@@ -757,13 +757,13 @@
     haloContainer.position.set(0, 0, 0); // Ensure perfect centering
     
     // Inner halo layer (strong, close to the core)
-    const innerHalo = createHaloLayer(mouseSize * 1.5, 0.15, 16);
+    const innerHalo = createHaloLayer(mouseSize * 1., 0.15, 16);
     
     // Middle halo layer
-    const middleHalo = createHaloLayer(mouseSize * 2.0, 0.08, 14);
+    const middleHalo = createHaloLayer(mouseSize * 1.25, 0.08, 14);
     
     // Outer halo layer (subtle, larger radius)
-    const outerHalo = createHaloLayer(mouseSize * 2.5, 0.04, 12);
+    const outerHalo = createHaloLayer(mouseSize * 1.5, 0.04, 12);
     
     // Add all halo layers to the container
     haloContainer.add(innerHalo, middleHalo, outerHalo);

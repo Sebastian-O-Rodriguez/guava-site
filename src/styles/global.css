@@ -92,7 +92,13 @@
     @apply bg-white/5 p-md rounded-lg transition-all duration-300 border border-text/10 break-words;
   }
   .card:hover {
-    @apply -translate-y-1 border-accent-two/30 bg-accent/5;
+    @apply -translate-y-1 shadow-accent-two/5 border-accent-two/30 bg-accent/10;
+  }
+  .card-2 {
+    @apply bg-accent-two p-md rounded-lg transition-all duration-300 border border-accent-two/20 break-words text-white;
+  }
+  .card-2:hover {
+    @apply -translate-y-1 border-accent/50 bg-accent-two/90 shadow-lg;
   }
   
   /* Form elements */
@@ -128,15 +134,15 @@
   }
 /* Enhanced visibility for titles and headlines - adds warmth and impact */
   .text-shadow-title {
-    text-shadow: 0px 1px 2px rgba(178, 122, 100, 0.55),
-                0px 2px 3px rgba(24, 123, 67, 0.2),
-                1px 1px 3px rgba(57, 255, 20, 0.08);
+    text-shadow: 0px 1px 1px rgba(178, 122, 100, 0.25),
+                0px 1px 1px rgba(24, 123, 67, 0.1),
+                1px 1px 1px rgba(57, 255, 20, 0.03);
   }
-  
+
   /* Subtle shadow for body text and smaller elements - improves readability */
   .text-shadow-body {
-    text-shadow: 0px 0.5px 1px rgba(44, 40, 40, 0.4),
-                 0px 1px 2px rgba(244, 247, 251, 0.25),
-                 0.5px 0.5px 1.5px rgba(44, 40, 40, 0.25);
-   }
+    text-shadow: 0px 0.5px 1px rgba(44, 40, 40, 0.2),
+                0px 1px 2px rgba(244, 247, 251, 0.15),
+                0.5px 0.5px 1.5px rgba(44, 40, 40, 0.12);
+  }
 }
