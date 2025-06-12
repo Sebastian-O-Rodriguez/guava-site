@@ -30,12 +30,12 @@
   
   /* Reduced padding in section wrapper */
   .section-wrapper {
-    @apply py-xs bg-transparent;
+    @apply py-sm;
   }
   
   /* New content-container class with minimal vertical padding */
   .content-container {
-    @apply py-xs mb-xs overflow-visible;
+    @apply py-xs mb-sm overflow-visible;
   }
   
   /* Typography */
