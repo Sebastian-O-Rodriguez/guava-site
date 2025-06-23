@@ -68,14 +68,14 @@ const siteContent = {
         <div class="relative bg-transparent pt-xl pb-md rounded-t-lg shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
           <!-- Stakes section - slightly transparent white background -->
           <section id="stakes" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/90 backdrop-blur-md">
-            <ScrollAnimation animation="slide-left" delay={200} client:only="svelte">
+            <ScrollAnimation animation="fade-in" delay={200} client:only="svelte">
               <StakesSection />
             </ScrollAnimation>
           </section>
 
           <!-- Value proposition section - slightly transparent white background -->
           <section id="value-proposition" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/95 backdrop-blur-md">
-            <ScrollAnimation animation="slide-right" delay={200} client:only="svelte">
+            <ScrollAnimation animation="fade-in" delay={200} client:only="svelte">
               <ValuePropositionSection />
             </ScrollAnimation>
           </section>          
@@ -89,14 +89,14 @@ const siteContent = {
           
           <!-- Plan section - slightly transparent white background -->
           <section id="plan" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/95 backdrop-blur-md">
-            <ScrollAnimation animation="slide-left" delay={200} client:only="svelte">
+            <ScrollAnimation animation="fade-in" delay={200} client:only="svelte">
               <PlanSection />
             </ScrollAnimation>
           </section>
 
           <!-- Explain section - slightly transparent white background  -->
           <section id="explain" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/90 backdrop-blur-md">
-            <ScrollAnimation animation="slide-right" delay={200} client:only="svelte">
+            <ScrollAnimation animation="fade-in" delay={200} client:only="svelte">
               <ExplainSection />
             </ScrollAnimation>
           </section>
