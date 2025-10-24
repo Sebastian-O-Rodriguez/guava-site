@@ -6,4 +6,5 @@ import svelte from '@astrojs/svelte';
 // https://astro.build/config
 export default defineConfig({
   integrations: [svelte(), tailwind()],
+  site: 'https://guavatt.com', // ensures Astro.site is populated
 });

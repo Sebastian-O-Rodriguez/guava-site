@@ -3,123 +3,99 @@ import Layout from '../layouts/Layout.astro';
 import ThreeScene from '../components/ThreeScene.svelte';
 import Navigation from '../components/Navigation.astro';
 import HeroSection from '../components/HeroSection.astro';
-// import AboutSection from '../components/StakesSection.astro';
 import StakesSection from '../components/StakesSection.astro';
 import CompetencySection from '../components/CompetencySection.astro';
-// import ServicesSection from '../components/ServicesSection.astro';
 import ValuePropositionSection from '../components/ValuePropositionSection.astro';
 import PlanSection from '../components/PlanSection.astro';
-// import CaseStudiesSection from '../components/CaseStudiesSection.astro';
 import ExplainSection from '../components/ExplainSection.astro';
-import ContactSection from '../components/ContactSection.astro';
 import Footer from '../components/Footer.astro';
 import ScrollManager from '../components/ScrollManager.svelte';
 import LoadingAnimation from '../components/LoadingAnimation.svelte';
 import ScrollAnimation from '../components/ScrollAnimation.svelte';
 
+// SEO constants for this page
+const title = 'Guava Tech Transformation';
+const description = 'Effortless Technology for Real Growth';
+const url = 'https://guavatt.com/';
+const ogImage = Astro.site
+  ? new URL('/og-image.png', Astro.site).toString()
+  : 'https://guavatt.com/og-image.png';
+
 // Single source of truth for site-wide content
 const siteContent = {
   hero: {
-    title: "Guava AI",
-    subtitle: "Effortless Technology for Real Growth",
-    description: "Are you struggling with the right tech solutions for your business?",
-    abbreviation: "G"
-  }
+    title: 'Guava',
+    subtitle: 'Effortless Technology for Real Growth',
+    description: 'Are you struggling with the right tech solutions for your business?',
+    abbreviation: 'G',
+  },
 };
 ---
 
-<Layout title="Guava Tech Transformation">
+<!-- Pass SEO props down to the layout -->
+<Layout {title} {description} {ogImage} {url}>
   <!-- Loading Animation Wrapper -->
   <LoadingAnimation client:only="svelte">
-    <!-- Scroll Manager - pass complete configuration -->
-    <ScrollManager 
-      client:only="svelte" 
-      offset={80} 
-      duration={150} 
-    />
-    
-    <!-- Main wrapper that manages layout -->
+    <ScrollManager client:only="svelte" offset={80} duration={150} />
+
     <div class="relative w-full">
-      <!-- Three.js scene container (fixed at the top) -->
       <div class="fixed top-0 left-0 w-full h-screen z-10">
         <ThreeScene client:only="svelte" />
       </div>
-      
-      <!-- Content container -->
+
       <div class="relative z-20">
-        <!-- Navigation menu - only passing navigation-relevant props -->
         <Navigation title={siteContent.hero.title} />
-        
-        <!-- Hero section (overlaid on the Three.js scene) -->
+
         <section id="hero">
-          <HeroSection 
+          <HeroSection
             title={siteContent.hero.title}
             subtitle={siteContent.hero.subtitle}
             description={siteContent.hero.description}
-            
           />
-
         </section>
-        
-        <!-- Zoom spacer (this will trigger the zoom effect) -->
+
         <div class="h-[5vh] md:h-[10vh] lg:h-[15vh]"></div>
-        
-        <!-- Content sections (appear after scrolling past the zoom effect) -->
+
         <div class="relative bg-transparent pt-xl pb-md rounded-t-lg shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
-          <!-- Stakes section - slightly transparent white background -->
           <section id="stakes" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/90 backdrop-blur-md">
             <ScrollAnimation animation="fade-in" delay={200} client:only="svelte">
               <StakesSection />
             </ScrollAnimation>
           </section>
 
-          <!-- Value proposition section - slightly transparent white background -->
           <section id="value-proposition" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/95 backdrop-blur-md">
             <ScrollAnimation animation="fade-in" delay={200} client:only="svelte">
               <ValuePropositionSection />
             </ScrollAnimation>
-          </section>          
-          
-          <!-- Competency section - blurred background white background -->
+          </section>
+
           <section id="competency" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/90 backdrop-blur-md">
             <ScrollAnimation animation="fade-in" delay={100} client:only="svelte">
               <CompetencySection />
             </ScrollAnimation>
           </section>
-          
-          <!-- Plan section - slightly transparent white background -->
+
           <section id="plan" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/95 backdrop-blur-md">
             <ScrollAnimation animation="fade-in" delay={200} client:only="svelte">
               <PlanSection />
             </ScrollAnimation>
           </section>
 
-          <!-- Explain section - slightly transparent white background  -->
           <section id="explain" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/90 backdrop-blur-md">
             <ScrollAnimation animation="fade-in" delay={200} client:only="svelte">
               <ExplainSection />
             </ScrollAnimation>
           </section>
-
-          <!-- Contact section - blurred background white background
-          <section id="contact" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/95 backdrop-blur-md">
-            <ScrollAnimation animation="slide-up" delay={200} client:only="svelte">
-              <ContactSection />
-            </ScrollAnimation>
-          </section>
-          -->
         </div>
+
         <Footer />
       </div>
     </div>
   </LoadingAnimation>
 
   <script>
-    // Initialize the scroll sections in the store on page load
-    // This ensures the store has the correct sections before components load 
     document.addEventListener('DOMContentLoaded', () => {
-      // This will be picked up by the ScrollManager component
-      window.dispatchEvent(new CustomEvent('initSections', { 
+      window.dispatchEvent(new CustomEvent('initSections', {
         detail: { sections: [['hero', 'stakes', 'value-proposition', 'competency', 'plan', 'explain']] }
       }));
     });
