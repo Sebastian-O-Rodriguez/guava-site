@@ -16,10 +16,10 @@ import ScrollAnimation from '../components/ScrollAnimation.svelte';
 // SEO constants for this page
 const title = 'Guava Tech Transformation';
 const description = 'Effortless Technology for Real Growth';
-const url = 'https://guavatt.com/';
+const url = Astro.url.href;
 const ogImage = Astro.site
-  ? new URL('/og-image.png', Astro.site).toString()
-  : 'https://guavatt.com/og-image.png';
+  ? new URL('/og-image.png?v=3', Astro.site).toString()
+  : 'https://guavatt.com/og-image.png?v=3';
 
 // Single source of truth for site-wide content
 const siteContent = {
