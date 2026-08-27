@@ -1,0 +1,22 @@
+---
+import SecondaryLayout from '../layouts/SecondaryLayout.astro';
+import Button from '../components/Button.astro';
+
+const title = 'Contact — Guava AI';
+const description =
+  'Talk to Guava about your operation — scoping engagements, product questions, and everything in between.';
+---
+
+<SecondaryLayout {title} {description}>
+  <section class="section-band section-band--white">
+    <div class="container">
+      <h1 class="text-h1 mb-md max-w-3xl">Contact Guava</h1>
+      <p class="text-large text-muted max-w-2xl mb-lg">
+        A direct line to Guava. Whether you're considering a scoping engagement,
+        exploring our product wedges, or just want a second opinion on an
+        operational problem, start here.
+      </p>
+      <Button variant="primary" href="/book-a-demo">Book a Demo</Button>
+    </div>
+  </section>
+</SecondaryLayout>

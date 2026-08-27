@@ -1,0 +1,22 @@
+---
+import SecondaryLayout from '../../layouts/SecondaryLayout.astro';
+import Button from '../../components/Button.astro';
+
+const title = 'Operational Diagnostic — Guava AI';
+const description =
+  'A structured, paid scoping engagement that turns your current state into a prioritized plan.';
+---
+
+<SecondaryLayout {title} {description}>
+  <section class="section-band section-band--white">
+    <div class="container">
+      <h1 class="text-h1 mb-md max-w-3xl">Operational Diagnostic</h1>
+      <p class="text-large text-muted max-w-2xl mb-lg">
+        A structured, paid scoping engagement. We map your current state, build
+        an operational model, and return a prioritized, defensible set of
+        interventions — so the first move is the right one, not a guess.
+      </p>
+      <Button variant="primary" href="/book-a-demo">Book a Demo</Button>
+    </div>
+  </section>
+</SecondaryLayout>

@@ -3,8 +3,8 @@
 
   // ── Route map — single source of truth for navigation targets ────────
   const solutions = [
-    { label: 'Backroom Automation', href: '/backroom-automation' },
-    { label: 'Inventory Intelligence', href: '/inventory-intelligence' },
+    { label: 'Backroom Automation', href: '/solutions/backroom-automation' },
+    { label: 'Inventory Intelligence', href: '/solutions/inventory-intelligence' },
     { label: 'Operational Diagnostic', href: '/solutions/operational-diagnostic' },
   ];
 

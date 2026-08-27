@@ -1,0 +1,22 @@
+---
+import SecondaryLayout from '../../layouts/SecondaryLayout.astro';
+import Button from '../../components/Button.astro';
+
+const title = 'Retail — Guava AI';
+const description =
+  'Operational technology for retail businesses running on inventory they need to see clearly.';
+---
+
+<SecondaryLayout {title} {description}>
+  <section class="section-band section-band--white">
+    <div class="container">
+      <h1 class="text-h1 mb-md max-w-3xl">Retail</h1>
+      <p class="text-large text-muted max-w-2xl mb-lg">
+        Retail operations carry constant pressure between availability, cost,
+        and the customer experience. Guava helps retail teams lift the recurring
+        work and turn scattered inventory data into decisions they can trust.
+      </p>
+      <Button variant="primary" href="/book-a-demo">Book a Demo</Button>
+    </div>
+  </section>
+</SecondaryLayout>
