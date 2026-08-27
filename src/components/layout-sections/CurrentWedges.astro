@@ -1,21 +1,46 @@
 ---
 import Section from '../Section.astro';
+import Button from '../Button.astro';
 ---
 
 <Section variant="white" id="current-wedges">
-  <h2 class="text-h2 mb-md">Current Wedges</h2>
-  <p class="text-muted max-w-2xl mb-lg">
-    Placeholder body&nbsp;&mdash; Backroom Automation and Inventory
-    Intelligence.
-  </p>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
-    <div class="rounded-lg border border-text/10 bg-white/5 p-md">
-      <h3 class="text-h3 mb-xs">Backroom Automation</h3>
-      <p class="text-sm text-muted">Placeholder wedge body.</p>
-    </div>
-    <div class="rounded-lg border border-text/10 bg-white/5 p-md">
-      <h3 class="text-h3 mb-xs">Inventory Intelligence / Guava BI</h3>
-      <p class="text-sm text-muted">Placeholder wedge body.</p>
-    </div>
+  <p class="text-xs font-semibold uppercase tracking-wider text-brand mb-sm">Current Wedges</p>
+  <h2 class="text-h2 mb-md max-w-3xl">Two focused products. One operating goal.</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+    <article class="flex flex-col rounded-lg border border-text/10 bg-texture-1 p-lg">
+      <h3 class="text-h3 mb-sm">Backroom Automation</h3>
+      <p class="text-body text-muted mb-sm">
+        Operational work accumulates quietly. People copy data between systems,
+        reconcile records, prepare reports, chase approvals, process documents,
+        and manually handle recurring exceptions.
+      </p>
+      <p class="text-body text-muted">
+        Guava identifies high-value workflows and moves the appropriate burden
+        into reliable systems.
+      </p>
+      <div class="mt-lg">
+        <Button variant="outline" href="/backroom-automation">Explore Backroom Automation</Button>
+      </div>
+    </article>
+
+    <article class="flex flex-col rounded-lg border border-text/10 bg-texture-1 p-lg">
+      <h3 class="text-h3 mb-sm">Inventory Intelligence / Guava BI</h3>
+      <p class="text-body text-muted mb-sm">
+        Inventory businesses generate large amounts of operational data. The
+        harder problem is determining what deserves attention and what to do
+        next.
+      </p>
+      <p class="text-body text-muted">Guava BI is being built to turn inventory data into:</p>
+      <p class="text-sm font-semibold text-brand my-sm">
+        trusted visibility &rarr; important signals &rarr; actionable recommendations
+      </p>
+      <p class="text-body text-muted">
+        It is an initial product wedge, not the definition of Guava AI.
+      </p>
+      <div class="mt-lg">
+        <Button variant="outline" href="/inventory-intelligence">Explore Inventory Intelligence</Button>
+      </div>
+    </article>
   </div>
 </Section>

@@ -1,27 +1,36 @@
 ---
 import Section from '../Section.astro';
+import Button from '../Button.astro';
 
 const industries = [
-  'Retail',
-  'Distribution',
-  'Wholesale',
-  'Grocery',
-  'Pharmacy',
-  'Multi-location operations',
+  { name: 'Retail', href: '/industries/retail' },
+  { name: 'Distribution', href: '/industries/distribution' },
+  { name: 'Wholesale', href: '/industries/wholesale' },
+  { name: 'Grocery', href: '/inventory-intelligence' },
+  { name: 'Pharmacy', href: '/industries/pharmacy' },
+  { name: 'Multi-location Operations', href: '/industries/multi-location' },
 ];
 ---
 
 <Section variant="texture-2" id="industries">
-  <h2 class="text-h2 mb-md">Industries</h2>
+  <p class="text-xs font-semibold uppercase tracking-wider text-brand mb-sm">Industries</p>
+  <h2 class="text-h2 mb-md max-w-3xl">Initially focused on inventory-driven operations.</h2>
   <p class="text-muted max-w-2xl mb-lg">
-    Placeholder body&nbsp;&mdash; initially focused on inventory-driven
-    operations.
+    Guava can work across established businesses with meaningful operational
+    complexity, but inventory-driven companies are an initial specialization.
   </p>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
-    {industries.map((name) => (
-      <div class="rounded-lg border border-text/10 bg-white/60 p-md">
-        <p class="text-sm font-semibold">{name}</p>
-      </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md mb-lg">
+    {industries.map((industry) => (
+      <a
+        href={industry.href}
+        class="group flex items-center justify-between gap-sm rounded-lg border border-text/10 bg-white/70 p-md transition-all duration-base hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+      >
+        <span class="text-body font-semibold text-text">{industry.name}</span>
+        <span aria-hidden="true" class="text-brand transition-transform duration-base group-hover:translate-x-0.5">&rarr;</span>
+      </a>
     ))}
   </div>
+
+  <Button variant="primary" href="/contact">See How Guava Fits Your Operation</Button>
 </Section>
