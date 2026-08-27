@@ -1,0 +1,33 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  variant?: 'brand' | 'white';
+}
+
+const {
+  title,
+  description,
+  ctaLabel = 'Schedule a Call',
+  ctaHref = '#contact',
+  variant = 'brand',
+} = Astro.props;
+
+const bandClass = `section-band section-band--${variant === 'brand' ? 'brand' : 'white'}`;
+const descriptionClass = variant === 'brand'
+  ? 'text-white/80'
+  : 'text-text/80';
+const ctaClass = `btn ${variant === 'brand' ? 'btn-ghost' : 'btn-primary'}`;
+---
+
+<section class={bandClass}>
+  <div class="container text-center">
+    <h2 class="text-h2 mb-md">{title}</h2>
+    {description && (
+      <p class={`${descriptionClass} max-w-2xl mx-auto mb-lg`}>{description}</p>
+    )}
+    <a href={ctaHref} class={ctaClass}>{ctaLabel}</a>
+  </div>
+</section>

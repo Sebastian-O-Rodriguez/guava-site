@@ -26,7 +26,7 @@ export const createColorPalette = (): ColorPalette => {
   const PALETTE = {
     background: 0xF4F7FB,  // Light blue for a bright sky (60%)
     text: 0x2C2828,        // Deep matte charcoal (30%)
-    accent: 0x39FF14,      // Bold neon green - cyberpunk and futuristic (10%)
+    accent: 0x187B43,      // Deep green — brand accent
     accent_two: 0x187B43,  // Deep green for text
     secondary: 0x2C2828,   // Light slate for a more reflective feel
   };

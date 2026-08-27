@@ -1,0 +1,29 @@
+---
+interface Props {
+  /** Section-progression band variant */
+  variant?: 'white' | 'texture-1' | 'texture-2' | 'brand';
+  id?: string;
+  /** Extra classes applied to the <section> element */
+  class?: string;
+  /** Inner container width */
+  container?: 'default' | 'narrow' | 'fluid';
+}
+
+const {
+  variant = 'white',
+  id,
+  class: className = '',
+  container = 'default',
+} = Astro.props;
+
+const bandClass = `section-band section-band--${variant}`;
+const containerClass = container === 'fluid'
+  ? ''
+  : container === 'narrow'
+    ? 'container container--narrow'
+    : 'container';
+---
+
+<section id={id} class={`${bandClass} ${className}`.trim()}>
+  {containerClass ? <div class={containerClass}><slot /></div> : <slot />}
+</section>
