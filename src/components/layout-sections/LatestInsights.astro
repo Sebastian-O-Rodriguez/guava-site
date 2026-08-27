@@ -1,0 +1,20 @@
+---
+import Section from '../Section.astro';
+
+const insights = ['Insight 1', 'Insight 2', 'Insight 3'];
+---
+
+<Section variant="texture-2" id="latest-insights">
+  <h2 class="text-h2 mb-md">Latest Insights</h2>
+  <p class="text-muted max-w-2xl mb-lg">
+    Placeholder body&nbsp;&mdash; three cards across the page.
+  </p>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+    {insights.map((title) => (
+      <div class="rounded-lg border border-text/10 bg-white/60 p-md">
+        <h3 class="text-h3 mb-xs">{title}</h3>
+        <p class="text-sm text-muted">Placeholder title and short description.</p>
+      </div>
+    ))}
+  </div>
+</Section>

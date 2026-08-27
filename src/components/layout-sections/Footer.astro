@@ -1,0 +1,18 @@
+---
+const columns = ['Solutions', 'Industries', 'Company', 'Legal', 'Contact'];
+---
+
+<footer class="section-band section-band--brand">
+  <div class="container">
+    <h2 class="text-h2 mb-md">Footer</h2>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-md mb-lg">
+      {columns.map((name) => (
+        <div>
+          <h3 class="font-semibold mb-xs text-white">{name}</h3>
+          <p class="text-sm text-white/70">Placeholder links.</p>
+        </div>
+      ))}
+    </div>
+    <p class="text-sm text-white/60">Placeholder footer&nbsp;&mdash; Guava AI.</p>
+  </div>
+</footer>

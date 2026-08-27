@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layout-sections/Header.astro';
+import Hero from '../components/layout-sections/Hero.astro';
+import HowWeWork from '../components/layout-sections/HowWeWork.astro';
+import CtaBookDemo from '../components/layout-sections/CtaBookDemo.astro';
+import CapabilityExplorer from '../components/layout-sections/CapabilityExplorer.astro';
+import CtaTalkOperation from '../components/layout-sections/CtaTalkOperation.astro';
+import WhatGuavaSolves from '../components/layout-sections/WhatGuavaSolves.astro';
+import CurrentWedges from '../components/layout-sections/CurrentWedges.astro';
+import Industries from '../components/layout-sections/Industries.astro';
+import WhyGuava from '../components/layout-sections/WhyGuava.astro';
+import LatestInsights from '../components/layout-sections/LatestInsights.astro';
+import Faq from '../components/layout-sections/Faq.astro';
+import FinalCta from '../components/layout-sections/FinalCta.astro';
+import Footer from '../components/layout-sections/Footer.astro';
+
+const title = 'Guava AI — Homepage Layout';
+const description = 'Structural homepage layout skeleton for Guava AI.';
+---
+
+<Layout {title} {description}>
+  <Header />
+  <Hero />
+  <HowWeWork />
+  <CtaBookDemo />
+  <CapabilityExplorer />
+  <CtaTalkOperation />
+  <WhatGuavaSolves />
+  <CurrentWedges />
+  <Industries />
+  <WhyGuava />
+  <LatestInsights />
+  <Faq />
+  <FinalCta />
+  <Footer />
+</Layout>

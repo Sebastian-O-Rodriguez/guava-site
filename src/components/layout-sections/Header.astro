@@ -1,0 +1,24 @@
+---
+import Button from '../Button.astro';
+---
+
+<header class="w-full bg-background text-text border-b border-text/10">
+  <div class="container flex items-center justify-between h-16 md:h-20">
+    <a href="/layout" class="font-bold text-lg tracking-tight">Guava AI</a>
+
+    <nav aria-label="Primary" class="hidden md:flex items-center gap-md text-sm text-muted">
+      <span>Solutions</span>
+      <span>Industries</span>
+      <span>About</span>
+      <span>Insights</span>
+      <span>Contact</span>
+    </nav>
+
+    <div class="flex items-center gap-md">
+      <div class="hidden md:block">
+        <Button variant="primary" href="#contact">Book a Demo</Button>
+      </div>
+      <button type="button" class="md:hidden text-sm font-semibold" aria-label="Open menu">Menu</button>
+    </div>
+  </div>
+</header>
