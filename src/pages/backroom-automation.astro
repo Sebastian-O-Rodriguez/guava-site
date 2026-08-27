@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import ScrollAnimation from '../components/ScrollAnimation.svelte';
+
+// Wedge 1 metadata (company_nav_meta_v7.md §4).
+const title = 'Backroom Automation — Reduce Manual Operational Work | Guava AI';
+const description =
+  'Reduce the recurring operational work your team shouldn\u2019t do by hand — data handling, reconciliation, approvals, reporting. Guava builds practical systems that lift the burden.';
+const url = 'https://guavaai.ai/backroom-automation';
+const ogImage = Astro.site
+  ? new URL('/og-image.png?v=3', Astro.site).toString()
+  : 'https://guavaai.ai/og-image.png?v=3';
+---
+<Layout {title} {description} {url} {ogImage}>
+  <div class="relative w-full min-h-screen">
+    <Navigation />
+    <main class="relative z-10 pt-[14vh] pb-xl">
+
+      <!-- Hero -->
+      <section class="container" data-section="light">
+        <div class="content-container">
+          <ScrollAnimation animation="fade-in" client:only="svelte">
+            <div class="max-w-3xl">
+              <h1 class="hero-heading text-shadow-title">Less repetitive work. More time for judgment.</h1>
+              <p class="text-enhanced text-shadow-body max-w-2xl mb-lg">
+                Backroom Automation removes the recurring operational and administrative work your people shouldn't be doing by hand — and moves it into straightforward, dependable systems. Your team spends more time applying judgment and expertise, and less time performing steps.
+              </p>
+              <div class="flex flex-wrap gap-sm">
+                <a href="/contact" class="btn btn-primary">Schedule a Scoping Call</a>
+                <a href="/inventory-intelligence" class="btn btn-outline">Explore Inventory Intelligence</a>
+              </div>
+            </div>
+          </ScrollAnimation>
+        </div>
+      </section>
+
+      <!-- The problem -->
+      <section class="container mt-xl" data-section="light">
+        <div class="content-container max-w-3xl mx-auto">
+          <ScrollAnimation animation="fade-in" client:only="svelte">
+            <h2 class="section-header">Work that shouldn't still be manual</h2>
+            <p class="text-enhanced mb-md">
+              Most growing operations run on a layer of repetitive administrative work: the same steps, copied between systems by the same people, every day. It's the work that keeps the business running but doesn't require judgment. It quietly eats capacity, produces errors, and pulls skilled people away from the decisions only they can make.
+            </p>
+            <p class="text-reduced">
+              This is not a &ldquo;lack of software&rdquo; problem. It's an operations problem: work that used to fit a smaller business now drags on a larger one. The fix isn't more headcount doing the same steps faster — it's taking the steps out of human hands where that's practical.
+            </p>
+          </ScrollAnimation>
+        </div>
+      </section>
+
+      <!-- The work we take on -->
+      <section class="container mt-xl" data-section="dark">
+        <div class="content-container max-w-3xl mx-auto">
+          <ScrollAnimation animation="fade-in" client:only="svelte">
+            <h2 class="section-header text-white [&::after]:!bg-white">The work we take on</h2>
+            <p class="text-enhanced text-white/85 mb-lg">
+              Backroom Automation targets recurring, bounded workflows — the ones with defined steps and predictable inputs. We turn them into systems that run reliably without a person in the loop, so people step in only where judgment is genuinely required.
+            </p>
+            <ul class="space-y-sm list-none p-0 mb-lg">
+              <li class="text-white/85"><strong class="text-white">Reconciliation</strong> — matching records across systems, accounts, and reports, and surfacing the mismatches instead of hand-reviewing line by line.</li>
+              <li class="text-white/85"><strong class="text-white">Document processing</strong> — reading invoices, orders, and other documents and turning their contents into clean, usable data without manual re-keying.</li>
+              <li class="text-white/85"><strong class="text-white">Data movement</strong> — moving data between systems accurately and on schedule, without copy-paste.</li>
+              <li class="text-white/85"><strong class="text-white">Multi-system synchronization</strong> — keeping the same record consistent across every system that holds it, so they stop drifting apart.</li>
+              <li class="text-white/85"><strong class="text-white">Exception handling</strong> — catching the out-of-pattern cases and routing them to the right person with enough context to decide quickly.</li>
+            </ul>
+            <p class="text-reduced text-white/80">
+              A note on how far this goes: where automation touches judgment, a person stays accountable. Deterministic steps stay deterministic. Probabilistic systems are used only where they create net value — with defined inputs, outputs, boundaries, and human ownership. We never build autonomous decision-making and hand it an unsupervised lever.
+            </p>
+          </ScrollAnimation>
+        </div>
+      </section>
+
+      <!-- What this is not -->
+      <section class="container mt-xl" data-section="light">
+        <div class="content-container max-w-3xl mx-auto">
+          <ScrollAnimation animation="fade-in" client:only="svelte">
+            <h2 class="section-header">What Backroom Automation is not</h2>
+            <p class="text-enhanced mb-lg">Backroom Automation is a specific discipline. Saying what it excludes plainly protects your time as much as ours.</p>
+            <ul class="space-y-sm list-none p-0 mb-lg">
+              <li class="text-reduced">Not a generic website or custom app shop.</li>
+              <li class="text-reduced">Not staff augmentation or contractor bodies.</li>
+              <li class="text-reduced">Not generic IT support.</li>
+              <li class="text-reduced">Not novelty chatbots.</li>
+              <li class="text-reduced">Not technology for its own sake — if the simplest fix is a process change or no new tool at all, that's what we'll recommend.</li>
+            </ul>
+            <p class="text-enhanced">If the problem doesn't sit in recurring operational work, this is the wrong wedge — and we'll say so.</p>
+          </ScrollAnimation>
+        </div>
+      </section>
+
+      <!-- What changes for the operation -->
+      <section class="container mt-xl" data-section="dark">
+        <div class="content-container max-w-3xl mx-auto">
+          <ScrollAnimation animation="fade-in" client:only="svelte">
+            <h2 class="section-header text-white [&::after]:!bg-white">What changes for the operation</h2>
+            <p class="text-enhanced text-white/85 mb-lg">Success means the business operates better — it never means &ldquo;we delivered more technology.&rdquo;</p>
+            <ul class="space-y-sm list-none p-0">
+              <li class="text-white/85"><strong class="text-white">Greater operating capacity</strong> — the same team absorbs more volume, or turns its attention to higher-value work.</li>
+              <li class="text-white/85"><strong class="text-white">Fewer errors</strong> — deterministic steps remove the mistakes that manual repetition reliably produces.</li>
+              <li class="text-white/85"><strong class="text-white">Time returned to judgment</strong> — your people spend their hours on decisions and exceptions, not on performed steps.</li>
+            </ul>
+          </ScrollAnimation>
+        </div>
+      </section>
+
+      <!-- How we get started -->
+      <section class="container mt-xl" data-section="light">
+        <div class="content-container max-w-3xl mx-auto">
+          <ScrollAnimation animation="fade-in" client:only="svelte">
+            <h2 class="section-header">How we get started</h2>
+            <p class="text-enhanced mb-md">
+              We start with business reality and the outcome you need — workflows, systems, data, constraints, and where the friction actually lives. Then we identify the highest-value problem and choose the simplest intervention that solves it: a process change, an integration, an automated workflow, a data system — or no new technology at all. We build only what's justified, and measure whether the operation improved.
+            </p>
+            <p class="text-reduced mb-lg">
+              When the highest-value problem isn't clear yet, we begin with a paid scoping engagement instead. It produces a current-state understanding, an operational model, prioritized interventions, and a first action plan — so we start moving on the right problem rather than guessing. <a href="/diagnostic" class="text-link">How our scoping call works &rarr;</a>
+            </p>
+            <div class="flex flex-wrap gap-sm">
+              <a href="/contact" class="btn btn-primary">Schedule a Scoping Call</a>
+              <a href="/inventory-intelligence" class="btn btn-outline">Explore Inventory Intelligence</a>
+              <a href="/inventory-intelligence#waitlist" class="btn btn-outline">Join the Guava BI Waitlist</a>
+            </div>
+          </ScrollAnimation>
+        </div>
+      </section>
+
+    </main>
+    <Footer />
+  </div>
+</Layout>
