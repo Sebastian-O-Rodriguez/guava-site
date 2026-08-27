@@ -1,4 +1,4 @@
-# Bastie Tech Site
+# Guava AI
 
 A modern, responsive homebase website built with Astro, Svelte, and Tailwind CSS.
 
