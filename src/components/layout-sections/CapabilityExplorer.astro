@@ -1,19 +1,49 @@
 ---
 import Section from '../Section.astro';
+import Explorer from './Explorer.svelte';
+
+const items = [
+  {
+    id: 'pipelines',
+    label: 'Pipelines',
+    visual: 'pipelines',
+    description:
+      'Data moving cleanly from fragmented sources into a unified operational model.',
+  },
+  {
+    id: 'dashboards',
+    label: 'Dashboards',
+    visual: 'dashboards',
+    description: 'Trusted operational metrics and decision-ready reporting.',
+  },
+  {
+    id: 'chat',
+    label: 'Chat',
+    visual: 'chat',
+    description:
+      'Natural-language interaction with operational data where useful.',
+  },
+  {
+    id: 'pulse',
+    label: 'Pulse',
+    visual: 'pulse',
+    description:
+      'Exceptions, anomalies, risks, and opportunities surfaced automatically.',
+  },
+  {
+    id: 'spotlight',
+    label: 'Spotlight',
+    visual: 'spotlight',
+    description: 'High-priority issues and recommendations requiring attention.',
+  },
+];
 ---
 
 <Section variant="texture-1" id="capability-explorer">
   <h2 class="text-h2 mb-md">Capability Explorer</h2>
   <p class="text-muted max-w-2xl mb-lg">
-    Placeholder body&nbsp;&mdash; technical capability without reading like a
-    feature catalog.
+    Technical capability without a feature catalog&nbsp;&mdash; select a
+    capability to preview how it appears in a working operation.
   </p>
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-md">
-    <div class="rounded-lg border border-text/10 bg-white/60 p-md">
-      <p class="text-sm text-muted">Selectable list placeholder</p>
-    </div>
-    <div class="rounded-lg border border-text/10 bg-white/60 p-md min-h-[12rem] flex items-center justify-center">
-      <p class="text-sm text-muted">Large visual placeholder</p>
-    </div>
-  </div>
+  <Explorer client:visible idPrefix="capability" label="Capabilities" items={items} />
 </Section>

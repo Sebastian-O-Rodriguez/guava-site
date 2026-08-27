@@ -1,19 +1,58 @@
 ---
 import Section from '../Section.astro';
+import Explorer from './Explorer.svelte';
+
+const items = [
+  {
+    id: 'backroom-automation',
+    label: 'Backroom Automation',
+    visual: 'automation',
+    description:
+      'Remove repetitive operational work that should be handled by systems.',
+  },
+  {
+    id: 'operational-diagnostic',
+    label: 'Operational Diagnostic',
+    visual: 'diagnostic',
+    description:
+      'Understand the operation, identify the highest-value friction, and contain uncertainty before implementation.',
+    note: 'A scoping mechanism, not a third company pillar.',
+  },
+  {
+    id: 'dashboards-decision',
+    label: 'Dashboards & Decision Support',
+    visual: 'decision',
+    description:
+      'Give operators and leadership reliable visibility into what is actually happening.',
+  },
+  {
+    id: 'real-time-reporting',
+    label: 'Real-Time Reporting',
+    visual: 'reporting',
+    description:
+      'Reduce manual reporting cycles and make operational information available when decisions need to be made.',
+  },
+  {
+    id: 'pipeline-unification',
+    label: 'Pipeline Unification',
+    visual: 'unification',
+    description:
+      'Connect fragmented sources into a reliable operational data foundation.',
+  },
+  {
+    id: 'custom-systems',
+    label: 'Custom Operational Systems',
+    visual: 'custom',
+    description:
+      'Build focused software where existing tools cannot adequately support the required outcome.',
+  },
+];
 ---
 
 <Section variant="texture-2" id="what-guava-solves">
   <h2 class="text-h2 mb-md">What Guava Solves</h2>
   <p class="text-muted max-w-2xl mb-lg">
-    Placeholder body&nbsp;&mdash; a second selectable list with a large
-    corresponding visual.
+    Select an operational problem to preview how Guava addresses it.
   </p>
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-md">
-    <div class="rounded-lg border border-text/10 bg-white/60 p-md">
-      <p class="text-sm text-muted">Selectable list placeholder</p>
-    </div>
-    <div class="rounded-lg border border-text/10 bg-white/60 p-md min-h-[12rem] flex items-center justify-center">
-      <p class="text-sm text-muted">Large visual placeholder</p>
-    </div>
-  </div>
+  <Explorer client:visible idPrefix="solves" label="What Guava solves" items={items} />
 </Section>
