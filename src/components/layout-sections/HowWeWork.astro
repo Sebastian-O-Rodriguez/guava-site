@@ -1,12 +1,32 @@
 ---
 import Section from '../Section.astro';
+
+const interventions = [
+  'data pipelines',
+  'integrations',
+  'workflow automation',
+  'reporting and decision systems',
+  'operational applications',
+  'bounded AI systems',
+  'existing software where it is the better answer',
+];
 ---
 
 <Section variant="texture-1" id="how-we-work">
-  <h2 class="text-h2 mb-md">How We Work</h2>
+  <p class="text-xs font-semibold uppercase tracking-wider text-brand mb-sm">How We Work</p>
+  <h2 class="text-h2 mb-md">Operational systems that grow with you.</h2>
   <p class="text-muted max-w-2xl mb-lg">
-    Operational systems that grow with you. Placeholder body&nbsp;&mdash; Guava
-    starts with how the business actually operates, then builds the simplest
-    system that meaningfully improves it.
+    Guava starts with how the business actually operates. We connect the
+    relevant data, workflows, systems, constraints, and decision points, then
+    build the simplest system that meaningfully improves the operation.
   </p>
+  <p class="text-sm font-semibold text-text mb-sm">Possible interventions may include:</p>
+  <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-lg gap-y-sm max-w-2xl list-none p-0">
+    {interventions.map((item) => (
+      <li class="flex items-start gap-sm">
+        <span aria-hidden="true" class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand"></span>
+        <span class="text-body text-muted">{item}</span>
+      </li>
+    ))}
+  </ul>
 </Section>
