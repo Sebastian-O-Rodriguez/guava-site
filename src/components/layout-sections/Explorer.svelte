@@ -86,7 +86,7 @@
           <span class="mt-xs block text-sm text-muted hidden lg:block">
             {item.description}
             {#if item.note}
-              <span class="mt-1 block text-xs text-muted/80">{item.note}</span>
+              <span class="mt-1 block text-xs text-muted">{item.note}</span>
             {/if}
           </span>
         </span>
@@ -100,7 +100,7 @@
         <h3 class="text-h3 mb-xs">{activeItem.label}</h3>
         <p class="text-body text-muted">{activeItem.description}</p>
         {#if activeItem.note}
-          <p class="text-sm text-muted/80">{activeItem.note}</p>
+          <p class="text-sm text-muted">{activeItem.note}</p>
         {/if}
       </div>
     {/if}
