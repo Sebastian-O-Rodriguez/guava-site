@@ -1,5 +1,6 @@
 <script>
   import { fly } from 'svelte/transition';
+  import { onDestroy } from 'svelte';
 
   // ── Route map — single source of truth for navigation targets ────────
   const solutions = [
@@ -85,13 +86,25 @@
     if (!e.currentTarget.contains(e.relatedTarget)) close();
   }
 
+  function lockScroll() {
+    if (typeof document === 'undefined') return;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+  }
+  function unlockScroll() {
+    if (typeof document === 'undefined') return;
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+  }
+
   function toggleMobile() {
     mobileOpen = !mobileOpen;
-    document.body.classList.toggle('overflow-hidden', mobileOpen);
+    if (mobileOpen) lockScroll();
+    else unlockScroll();
   }
   function closeMobile() {
     mobileOpen = false;
-    document.body.classList.remove('overflow-hidden');
+    unlockScroll();
   }
 
   $effect(() => {
@@ -133,9 +146,10 @@
     return () => {
       document.removeEventListener('pointerdown', onPointerDown);
       document.removeEventListener('keydown', onKeydown);
-      document.body.classList.remove('overflow-hidden');
     };
   });
+
+  onDestroy(unlockScroll);
 
   const mobileLink =
     'block rounded-md -ml-2 px-2 py-sm text-body font-medium text-text hover:bg-texture-1 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand';
