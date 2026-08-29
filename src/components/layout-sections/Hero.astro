@@ -1,18 +1,29 @@
 ---
 import Section from '../Section.astro';
 import Button from '../Button.astro';
+
+const industries = ['Retail', 'Distribution', 'Wholesale', 'Grocery', 'Multi-location'];
+const industryLine = industries.join(' · ');
 ---
 
-<Section variant="white" id="hero">
+<Section variant="white" id="hero" class="flex flex-col justify-center min-h-[85vh]">
   <h1 class="text-h1 mb-md max-w-3xl">
-    Your business has outgrown the way it operates.
+    Building <span class="text-brand">smarter operations</span> for businesses
+    that have outgrown their systems.
   </h1>
   <p class="text-large text-muted max-w-2xl mb-lg">
-    Guava builds practical systems that reduce manual work, improve visibility,
-    and help your operation scale without multiplying complexity.
+    We connect data, workflows, and software into practical operating systems
+    that reduce manual work, improve visibility, and give your team more room
+    to grow.
   </p>
-  <div class="flex flex-wrap gap-md">
-    <Button variant="primary" href="/book-a-demo">Book a Demo</Button>
-    <Button variant="outline" href="#capability-explorer">Explore Solutions</Button>
+
+  <div class="flex flex-wrap items-start gap-md">
+    <div class="flex flex-col items-start gap-sm">
+      <Button variant="primary" href="/contact">Let's Talk</Button>
+      <span class="text-sm text-muted">30 minutes. No prep required.</span>
+    </div>
+    <Button variant="outline" href="#how-we-work">See How Guava Works</Button>
   </div>
+
+  <p class="mt-xl text-sm text-muted">{industryLine}</p>
 </Section>
