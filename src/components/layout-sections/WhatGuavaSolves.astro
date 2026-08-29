@@ -4,55 +4,66 @@ import Explorer from './Explorer.svelte';
 
 const items = [
   {
-    id: 'backroom-automation',
-    label: 'Backroom Automation',
+    id: 'manual-spreadsheets',
+    label: 'Manual work in spreadsheets',
     visual: 'automation',
     description:
-      'Remove repetitive operational work that should be handled by systems.',
+      'Too much work lives in spreadsheets and manual processes.',
+    note:
+      'Guava moves repetitive work into systems → the work runs itself and no longer depends on people.',
   },
   {
-    id: 'operational-diagnostic',
-    label: 'Operational Diagnostic',
-    visual: 'diagnostic',
-    description:
-      'Understand the operation, identify the highest-value friction, and contain uncertainty before implementation.',
-    note: 'A scoping mechanism, not a third company pillar.',
-  },
-  {
-    id: 'dashboards-decision',
-    label: 'Dashboards & Decision Support',
-    visual: 'decision',
-    description:
-      'Give operators and leadership reliable visibility into what is actually happening.',
-  },
-  {
-    id: 'real-time-reporting',
-    label: 'Real-Time Reporting',
-    visual: 'reporting',
-    description:
-      'Reduce manual reporting cycles and make operational information available when decisions need to be made.',
-  },
-  {
-    id: 'pipeline-unification',
-    label: 'Pipeline Unification',
+    id: 'disconnected-systems',
+    label: 'Disconnected systems',
     visual: 'unification',
     description:
-      'Connect fragmented sources into a reliable operational data foundation.',
+      'Teams copy and reconcile data between disconnected systems.',
+    note:
+      'Guava connects the sources into one operational foundation → teams work from the same current data instead of copying it.',
   },
   {
-    id: 'custom-systems',
-    label: 'Custom Operational Systems',
+    id: 'late-reporting',
+    label: 'Reporting that arrives too late',
+    visual: 'reporting',
+    description:
+      'Reporting arrives after the decision needs to be made.',
+    note:
+      'Guava delivers it in real time → decisions are made with current information, when they matter.',
+  },
+  {
+    id: 'unnoticed-exceptions',
+    label: 'Exceptions that go unnoticed',
+    visual: 'pulse',
+    description:
+      'Important exceptions depend on someone noticing them.',
+    note:
+      'Guava surfaces exceptions automatically → problems are caught before they compound.',
+  },
+  {
+    id: 'no-reliable-view',
+    label: 'No reliable view of operations',
+    visual: 'dashboards',
+    description:
+      'Leadership cannot get one reliable view of the operation.',
+    note:
+      'Guava gives leadership one trusted view → decisions rely on the same numbers, not competing reports.',
+  },
+  {
+    id: 'software-mismatch',
+    label: 'Software that doesn’t fit',
     visual: 'custom',
     description:
-      'Build focused software where existing tools cannot adequately support the required outcome.',
+      'Existing software does not match how the operation actually works.',
+    note:
+      'Guava builds systems around how the operation works → software fits the work instead of forcing work to fit software.',
   },
 ];
 ---
 
 <Section variant="texture-2" id="what-guava-solves">
-  <h2 class="text-h2 mb-md">What Guava Solves</h2>
+  <h2 class="text-h2 mb-md">Where operations start to break.</h2>
   <p class="text-muted max-w-2xl mb-lg">
-    Select an operational problem to preview how Guava addresses it.
+    Select a problem to see how Guava intervenes&nbsp;&mdash; and the result.
   </p>
-  <Explorer client:visible idPrefix="solves" label="What Guava solves" items={items} />
+  <Explorer client:visible idPrefix="solves" label="Operational problems" items={items} />
 </Section>
