@@ -23,7 +23,7 @@
     { label: 'Contact', href: '/contact' },
   ];
 
-  const cta = { label: 'Book a Demo', href: '/book-a-demo' };
+  const cta = { label: "Let's Talk", href: '/contact' };
 
   const dropdowns = [
     { id: 'solutions', label: 'Solutions', items: solutions },
