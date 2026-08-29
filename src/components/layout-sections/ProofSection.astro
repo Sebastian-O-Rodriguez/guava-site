@@ -1,0 +1,49 @@
+---
+import Section from '../Section.astro';
+
+// PROOF-04: no customer or integration logos ship here — logos are added only
+// with explicit permission. This section carries the two owner-supplied
+// outcomes as text, verbatim, with only the metric phrase emphasized.
+interface Proof {
+  /** Verbatim text before the emphasized metric. */
+  lead: string;
+  /** The emphasized metric phrase (verbatim). */
+  metric: string;
+  /** Verbatim text after the emphasized metric. */
+  tail: string;
+  /** Owner-supplied industry attribution. */
+  attribution: string;
+}
+
+const proofs: Proof[] = [
+  {
+    lead: '',
+    metric: '30 hours a week',
+    tail: ' of data reconciliation removed. 3 data streams reconciled and reported in a sync-enabled dashboard.',
+    attribution: 'Property management',
+  },
+  {
+    lead: 'Took ',
+    metric: '250k+ records',
+    tail: ' from excel-only reporting to automated real time reporting.',
+    attribution: 'Financial services',
+  },
+];
+---
+
+<Section variant="white" id="proof" label="Proof">
+  <h2 class="text-h2 mb-md max-w-3xl">Proof, not promises.</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+    {proofs.map((proof) => (
+      <figure class="flex flex-col rounded-lg border border-text/10 bg-texture-1 p-lg">
+        <blockquote class="text-large text-text">
+          <p>{proof.lead}<span class="font-bold text-brand">{proof.metric}</span>{proof.tail}</p>
+        </blockquote>
+        <figcaption class="mt-auto pt-md text-sm font-semibold uppercase tracking-wider text-muted">
+          {proof.attribution}
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+</Section>
