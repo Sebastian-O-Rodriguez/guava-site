@@ -18,6 +18,7 @@
   const DURATION_SLOW = 0.4;
   const EASE_OUT_EXPO = 'expo.out';
   const REVEAL_Y = 16; // px — restrained translate offset below the final position
+  const MARK_SCALE_FROM = 0.6; // section-label mark entrance: subtle scale-up, once
   const HEADER_CLEARANCE = 16; // px breathing room beneath the sticky header
 
   function init() {
@@ -34,7 +35,6 @@
       root.style.scrollBehavior = 'auto';
 
       const sections = gsap.utils.toArray('.section-band');
-
       sections.forEach((section) => {
         // Leave anything already on screen untouched so the hero never flashes on boot.
         const rect = section.getBoundingClientRect();
@@ -43,18 +43,34 @@
         // Sections start hidden only when JS is active AND motion is enabled.
         gsap.set(section, { y: REVEAL_Y, autoAlpha: 0 });
 
+        // Section-label mark enters with a subtle one-time scale-up, only when
+        // a label actually exists in this section. It stays synced with the
+        // section reveal so both settle together — no looping, no re-trigger.
+        const mark = section.querySelector('.section-label__mark');
+        if (mark) gsap.set(mark, { scale: MARK_SCALE_FROM, transformOrigin: 'left center' });
+
         ScrollTrigger.create({
           trigger: section,
           start: 'top 88%',
           once: true,
-          onEnter: () =>
+          onEnter: () => {
             gsap.to(section, {
               y: 0,
               autoAlpha: 1,
               duration: DURATION_SLOW,
               ease: EASE_OUT_EXPO,
               clearProps: 'all',
-            }),
+            });
+            if (mark) {
+              gsap.to(mark, {
+                scale: 1,
+                duration: DURATION_SLOW,
+                ease: EASE_OUT_EXPO,
+                delay: 0.1,
+                clearProps: 'transform',
+              });
+            }
+          },
         });
       });
 

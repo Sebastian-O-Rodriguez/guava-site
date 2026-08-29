@@ -77,6 +77,18 @@
     @apply bg-brand text-white;
   }
 
+  /* Section label — shared brand eyebrow above section headings */
+  .section-label {
+    @apply flex items-center gap-xs mb-sm;
+  }
+  .section-label__mark {
+    @apply inline-block h-2.5 w-2.5 rounded-full shrink-0;
+    background: linear-gradient(135deg, #2c3790 0%, #624eab 34%, #b061b6 70%, #f260b6 100%);
+  }
+  .section-label__text {
+    @apply text-sm font-bold uppercase tracking-wider text-brand;
+  }
+
   /* Buttons — primary = brand dark green */
   .btn {
     @apply inline-flex items-center justify-center px-lg py-sm rounded-full font-semibold tracking-tight transition-all duration-base ease-out-expo
