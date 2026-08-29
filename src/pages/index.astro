@@ -1,103 +1,47 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ThreeScene from '../components/ThreeScene.svelte';
-import Navigation from '../components/Navigation.astro';
-import HeroSection from '../components/HeroSection.astro';
-import StakesSection from '../components/StakesSection.astro';
-import CompetencySection from '../components/CompetencySection.astro';
-import ValuePropositionSection from '../components/ValuePropositionSection.astro';
-import PlanSection from '../components/PlanSection.astro';
-import ExplainSection from '../components/ExplainSection.astro';
-import Footer from '../components/Footer.astro';
-import ScrollManager from '../components/ScrollManager.svelte';
-import LoadingAnimation from '../components/LoadingAnimation.svelte';
-import ScrollAnimation from '../components/ScrollAnimation.svelte';
+import Header from '../components/layout-sections/Header.astro';
+import Hero from '../components/layout-sections/Hero.astro';
+import ProofSection from '../components/layout-sections/ProofSection.astro';
+import HowWeWork from '../components/layout-sections/HowWeWork.astro';
+import CapabilityExplorer from '../components/layout-sections/CapabilityExplorer.astro';
+import Capabilities from '../components/layout-sections/Capabilities.astro';
+import CtaTalkOperation from '../components/layout-sections/CtaTalkOperation.astro';
+import WhatGuavaSolves from '../components/layout-sections/WhatGuavaSolves.astro';
+import CurrentWedges from '../components/layout-sections/CurrentWedges.astro';
+import Industries from '../components/layout-sections/Industries.astro';
+import WhyGuava from '../components/layout-sections/WhyGuava.astro';
+import LatestInsights from '../components/layout-sections/LatestInsights.astro';
+import Faq from '../components/layout-sections/Faq.astro';
+import FinalCta from '../components/layout-sections/FinalCta.astro';
+import Engagement from '../components/layout-sections/Engagement.astro';
+import Footer from '../components/layout-sections/Footer.astro';
+import Newsletter from '../components/layout-sections/Newsletter.astro';
+import Motion from '../components/layout-sections/Motion.astro';
 
-// SEO constants for this page
-const title = 'Guava AI Tech Transformation';
-const description = 'Effortless Technology for Real Growth';
-const url = Astro.url.href;
-const ogImage = Astro.site
-  ? new URL('/og-image.png?v=3', Astro.site).toString()
-  : 'https://guavatt.com/og-image.png?v=3';
-
-// Single source of truth for site-wide content
-const siteContent = {
-  hero: {
-    title: 'Guava AI',
-    subtitle: 'Effortless Technology for Real Growth',
-    description: 'Are you struggling with the right tech solutions for your business?',
-    abbreviation: 'G',
-  },
-};
+const title = 'Guava AI — Building smarter operations';
+const description =
+  'We connect data, workflows, and software into practical operating systems that reduce manual work, improve visibility, and give your team more room to grow.';
 ---
 
-<!-- Pass SEO props down to the layout -->
-<Layout {title} {description} {ogImage} {url}>
-  <!-- Loading Animation Wrapper -->
-  <LoadingAnimation client:only="svelte">
-    <ScrollManager client:only="svelte" offset={80} duration={150} />
+<Layout {title} {description}>
+  <Header />
+  <Hero />
+  <ProofSection />
+  <HowWeWork />
+  <Capabilities />
+  <CapabilityExplorer />
+  <CtaTalkOperation />
+  <WhatGuavaSolves />
+  <CurrentWedges />
+  <Industries />
+  <WhyGuava />
+  <LatestInsights />
+  <Faq />
+  <Engagement />
+  <FinalCta />
+  <Newsletter />
+  <Footer />
 
-    <div class="relative w-full">
-      <div class="fixed top-0 left-0 w-full h-screen z-10">
-        <ThreeScene client:only="svelte" />
-      </div>
-
-      <div class="relative z-20">
-        <Navigation title={siteContent.hero.title} />
-
-        <section id="hero">
-          <HeroSection
-            title={siteContent.hero.title}
-            subtitle={siteContent.hero.subtitle}
-            description={siteContent.hero.description}
-          />
-        </section>
-
-        <div class="h-[5vh] md:h-[10vh] lg:h-[15vh]"></div>
-
-        <div class="relative bg-transparent pt-xl pb-md rounded-t-lg shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
-          <section id="stakes" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/90 backdrop-blur-md">
-            <ScrollAnimation animation="fade-in" delay={200} client:only="svelte">
-              <StakesSection />
-            </ScrollAnimation>
-          </section>
-
-          <section id="value-proposition" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/95 backdrop-blur-md">
-            <ScrollAnimation animation="fade-in" delay={200} client:only="svelte">
-              <ValuePropositionSection />
-            </ScrollAnimation>
-          </section>
-
-          <section id="competency" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/90 backdrop-blur-md">
-            <ScrollAnimation animation="fade-in" delay={100} client:only="svelte">
-              <CompetencySection />
-            </ScrollAnimation>
-          </section>
-
-          <section id="plan" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/95 backdrop-blur-md">
-            <ScrollAnimation animation="fade-in" delay={200} client:only="svelte">
-              <PlanSection />
-            </ScrollAnimation>
-          </section>
-
-          <section id="explain" class="mb-lg py-lg px-md flex flex-col justify-center mx-sm rounded-lg bg-background/90 backdrop-blur-md">
-            <ScrollAnimation animation="fade-in" delay={200} client:only="svelte">
-              <ExplainSection />
-            </ScrollAnimation>
-          </section>
-        </div>
-
-        <Footer />
-      </div>
-    </div>
-  </LoadingAnimation>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      window.dispatchEvent(new CustomEvent('initSections', {
-        detail: { sections: [['hero', 'stakes', 'value-proposition', 'competency', 'plan', 'explain']] }
-      }));
-    });
-  </script>
+  <Motion />
 </Layout>
