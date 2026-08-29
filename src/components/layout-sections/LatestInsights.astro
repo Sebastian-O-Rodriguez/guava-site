@@ -1,31 +1,8 @@
 ---
-import Section from '../Section.astro';
-import Button from '../Button.astro';
-
-const insights = [
-  { title: 'Insight 1', description: 'Placeholder title and short description.' },
-  { title: 'Insight 2', description: 'Placeholder title and short description.' },
-  { title: 'Insight 3', description: 'Placeholder title and short description.' },
-];
+// Insights section is intentionally empty. Placeholder cards must never
+// reach production: render nothing until real titles + summaries exist.
+//
+// Re-enable by restoring a <Section> below with real content.
+// Future topics to prioritize: automation ROI, disconnected systems,
+// inventory signals, reporting latency, operational AI.
 ---
-
-<Section variant="texture-2" id="latest-insights" label="Latest from Guava">
-  <h2 class="text-h2 mb-md">Latest Insights</h2>
-
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-md mb-lg">
-    {insights.map((insight) => (
-      <a
-        href="/insights"
-        class="group flex flex-col rounded-lg border border-text/10 bg-white/70 p-md transition-all duration-base hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-      >
-        <h3 class="text-h3 mb-sm">{insight.title}</h3>
-        <p class="text-sm text-muted flex-1">{insight.description}</p>
-        <span class="text-sm font-semibold text-brand mt-md inline-flex items-center gap-xs">
-          Read <span aria-hidden="true">&rarr;</span>
-        </span>
-      </a>
-    ))}
-  </div>
-
-  <Button variant="outline" href="/insights">View All Insights</Button>
-</Section>

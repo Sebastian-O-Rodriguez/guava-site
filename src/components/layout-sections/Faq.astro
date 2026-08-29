@@ -4,58 +4,14 @@ import Section from '../Section.astro';
 const faqs = [
   {
     id: 'faq-1',
-    question: 'How can AI create real value in an established business?',
+    question: 'What kinds of operational problems does Guava work on?',
     paragraphs: [
-      'AI creates value when it has a specific operational job and is connected to the systems, data, workflows, and people required to perform that job.',
-      'Guava does not begin by asking where AI can be added. We begin with the operational problem and determine whether AI, conventional automation, software, better data, or another intervention is the appropriate solution.',
+      'Guava works on operational problems where the current way of working is manual, slow, unreliable, or spread across disconnected systems and individual knowledge.',
+      'Typical starting points include disconnected systems, high volumes of manual data handling, slow or inaccurate reporting, unreliable inventory signals, and processes that stall on exceptions or handoffs.',
     ],
   },
   {
     id: 'faq-2',
-    question: 'What usually prevents businesses from improving or automating their operations?',
-    paragraphs: [
-      'Common blockers include disconnected systems, poor data quality, undocumented workflows, dependence on individual employees, unclear ownership, and attempting to automate a process before understanding how it actually works.',
-      'The first challenge is often not implementation. It is getting a reliable model of the current operation.',
-    ],
-  },
-  {
-    id: 'faq-3',
-    question: 'How do you decide whether an operational problem should be automated?',
-    paragraphs: [
-      'The workflow should have a meaningful business consequence and enough repeatability or operational burden to justify intervention. We evaluate the process, systems, data, exceptions, risks, and expected outcome before deciding what should be automated.',
-      'Some problems require software. Some require process changes. Some should not be automated at all.',
-    ],
-  },
-  {
-    id: 'faq-4',
-    question: 'How do we measure whether an automation or operational system actually worked?',
-    paragraphs: [
-      'Start with the business outcome. Relevant measures may include:',
-      'The system is successful when the operation improves, not merely when the technology ships.',
-    ],
-    list: [
-      'hours of manual work removed',
-      'processing time',
-      'error rates',
-      'reporting latency',
-      'operational throughput',
-      'avoided cost',
-      'inventory loss',
-      'decision speed',
-      'revenue or margin improvement',
-    ],
-  },
-  {
-    id: 'faq-5',
-    question: 'Why do AI and automation projects often stall after a pilot?',
-    paragraphs: [
-      'Many projects begin with technology before the operating problem is sufficiently understood.',
-      'Typical failures include weak data foundations, unclear process ownership, poorly defined outcomes, difficult system integrations, uncontrolled exceptions, and no clear path from prototype to daily operation.',
-      'Guava works from the operational outcome backward so the implementation has a defined job from the beginning.',
-    ],
-  },
-  {
-    id: 'faq-6',
     question: 'Can Guava work with our existing software and systems?',
     paragraphs: [
       'Yes. Replacing existing systems is not the default. Guava can work across existing software, databases, spreadsheets, APIs, reporting systems, and internal workflows.',
@@ -63,19 +19,19 @@ const faqs = [
     ],
   },
   {
-    id: 'faq-7',
-    question: 'Do we need to know exactly what we want built before talking to Guava?',
+    id: 'faq-3',
+    question: 'How do you decide what should be automated?',
     paragraphs: [
-      'No. If the operational problem is clear, Guava can scope the implementation directly.',
-      'If the problem, dependencies, or correct intervention are still uncertain, a focused paid Diagnostic can be used to understand the current operation and establish a practical path forward.',
+      'The workflow should have a meaningful business consequence and enough repeatability or operational burden to justify intervention. We evaluate the process, systems, data, exceptions, risks, and expected outcome before deciding what should be automated.',
+      'Some problems require software. Some require process changes. Some should not be automated at all.',
     ],
   },
   {
-    id: 'faq-8',
-    question: 'Is Guava an AI consultancy?',
+    id: 'faq-4',
+    question: 'What happens when we first talk?',
     paragraphs: [
-      'No. Guava is a technology company focused on improving how businesses operate. AI is one capability we can use when it is appropriate.',
-      'We also build integrations, automation, data systems, operational software, reporting systems, and other practical technology required to solve the problem.',
+      'We start with your operating problem, not with a technology. A first conversation is a focused discussion of how the work currently gets done, where it breaks or slows down, and what the outcome needs to be.',
+      'From there we explain how Guava would approach it, what a practical path forward looks like, and whether a focused paid Diagnostic is useful before scoping the build.',
     ],
   },
 ];
@@ -84,8 +40,8 @@ const faqs = [
 <Section variant="white" id="faq" container="narrow" label="FAQ">
   <h2 class="text-h2 mb-md">Frequently Asked Questions</h2>
   <p class="text-muted mb-lg">
-    Questions focused on operational technology, AI, automation, data,
-    implementation, and ROI.
+    Questions focused on operational technology, automation, systems, and
+    getting started.
   </p>
 
   <div class="divide-y divide-text/10 border-y border-text/10">
