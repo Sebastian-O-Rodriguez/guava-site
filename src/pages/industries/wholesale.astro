@@ -1,0 +1,23 @@
+---
+import SecondaryLayout from '../../layouts/SecondaryLayout.astro';
+import Button from '../../components/Button.astro';
+
+const title = 'Wholesale — Guava AI';
+const description =
+  'Operational technology for wholesale businesses handling volume across many accounts and systems.';
+---
+
+<SecondaryLayout {title} {description}>
+  <section class="section-band section-band--white">
+    <div class="container">
+      <h1 class="text-h1 mb-md max-w-3xl">Wholesale</h1>
+      <p class="text-large text-muted max-w-2xl mb-lg">
+        Wholesale means volume — orders, invoices, stock levels, and the
+        paperwork that ties them together. Guava helps wholesale teams remove
+        the recurring administrative steps so the numbers on the screen match
+        the shelves.
+      </p>
+      <Button variant="primary" href="/book-a-demo">Book a Demo</Button>
+    </div>
+  </section>
+</SecondaryLayout>

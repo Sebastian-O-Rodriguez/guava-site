@@ -1,5 +1,5 @@
 {
-  "name": "SR Portfolio Site",
+  "name": "Guava AI",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -11,16 +11,13 @@
   },
   "dependencies": {
     "@astrojs/svelte": "^7.0.8",
-    "@dimforge/rapier3d": "^0.15.0",
-    "@dimforge/rapier3d-compat": "^0.15.0",
     "astro": "^5.5.5",
+    "gsap": "^3.15.0",
     "svelte": "^5.25.3",
-    "three": "^0.174.0",
     "typescript": "^5.8.2"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",
-    "@types/three": "^0.174.0",
     "tailwindcss": "^3.4.17"
   }
 }

@@ -1,0 +1,53 @@
+---
+import Section from '../Section.astro';
+import Button from '../Button.astro';
+---
+
+<Section variant="white" id="current-wedges" label="Solutions Available Today">
+  <h2 class="text-h2 mb-md max-w-3xl">Two solutions. One operating goal.</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+    <article class="flex flex-col rounded-lg border border-text/10 bg-texture-1 p-lg">
+      <h3 class="text-h3 mb-xs">Backroom Automation</h3>
+      <p class="text-body text-muted mb-sm">
+        Operational work accumulates quietly. People copy data between systems,
+        reconcile records, prepare reports, chase approvals, process documents,
+        and manually handle recurring exceptions.
+      </p>
+      <p class="text-sm font-semibold text-brand my-sm">
+        Manual work in spreadsheets, approvals, and reports &rarr; moves into
+        reliable systems that run on their own.
+      </p>
+      <p class="text-body text-muted">
+        Guava identifies high-value workflows and moves the appropriate burden
+        into reliable systems.
+      </p>
+      <div class="mt-lg">
+        <Button variant="outline" href="/solutions/backroom-automation">Explore Backroom Automation</Button>
+      </div>
+    </article>
+
+    <article class="flex flex-col rounded-lg border border-text/10 bg-texture-1 p-lg">
+      <h3 class="text-h3 mb-xs">Guava BI</h3>
+      <p class="text-sm font-semibold uppercase tracking-wider text-muted mb-sm">
+        Decision Intelligence
+      </p>
+      <p class="text-body text-muted mb-sm">
+        Inventory businesses generate large amounts of operational data. The
+        harder problem is determining what deserves attention and what to do
+        next.
+      </p>
+      <p class="text-sm font-semibold text-brand my-sm">
+        Scattered, stale inventory data &rarr; trusted visibility, important
+        signals, actionable recommendations.
+      </p>
+      <p class="text-body text-muted">
+        Built for inventory-driven businesses where small operational signals
+        can materially affect margin, availability, and working capital.
+      </p>
+      <div class="mt-lg">
+        <Button variant="outline" href="/solutions/inventory-intelligence">Explore Guava BI</Button>
+      </div>
+    </article>
+  </div>
+</Section>

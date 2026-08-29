@@ -1,0 +1,69 @@
+---
+import Section from '../Section.astro';
+import Explorer from './Explorer.svelte';
+
+const items = [
+  {
+    id: 'manual-spreadsheets',
+    label: 'Manual work in spreadsheets',
+    visual: 'automation',
+    description:
+      'Too much work lives in spreadsheets and manual processes.',
+    note:
+      'Guava moves repetitive work into systems → the work runs itself and no longer depends on people.',
+  },
+  {
+    id: 'disconnected-systems',
+    label: 'Disconnected systems',
+    visual: 'unification',
+    description:
+      'Teams copy and reconcile data between disconnected systems.',
+    note:
+      'Guava connects the sources into one operational foundation → teams work from the same current data instead of copying it.',
+  },
+  {
+    id: 'late-reporting',
+    label: 'Reporting that arrives too late',
+    visual: 'reporting',
+    description:
+      'Reporting arrives after the decision needs to be made.',
+    note:
+      'Guava delivers it in real time → decisions are made with current information, when they matter.',
+  },
+  {
+    id: 'unnoticed-exceptions',
+    label: 'Exceptions that go unnoticed',
+    visual: 'pulse',
+    description:
+      'Important exceptions depend on someone noticing them.',
+    note:
+      'Guava surfaces exceptions automatically → problems are caught before they compound.',
+  },
+  {
+    id: 'no-reliable-view',
+    label: 'No reliable view of operations',
+    visual: 'dashboards',
+    description:
+      'Leadership cannot get one reliable view of the operation.',
+    note:
+      'Guava gives leadership one trusted view → decisions rely on the same numbers, not competing reports.',
+  },
+  {
+    id: 'software-mismatch',
+    label: 'Software that doesn’t fit',
+    visual: 'custom',
+    description:
+      'Existing software does not match how the operation actually works.',
+    note:
+      'Guava builds systems around how the operation works → software fits the work instead of forcing work to fit software.',
+  },
+];
+---
+
+<Section variant="texture-2" id="what-guava-solves">
+  <h2 class="text-h2 mb-md">Where operations start to break.</h2>
+  <p class="text-muted max-w-2xl mb-lg">
+    Select a problem to see how Guava intervenes&nbsp;&mdash; and the result.
+  </p>
+  <Explorer client:visible idPrefix="solves" label="Operational problems" items={items} />
+</Section>

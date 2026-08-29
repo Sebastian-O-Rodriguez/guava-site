@@ -1,0 +1,36 @@
+---
+import Section from '../Section.astro';
+
+const outcomes = [
+  'Less manual work',
+  'Better visibility',
+  'More reliable systems',
+  'Clearer decisions',
+  'Fewer fragile handoffs',
+  'Greater operating capacity',
+  'Measurable improvement in the business',
+];
+---
+
+<Section variant="white" id="why-guava" label="Why Guava">
+  <h2 class="text-h2 mb-md max-w-3xl">
+    Technology should serve the business&nbsp;&mdash; not the other way around.
+  </h2>
+  <p class="text-muted max-w-2xl mb-lg">
+    Guava starts with the required operational outcome. We do not begin with a
+    preferred technology. Success should look like:
+  </p>
+
+  <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-lg gap-y-sm max-w-3xl list-none p-0 mb-lg">
+    {outcomes.map((item) => (
+      <li class="flex items-start gap-sm">
+        <span aria-hidden="true" class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand"></span>
+        <span class="text-body text-muted">{item}</span>
+      </li>
+    ))}
+  </ul>
+
+  <p class="text-sm font-semibold text-text">
+    Technology is useful only when it produces those outcomes.
+  </p>
+</Section>

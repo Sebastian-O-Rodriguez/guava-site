@@ -1,0 +1,40 @@
+---
+// NEWS-02/03/04/05 — Guava Notes newsletter signup.
+//
+// The M9b subscriber endpoint is unresolved (GUA-614 parked). Per the
+// acceptance fallback, the section stays hidden behind a placeholder env flag
+// and posts nowhere: no endpoint is called, and no credentials are invented.
+//
+// When the endpoint lands:
+//   - set PUBLIC_NEWSLETTER_ENABLED=true (e.g. in the deployment env),
+//   - give <form> its action + method, and
+//   - keep credentials in env, never in source.
+const enabled = import.meta.env.PUBLIC_NEWSLETTER_ENABLED === 'true';
+---
+
+{enabled && (
+  <section id="newsletter" class="section-band section-band--texture-1">
+    <div class="container container--narrow text-center">
+      <h2 class="text-h2 mb-md">Operating systems for growing businesses.</h2>
+      <p class="text-muted max-w-2xl mx-auto mb-sm">
+        Short notes on automation, operational data, AI, and the systems behind
+        better-run companies.
+      </p>
+      <p class="text-sm text-muted mb-lg">Get Guava Notes, weekly.</p>
+
+      <form class="flex flex-col sm:flex-row gap-sm max-w-md mx-auto" data-newsletter-form>
+        <label for="newsletter-email" class="sr-only">Email address</label>
+        <input
+          id="newsletter-email"
+          name="email"
+          type="email"
+          required
+          placeholder="Email address"
+          autocomplete="email"
+          class="form-input flex-1"
+        />
+        <button type="submit" class="btn btn-primary">Get Guava Notes</button>
+      </form>
+    </div>
+  </section>
+)}

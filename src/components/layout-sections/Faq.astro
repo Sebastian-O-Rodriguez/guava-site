@@ -1,0 +1,92 @@
+---
+import Section from '../Section.astro';
+
+const faqs = [
+  {
+    id: 'faq-1',
+    question: 'What kinds of operational problems does Guava work on?',
+    paragraphs: [
+      'Guava works on operational problems where the current way of working is manual, slow, unreliable, or spread across disconnected systems and individual knowledge.',
+      'Typical starting points include disconnected systems, high volumes of manual data handling, slow or inaccurate reporting, unreliable inventory signals, and processes that stall on exceptions or handoffs.',
+    ],
+  },
+  {
+    id: 'faq-2',
+    question: 'Can Guava work with our existing software and systems?',
+    paragraphs: [
+      'Yes. Replacing existing systems is not the default. Guava can work across existing software, databases, spreadsheets, APIs, reporting systems, and internal workflows.',
+      'The objective is to select the simplest intervention that produces the required outcome.',
+    ],
+  },
+  {
+    id: 'faq-3',
+    question: 'How do you decide what should be automated?',
+    paragraphs: [
+      'The workflow should have a meaningful business consequence and enough repeatability or operational burden to justify intervention. We evaluate the process, systems, data, exceptions, risks, and expected outcome before deciding what should be automated.',
+      'Some problems require software. Some require process changes. Some should not be automated at all.',
+    ],
+  },
+  {
+    id: 'faq-4',
+    question: 'What happens when we first talk?',
+    paragraphs: [
+      'We start with your operating problem, not with a technology. A first conversation is a focused discussion of how the work currently gets done, where it breaks or slows down, and what the outcome needs to be.',
+      'From there we explain how Guava would approach it, what a practical path forward looks like, and whether a focused paid Diagnostic is useful before scoping the build.',
+    ],
+  },
+];
+---
+
+<Section variant="white" id="faq" container="narrow" label="FAQ">
+  <h2 class="text-h2 mb-md">Frequently Asked Questions</h2>
+  <p class="text-muted mb-lg">
+    Questions focused on operational technology, automation, systems, and
+    getting started.
+  </p>
+
+  <div class="divide-y divide-text/10 border-y border-text/10">
+    {faqs.map((faq) => (
+      <div class="py-md" data-faq-item>
+        <button
+          type="button"
+          id={`${faq.id}-button`}
+          aria-expanded="false"
+          aria-controls={`${faq.id}-panel`}
+          class="flex w-full items-center justify-between gap-md rounded-sm py-xs text-left text-body font-semibold text-text transition-colors duration-fast hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+        >
+          <span>{faq.question}</span>
+          <span aria-hidden="true" class="shrink-0 text-lg text-brand">+</span>
+        </button>
+        <div id={`${faq.id}-panel`} role="region" aria-labelledby={`${faq.id}-button`} hidden>
+          <div class="pt-sm">
+            {faq.paragraphs.map((paragraph) => (
+              <p class="text-body text-muted mb-sm">{paragraph}</p>
+            ))}
+            {faq.list && (
+              <ul class="list-disc pl-md mb-sm space-y-xs">
+                {faq.list.map((item) => (
+                  <li class="text-body text-muted">{item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</Section>
+
+<script>
+  document.querySelectorAll('[data-faq-item]').forEach((item) => {
+    const button = item.querySelector('button[aria-expanded]');
+    const panel = item.querySelector('[role="region"]');
+    const indicator = button.querySelector('[aria-hidden="true"]');
+
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', String(!expanded));
+      panel.hidden = expanded;
+      indicator.textContent = expanded ? '+' : '\u2212';
+    });
+  });
+</script>

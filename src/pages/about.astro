@@ -1,0 +1,23 @@
+---
+import SecondaryLayout from '../layouts/SecondaryLayout.astro';
+import Button from '../components/Button.astro';
+
+const title = 'About — Guava AI';
+const description =
+  'Guava AI is a technology consultancy for businesses that have outgrown how they operate.';
+---
+
+<SecondaryLayout {title} {description}>
+  <section class="section-band section-band--white">
+    <div class="container">
+      <h1 class="text-h1 mb-md max-w-3xl">About Guava</h1>
+      <p class="text-large text-muted max-w-2xl mb-lg">
+        Guava is a technology consultancy for businesses that have outgrown how
+        they operate. We take recurring operational burden off people's plates —
+        turning complexity into reliable, everyday systems — so teams spend more
+        time on judgment and less on performed steps.
+      </p>
+      <Button variant="primary" href="/book-a-demo">Book a Demo</Button>
+    </div>
+  </section>
+</SecondaryLayout>

@@ -1,0 +1,74 @@
+---
+import Section from '../Section.astro';
+
+const groups = [
+  {
+    name: 'Automate the Work',
+    items:
+      'workflow automation, reconciliation, approvals, document handling, recurring operational tasks',
+    problem:
+      'Recurring operational work still runs on people\u2019s time \u2014 data copied between systems, records reconciled by hand, approvals chased, documents processed manually.',
+    system:
+      'Guava automates the workflow so repetitive operational tasks move into reliable systems instead of depending on staff.',
+    result: 'Staff hours return to the work that cannot be automated.',
+  },
+  {
+    name: 'Connect the Operation',
+    items:
+      'integrations, pipelines, operational data, reporting systems, system synchronization',
+    problem:
+      'Data is scattered across disconnected systems, so the operation and its reports are never in sync.',
+    system:
+      'Guava connects the operation with integrations and pipelines that unify operational data and keep reporting systems synchronized.',
+    result: 'One operational picture that updates on its own.',
+  },
+  {
+    name: 'Improve Decisions',
+    items:
+      'dashboards, alerts, anomaly detection, recommendations, applied AI',
+    problem:
+      'Leaders cannot see what needs attention until something has already started to go wrong.',
+    system:
+      'Guava turns operational data into dashboards, alerts, and anomaly detection \u2014 then into recommendations using applied AI.',
+    result: 'Decisions made from signals, not surprises.',
+  },
+];
+---
+
+<Section variant="white" id="capabilities" label="Capabilities">
+  <h2 class="text-h2 mb-md max-w-3xl">Three groups. One operating goal.</h2>
+  <p class="text-muted max-w-2xl mb-lg">
+    Guava capabilities fall into three groups. Every engagement draws on the
+    ones the operation needs most.
+  </p>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+    {groups.map((group) => (
+      <article class="flex flex-col rounded-lg border border-text/10 bg-texture-1 p-lg">
+        <h3 class="text-h3 mb-sm">{group.name}</h3>
+        <p class="text-sm text-muted">{group.items}.</p>
+
+        <dl class="mt-md space-y-sm border-t border-text/10 pt-md">
+          <div class="flex items-start gap-sm">
+            <dt class="w-16 shrink-0 pt-0.5 text-xs font-bold uppercase tracking-wider text-brand">
+              Problem
+            </dt>
+            <dd class="m-0 text-sm text-text">{group.problem}</dd>
+          </div>
+          <div class="flex items-start gap-sm">
+            <dt class="w-16 shrink-0 pt-0.5 text-xs font-bold uppercase tracking-wider text-brand">
+              System
+            </dt>
+            <dd class="m-0 text-sm text-text">{group.system}</dd>
+          </div>
+          <div class="flex items-start gap-sm">
+            <dt class="w-16 shrink-0 pt-0.5 text-xs font-bold uppercase tracking-wider text-brand">
+              Result
+            </dt>
+            <dd class="m-0 text-sm text-text">{group.result}</dd>
+          </div>
+        </dl>
+      </article>
+    ))}
+  </div>
+</Section>

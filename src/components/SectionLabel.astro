@@ -1,0 +1,13 @@
+---
+interface Props {
+  /** Uppercase section label rendered above the section heading */
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="section-label">
+  <span class="section-label__mark" aria-hidden="true"></span>
+  <span class="section-label__text">{label}</span>
+</div>

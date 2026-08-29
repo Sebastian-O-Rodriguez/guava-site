@@ -55,33 +55,61 @@
   .container {
     @apply w-full max-w-7xl mx-auto px-md md:px-lg lg:px-xl;
   }
-  
+
   .container--narrow {
     @apply max-w-3xl;
   }
-  
-  /* Buttons */
+
+  /* Section progression bands — white -> texture-1 -> texture-2 -> brand */
+  .section-band {
+    @apply w-full py-2xl;
+  }
+  .section-band--white {
+    @apply bg-background text-text;
+  }
+  .section-band--texture-1 {
+    @apply bg-texture-1 text-text;
+  }
+  .section-band--texture-2 {
+    @apply bg-texture-2 text-text;
+  }
+  .section-band--brand {
+    @apply bg-brand text-white;
+  }
+
+  /* Section label — shared brand eyebrow above section headings */
+  .section-label {
+    @apply flex items-center gap-xs mb-sm;
+  }
+  .section-label__mark {
+    @apply inline-block h-2.5 w-2.5 rounded-full shrink-0;
+    background: linear-gradient(135deg, #2c3790 0%, #624eab 34%, #b061b6 70%, #f260b6 100%);
+  }
+  .section-label__text {
+    @apply text-sm font-bold uppercase tracking-wider text-brand;
+  }
+
+  /* Buttons — primary = brand dark green */
   .btn {
-    @apply px-lg py-sm rounded-full font-semibold tracking-wider transition-all duration-300;
+    @apply inline-flex items-center justify-center px-lg py-sm rounded-full font-semibold tracking-tight transition-all duration-base ease-out-expo
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2;
   }
   .btn:hover {
     @apply -translate-y-0.5 shadow-lg;
   }
-  /* Button 1: Using accent-two as main color with a border highlight effect */
   .btn-primary {
-    @apply bg-accent-two/90 text-white border border-transparent
-          hover:bg-accent-two hover:border-white hover:border-2;
+    @apply bg-brand text-white hover:bg-brand-600 active:bg-brand-700;
   }
-  /* Button 2: Using text color with background highlight effect */
   .btn-secondary {
-    @apply bg-secondary/90 text-background border border-transparent
-          hover:bg-text hover:border-background hover:border-2;
+    @apply bg-secondary text-background hover:bg-text;
   }
-  /* Additional button style option */
   .btn-outline {
-    @apply bg-transparent/95 border border-text/20 text-text/70
-          hover:bg-white/5 hover:border-accent-two hover:text-accent-two;
+    @apply bg-transparent border border-text/20 text-text hover:border-brand hover:text-brand;
   }
+  .btn-ghost {
+    @apply bg-white/10 text-white border border-white/30 hover:bg-white/20;
+  }
+
   /* Text link styling */
   .text-link {
     @apply text-accent-two/70 hover:text-accent-two hover:underline focus:outline-none focus:ring-2 focus:ring-accent-two/20 transition-colors;
@@ -147,7 +175,7 @@
   .text-shadow-title {
     text-shadow: 0px 1px 1px rgba(178, 122, 100, 0.25),
                 0px 1px 1px rgba(24, 123, 67, 0.1),
-                1px 1px 1px rgba(57, 255, 20, 0.03);
+                1px 1px 1px rgba(24, 123, 67, 0.06);
   }
 
   /* Subtle shadow for body text and smaller elements - improves readability */

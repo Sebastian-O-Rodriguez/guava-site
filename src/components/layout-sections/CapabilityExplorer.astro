@@ -1,0 +1,37 @@
+---
+import Section from '../Section.astro';
+import Explorer from './Explorer.svelte';
+
+const items = [
+  {
+    id: 'pipelines',
+    label: 'Pipelines',
+    visual: 'pipeline-flow',
+    description:
+      'POS, ERP, and CSV sources unified into one operational model that feeds reporting and applications.',
+  },
+  {
+    id: 'automation',
+    label: 'Automation',
+    visual: 'automation-flow',
+    description:
+      'Documents in, validated, processed, systems updated — with exceptions routed to a person.',
+  },
+  {
+    id: 'decision',
+    label: 'Decision support',
+    visual: 'decision-flow',
+    description:
+      'Operational data watched for anomalies, turned into recommendations a person acts on.',
+  },
+];
+---
+
+<Section variant="texture-1" id="capability-explorer">
+  <h2 class="text-h2 mb-md">Capability Explorer</h2>
+  <p class="text-muted max-w-2xl mb-lg">
+    Technical capability without a feature catalog&nbsp;&mdash; select a
+    capability to preview how it appears in a working operation.
+  </p>
+  <Explorer client:visible idPrefix="capability" label="Capabilities" items={items} />
+</Section>

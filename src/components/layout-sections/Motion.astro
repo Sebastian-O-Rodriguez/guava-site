@@ -1,0 +1,127 @@
+---
+// Page-scoped motion for /layout.
+// GSAP-assisted smooth anchor scrolling + restrained section reveals.
+// Honors prefers-reduced-motion; progressive enhancement keeps content
+// visible when JS is absent or motion is disabled.
+---
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+  // Mirrors M2 motion tokens (tailwind.config.js). Do not introduce new durations/easings.
+  //   transitionDuration.slow  = 400ms
+  //   transitionTimingFunction['out-expo'] = cubic-bezier(0.16, 1, 0.3, 1) → GSAP expo.out
+  const DURATION_SLOW = 0.4;
+  const EASE_OUT_EXPO = 'expo.out';
+  const REVEAL_Y = 16; // px — restrained translate offset below the final position
+  const MARK_SCALE_FROM = 0.6; // section-label mark entrance: subtle scale-up, once
+  const HEADER_CLEARANCE = 16; // px breathing room beneath the sticky header
+
+  function init() {
+    const mm = gsap.matchMedia();
+
+    // Motion allowed: transform/opacity-only section reveals + smooth anchor scroll.
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      // GSAP drives in-page anchor scrolling, so neutralize the native CSS
+      // smooth-scroll (scroll-behavior: smooth on <html>). The two fight:
+      // every per-frame scrollTo would restart the CSS animation and the page
+      // barely moves. Restored on context teardown (e.g. reduce toggled on).
+      const root = document.documentElement;
+      const previousScrollBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
+
+      const sections = gsap.utils.toArray('.section-band');
+      sections.forEach((section) => {
+        // Leave anything already on screen untouched so the hero never flashes on boot.
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) return;
+
+        // Sections start hidden only when JS is active AND motion is enabled.
+        gsap.set(section, { y: REVEAL_Y, autoAlpha: 0 });
+
+        // Section-label mark enters with a subtle one-time scale-up, only when
+        // a label actually exists in this section. It stays synced with the
+        // section reveal so both settle together — no looping, no re-trigger.
+        const mark = section.querySelector('.section-label__mark');
+        if (mark) gsap.set(mark, { scale: MARK_SCALE_FROM, transformOrigin: 'left center' });
+
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top 88%',
+          once: true,
+          onEnter: () => {
+            gsap.to(section, {
+              y: 0,
+              autoAlpha: 1,
+              duration: DURATION_SLOW,
+              ease: EASE_OUT_EXPO,
+              clearProps: 'all',
+            });
+            if (mark) {
+              gsap.to(mark, {
+                scale: 1,
+                duration: DURATION_SLOW,
+                ease: EASE_OUT_EXPO,
+                delay: 0.1,
+                clearProps: 'transform',
+              });
+            }
+          },
+        });
+      });
+
+      // Restrained GSAP-assisted anchor scrolling, offset for the sticky header.
+      const handleAnchorClick = (event) => {
+        const link = event.currentTarget;
+        const href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        if (href.length === 1) return; // bare "#" — leave to the browser
+
+        const target = document.querySelector(href);
+        if (!target) return;
+
+        event.preventDefault();
+        const header = document.querySelector('header');
+        const offsetY = (header ? header.offsetHeight : 0) + HEADER_CLEARANCE;
+
+        gsap.to(window, {
+          duration: DURATION_SLOW,
+          ease: EASE_OUT_EXPO,
+          scrollTo: { y: target, offsetY, autoKill: true },
+          overwrite: 'auto',
+        });
+      };
+
+      const links = document.querySelectorAll('a[href^="#"]');
+      links.forEach((link) => link.addEventListener('click', handleAnchorClick));
+
+      return () => {
+        links.forEach((link) => link.removeEventListener('click', handleAnchorClick));
+        root.style.scrollBehavior = previousScrollBehavior;
+      };
+    });
+
+    // Reduced motion: no reveals, no smooth-scroll animation. Sections stay in
+    // their final visible state, and the native CSS smooth scroll is neutralized
+    // so in-page anchors jump instantly instead of animating.
+    mm.add('(prefers-reduced-motion: reduce)', () => {
+      const root = document.documentElement;
+      const previousScrollBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
+
+      return () => {
+        root.style.scrollBehavior = previousScrollBehavior;
+      };
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
+</script>

@@ -31,7 +31,7 @@ const {
     <link rel="canonical" href={url} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/guavatemp.png" />
+    <link rel="icon" type="image/svg+xml" href="/brand/guava-logo.svg" />
 
     <!-- Basic SEO -->
     <meta name="description" content={description} />
@@ -65,17 +65,22 @@ const {
     <!-- Define CSS variables for theme and mobile menu -->
     <style is:global>
       :root {
-        /* Colors */
-        --color-background: #FEFEFE;
+        /* Colors — white-first canvas, single brand accent */
+        --color-background: #FFFFFF;
+        --color-background-alt: #F6F7F4;
         --color-text: #2C2828;
-        --color-accent: #39FF14;
+        --color-text-muted: rgba(44, 40, 40, 0.7);
+        --color-brand: #187B43;
+        --color-accent: #187B43;
         --color-accent-two: #187B43;
         --color-secondary: #2C2828;
 
+        /* Texture progression bands */
+        --color-texture-1: #F6F7F4;
+        --color-texture-2: #ECEFEA;
+
         /* Color variants */
-        --color-background-alt: #F5F5F5;
-        --color-text-muted: rgba(44, 40, 40, 0.7);
-        --color-accent-subtle: rgba(57, 255, 20, 0.15);
+        --color-accent-subtle: rgba(24, 123, 67, 0.15);
         --color-accent-two-subtle: rgba(24, 123, 67, 0.15);
 
         /* UI Elements */

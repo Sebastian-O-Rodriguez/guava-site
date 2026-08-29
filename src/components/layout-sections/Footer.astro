@@ -1,0 +1,87 @@
+---
+const groups = [
+  {
+    title: 'Solutions',
+    links: [
+      { label: 'Backroom Automation', href: '/solutions/backroom-automation' },
+      { label: 'Guava BI', href: '/solutions/inventory-intelligence' },
+      { label: 'Operational Diagnostic', href: '/solutions/operational-diagnostic' },
+    ],
+  },
+  {
+    title: 'Industries',
+    links: [
+      { label: 'Retail', href: '/industries/retail' },
+      { label: 'Distribution', href: '/industries/distribution' },
+      { label: 'Wholesale', href: '/industries/wholesale' },
+      { label: 'Pharmacy', href: '/industries/pharmacy' },
+      { label: 'Multi-location Operations', href: '/industries/multi-location' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
+  {
+    title: 'Insights',
+    links: [{ label: 'Insights', href: '/insights' }],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Privacy', href: '#' },
+      { label: 'Terms', href: '#' },
+    ],
+  },
+  {
+    title: 'Contact',
+    links: [
+      { label: "Let's Talk", href: '/contact' },
+      { label: 'Email', href: 'mailto:contact@guavatt.com' },
+    ],
+  },
+];
+---
+
+<footer class="section-band section-band--brand">
+  <div class="container">
+    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-md pb-lg mb-lg border-b border-white/20">
+      <a href="/" class="inline-flex items-center gap-sm" aria-label="Guava AI &mdash; Home">
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white">
+          <img src="/brand/guava-logo-colored.svg" alt="" class="h-6 w-auto" />
+        </span>
+        <span class="text-lg font-bold tracking-tight text-white">Guava&nbsp;AI</span>
+      </a>
+      <p class="text-sm text-white max-w-sm">
+        Technology for businesses that have outgrown how they operate.
+      </p>
+    </div>
+
+    <nav class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-md gap-y-lg" aria-label="Footer">
+      {groups.map((group) => (
+        <div>
+          <h3 class="text-sm font-semibold text-white mb-sm">{group.title}</h3>
+          <ul class="list-none p-0 space-y-xs">
+            {group.links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-white transition-colors duration-fast hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </nav>
+
+    <div class="border-t border-white/20 mt-lg pt-md">
+      <p class="text-sm text-white/85">&copy; 2026 Guava Artificial Intelligence, Ltd. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

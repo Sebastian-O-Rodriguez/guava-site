@@ -1,0 +1,44 @@
+---
+import SectionLabel from './SectionLabel.astro';
+
+interface Props {
+  /** Section-progression band variant */
+  variant?: 'white' | 'texture-1' | 'texture-2' | 'brand';
+  id?: string;
+  /** Uppercase section label rendered above the section heading */
+  label?: string;
+  /** Extra classes applied to the <section> element */
+  class?: string;
+  /** Inner container width */
+  container?: 'default' | 'narrow' | 'fluid';
+}
+
+const {
+  variant = 'white',
+  id,
+  label,
+  class: className = '',
+  container = 'default',
+} = Astro.props;
+
+const bandClass = `section-band section-band--${variant}`;
+const containerClass = container === 'fluid'
+  ? ''
+  : container === 'narrow'
+    ? 'container container--narrow'
+    : 'container';
+---
+
+<section id={id} class={`${bandClass} ${className}`.trim()}>
+  {containerClass ? (
+    <div class={containerClass}>
+      {label && <SectionLabel label={label} />}
+      <slot />
+    </div>
+  ) : (
+    <>
+      {label && <SectionLabel label={label} />}
+      <slot />
+    </>
+  )}
+</section>
