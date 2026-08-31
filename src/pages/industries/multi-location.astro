@@ -1,23 +1,4 @@
 ---
-import SecondaryLayout from '../../layouts/SecondaryLayout.astro';
-import Button from '../../components/Button.astro';
-
-const title = 'Multi-location Operations — Guava AI';
-const description =
-  'Operational technology for multi-location teams that need one consistent view of inventory.';
+// Legacy route — consolidated into /industries (GUA-648).
+return Astro.redirect('/industries', 301);
 ---
-
-<SecondaryLayout {title} {description}>
-  <section class="section-band section-band--white">
-    <div class="container">
-      <h1 class="text-h1 mb-md max-w-3xl">Multi-location Operations</h1>
-      <p class="text-large text-muted max-w-2xl mb-lg">
-        Running many locations multiplies the same data problem: each site keeps
-        its own records, and they drift. Guava helps multi-location teams sync a
-        consistent view across sites and products — so decisions are made from
-        one trusted source.
-      </p>
-      <Button variant="primary" href="/book-a-demo">Book a Demo</Button>
-    </div>
-  </section>
-</SecondaryLayout>

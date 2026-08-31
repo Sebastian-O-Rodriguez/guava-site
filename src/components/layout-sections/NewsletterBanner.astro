@@ -1,0 +1,25 @@
+---
+import NewsletterForm from './NewsletterForm.astro';
+
+// GUA-650 — slim newsletter banner above the global header. Shares the same
+// form plumbing as the full Newsletter section (NewsletterForm.astro).
+//
+// The M9b subscriber endpoint is unresolved (GUA-614 parked). Until it lands,
+// this is a client-only, static form that posts nowhere and invents no
+// credentials. See Newsletter.astro.
+const enabled = import.meta.env.PUBLIC_NEWSLETTER_ENABLED === 'true';
+---
+
+{enabled && (
+  <aside class="bg-brand text-white" aria-label="Newsletter signup">
+    <div class="container flex flex-col sm:flex-row sm:items-center gap-sm py-xs">
+      <p class="text-sm font-medium sm:mr-auto">Get Guava Notes, weekly.</p>
+      <NewsletterForm
+        id="newsletter-banner"
+        buttonText="Subscribe"
+        buttonVariant="ghost"
+        class="w-full sm:max-w-md"
+      />
+    </div>
+  </aside>
+)}

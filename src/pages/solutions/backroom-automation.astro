@@ -1,121 +1,461 @@
 ---
 import SecondaryLayout from '../../layouts/SecondaryLayout.astro';
+import Section from '../../components/Section.astro';
+import Button from '../../components/Button.astro';
+import CTABand from '../../components/CTABand.astro';
+import Explorer from '../../components/layout-sections/Explorer.svelte';
 
-// Wedge 1 metadata (company_nav_meta_v7.md §4).
-const title = 'Backroom Automation — Reduce Manual Operational Work | Guava AI';
+// Wedge 1 metadata (company_nav_meta_v7.md §4) — display name per GUA-642.
+const title = 'Operations Automation — Reduce Manual Operational Work | Guava AI';
 const description =
   'Reduce the recurring operational work your team shouldn\u2019t do by hand — data handling, reconciliation, approvals, reporting. Guava builds practical systems that lift the burden.';
+
+const capabilities = [
+  {
+    id: 'document-processing',
+    label: 'Document Processing',
+    visual: 'automation',
+    description:
+      'Invoices, orders, and other documents read and turned into clean, usable data — without manual re-keying.',
+    note: 'Documents in, validated, processed, systems updated — with exceptions routed to a person.',
+  },
+  {
+    id: 'reconciliation',
+    label: 'Reconciliation',
+    visual: 'unification',
+    description:
+      'Records matched across systems, accounts, and reports, with mismatches surfaced instead of hand-reviewed line by line.',
+    note: 'Every system holding the same record stays consistent — drift is caught, not discovered later.',
+  },
+  {
+    id: 'data-movement',
+    label: 'Data Movement',
+    visual: 'pipeline-flow',
+    description:
+      'Data moves between systems accurately and on schedule, without copy-paste or manual exports.',
+    note: 'Sources unified into one operational model that feeds reporting and applications.',
+  },
+  {
+    id: 'reporting',
+    label: 'Reporting',
+    visual: 'reporting',
+    description:
+      'Reporting built to run on its own, from current data, so decisions happen with the numbers that matter.',
+    note: 'Reports arrive on time, from one trusted source, without a person assembling them.',
+  },
+  {
+    id: 'approvals',
+    label: 'Approvals',
+    visual: 'decision-loop',
+    description:
+      'Approval requests routed with the context a decision needs, logged, and pushed back into the systems that depend on them.',
+    note: 'The right person decides, with enough context to decide quickly.',
+  },
+];
+
+const differentiators = [
+  {
+    title: 'Built for your workflows',
+    body: 'We model the workflows you already run — the systems, data, and steps — and automate the work where automation is genuinely practical. Software fits the work, not the other way around.',
+  },
+  {
+    title: 'Handles real exceptions',
+    body: 'The interesting part of automation is what doesn\u2019t fit the pattern. Exceptions are caught, given context, and routed to the right person to decide — never silently dropped.',
+  },
+  {
+    title: 'Simple for your team',
+    body: 'The systems we build are straightforward to run and maintain. No tool sprawl, no black boxes. Your team keeps ownership, and the work keeps running after we step away.',
+  },
+];
+
+const howItWorks = [
+  {
+    title: 'Understand',
+    body: 'We map how the work actually gets done — the workflows, systems, data, and the places where time and accuracy leak.',
+  },
+  {
+    title: 'Simplify',
+    body: 'Before automating anything, we remove the steps that don\u2019t need to exist. The simplest fix wins.',
+  },
+  {
+    title: 'Connect',
+    body: 'We connect the systems and data the workflow depends on, so information stops being copied by hand.',
+  },
+  {
+    title: 'Automate',
+    body: 'The recurring, bounded steps move into a system that runs them reliably — people step in only where judgment is required.',
+  },
+  {
+    title: 'Measure',
+    body: 'We confirm the operation improved: less manual work, fewer errors, and capacity returned to the team.',
+  },
+];
+
+const exampleWorkflows = [
+  {
+    title: 'Invoice & purchase-order processing',
+    body: 'Documents in, matched against the order, validated, and pushed into the systems that need them. Mismatches go to a person with the context to decide.',
+    steps: ['Document in', 'Matched & validated', 'Systems updated', 'Mismatch to a person'],
+  },
+  {
+    title: 'Multi-system reconciliation',
+    body: 'Records compared across systems and accounts; differences surfaced instead of searched for by hand.',
+    steps: ['ERP', 'POS', 'Bank feed', 'Differences surfaced'],
+  },
+  {
+    title: 'Approval routing',
+    body: 'Requests routed with the context a decision needs, logged, and written back into the systems that depend on them.',
+    steps: ['Request in', 'Routed with context', 'Decision logged', 'Systems updated'],
+  },
+];
+
+const outcomes = [
+  {
+    title: 'Less Manual Work',
+    body: 'Recurring steps stop depending on people\u2019s time and attention.',
+  },
+  {
+    title: 'Fewer Handoffs',
+    body: 'Work stops stalling while it waits to be passed between systems and people.',
+  },
+  {
+    title: 'Better Exception Handling',
+    body: 'Out-of-pattern cases surface with context, instead of being found after the fact.',
+  },
+  {
+    title: 'More Operating Capacity',
+    body: 'The same team absorbs more volume, or turns to the work that needs judgment.',
+  },
+];
+
+const relatedSolutions = [
+  {
+    title: 'Dashboards & Reporting',
+    body: 'Reliable, current reporting and visibility that runs on its own.',
+    href: null,
+  },
+  {
+    title: 'Pipeline Unification',
+    body: 'Connected systems and a single trusted operational model.',
+    href: null,
+  },
+  {
+    title: 'Inventory Intelligence',
+    body: 'Inventory data turned into visibility, signals, and recommendations.',
+    href: '/solutions/inventory-intelligence',
+  },
+];
+
+const faqs = [
+  {
+    id: 'faq-automation',
+    question: 'What work can actually be automated?',
+    paragraphs: [
+      'Recurring, bounded workflows with defined steps and predictable inputs — reconciliation, document processing, data movement, reporting, and approval routing.',
+      'Work that requires judgment stays with your people; automation handles the steps around it.',
+    ],
+  },
+  {
+    id: 'faq-systems',
+    question: 'Can you work with the systems we already use?',
+    paragraphs: [
+      'Yes. Replacing your systems is not the default. We work across your existing software, databases, spreadsheets, and APIs, and choose the simplest intervention that produces the outcome you need.',
+    ],
+  },
+  {
+    id: 'faq-ai',
+    question: 'Where does AI fit — and where does it not?',
+    paragraphs: [
+      'Most of what we automate is deterministic: defined steps that run reliably. Where a probabilistic model genuinely adds value — reading unstructured documents, for example — we use it with defined inputs, outputs, and boundaries, and a person stays accountable.',
+      'We never hand an unsupervised lever to an autonomous system.',
+    ],
+  },
+  {
+    id: 'faq-exceptions',
+    question: 'What happens when something doesn\u2019t fit the pattern?',
+    paragraphs: [
+      'That\u2019s the part we build for. Exceptions are caught, given context, and routed to the right person to decide. The system tracks what needs attention instead of leaving it to be discovered.',
+    ],
+  },
+  {
+    id: 'faq-start',
+    question: 'Where should we start?',
+    paragraphs: [
+      'Start with the outcome you need and the work that hurts most. A first conversation walks through how the work runs today and where it breaks.',
+      'When the highest-value problem isn\u2019t obvious yet, we begin with a paid Operational Diagnostic before scoping a build.',
+    ],
+  },
+];
 ---
+
 <SecondaryLayout {title} {description}>
-  <div class="relative z-10 pt-[14vh] pb-xl">
+  <!-- 1. Hero -->
+  <Section variant="white" id="hero">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-lg items-center">
+      <div>
+        <h1 class="text-h1 mb-md max-w-2xl [text-wrap:balance]">
+          Less repetitive work. More time for judgment.
+        </h1>
+        <p class="text-large text-muted max-w-2xl mb-lg">
+          Operations Automation removes the recurring operational and
+          administrative work your team shouldn&rsquo;t be doing by hand — and
+          moves it into dependable systems. Your people get their time back for
+          the work only they can do.
+        </p>
+        <div class="flex flex-wrap items-center gap-md">
+          <Button variant="primary" href="/book-a-demo">Book a Demo</Button>
+        </div>
+      </div>
 
-      <!-- Hero -->
-      <section class="container" data-section="light">
-        <div class="content-container">
-          
-            <div class="max-w-3xl">
-              <h1 class="hero-heading text-shadow-title">Less repetitive work. More time for judgment.</h1>
-              <p class="text-enhanced text-shadow-body max-w-2xl mb-lg">
-                Backroom Automation removes the recurring operational and administrative work your people shouldn't be doing by hand — and moves it into straightforward, dependable systems. Your team spends more time applying judgment and expertise, and less time performing steps.
-              </p>
-              <div class="flex flex-wrap gap-sm">
-                <a href="/contact" class="btn btn-primary">Schedule a Scoping Call</a>
-                <a href="/solutions/inventory-intelligence" class="btn btn-outline">Explore Guava BI</a>
+      <!-- Large workflow visual -->
+      <div
+        class="rounded-xl border border-text/10 bg-texture-1 p-md"
+        aria-hidden="true"
+      >
+        <div class="flex flex-col gap-xs">
+          <div class="flex flex-wrap items-center justify-center gap-xs">
+            <span class="inline-flex max-w-full items-center justify-center rounded-md border border-text/15 bg-white px-3 py-1.5 text-center text-sm font-medium text-text">
+              Invoice received
+            </span>
+          </div>
+          <div class="flex justify-center text-brand/70">
+            <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M6 13l6 6 6-6" />
+            </svg>
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-xs">
+            <span class="inline-flex max-w-full items-center justify-center rounded-md border border-brand/25 bg-brand-50 px-3 py-1.5 text-center text-sm font-semibold text-brand-700">
+              Extracted &amp; validated
+            </span>
+          </div>
+          <div class="flex justify-center text-brand/70">
+            <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M6 13l6 6 6-6" />
+            </svg>
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-xs">
+            <span class="inline-flex max-w-full items-center justify-center rounded-md border border-brand/25 bg-brand-50 px-3 py-1.5 text-center text-sm font-semibold text-brand-700">
+              Systems updated
+            </span>
+            <span class="inline-flex max-w-full items-center justify-center rounded-md bg-brand px-3 py-1.5 text-center text-sm font-semibold text-white">
+              Reports refreshed
+            </span>
+          </div>
+          <div class="flex justify-center text-brand/70">
+            <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M6 13l6 6 6-6" />
+            </svg>
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-xs">
+            <span class="inline-flex max-w-full items-center justify-center rounded-md border border-dashed border-text/30 bg-white/80 px-3 py-1.5 text-center text-sm font-medium text-muted">
+              Exception routed to a person
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- 2. Problem / Differentiators -->
+  <Section variant="texture-1" id="differentiators" label="Why Operations Automation">
+    <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
+      Built to fit how your operation actually works.
+    </h2>
+    <p class="text-muted max-w-2xl mb-lg">
+      Most growing operations run on a layer of repetitive administrative work
+      — the same steps, copied between systems by the same people, every day.
+      It quietly eats capacity and pulls skilled people away from the decisions
+      only they can make. Operations Automation targets that layer.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+      {differentiators.map((item) => (
+        <article class="flex flex-col rounded-lg border border-text/10 bg-white/70 p-lg">
+          <h3 class="text-h3 mb-sm">{item.title}</h3>
+          <p class="text-body text-muted">{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- 3. CTA band -->
+  <CTABand
+    variant="white"
+    title="Where is manual work quietly eating your capacity?"
+    description="Walk us through the workflows, systems, and reporting that slow your team down. We'll identify where automation can create the most leverage."
+    ctaLabel="Book a Demo"
+    ctaHref="/book-a-demo"
+  />
+
+  <!-- 4. Capability Explorer -->
+  <Section variant="texture-2" id="capability-explorer" label="Capabilities">
+    <h2 class="text-h2 mb-md">Capability Explorer</h2>
+    <p class="text-muted max-w-2xl mb-lg">
+      Technical capability without a feature catalog&nbsp;&mdash; select a
+      capability to preview how it appears in a working operation.
+    </p>
+    <Explorer client:visible idPrefix="ops" label="Operations Automation capabilities" items={capabilities} />
+  </Section>
+
+  <!-- 5. How It Works -->
+  <Section variant="white" id="how-it-works" label="How It Works">
+    <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
+      From how the work runs today, to how it should run.
+    </h2>
+    <p class="text-muted max-w-2xl mb-lg">
+      Five steps, in order. Every step is built on the one before it, and each
+      one ends with something you can point at.
+    </p>
+
+    <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-md list-none p-0">
+      {howItWorks.map((step, i) => (
+        <li class="flex flex-col gap-sm rounded-lg border border-text/10 bg-texture-1 p-md">
+          <span class="text-sm font-semibold tabular-nums text-brand/70">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <h3 class="text-h3">{step.title}</h3>
+          <p class="text-sm text-muted">{step.body}</p>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <!-- 6. Example Workflows -->
+  <Section variant="texture-1" id="example-workflows" label="Example Workflows">
+    <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
+      Workflows we take on.
+    </h2>
+    <p class="text-muted max-w-2xl mb-lg">
+      Recurring, bounded workflows — the ones with defined steps and predictable
+      inputs. Each becomes a system that runs without a person in the loop.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+      {exampleWorkflows.map((workflow) => (
+        <article class="flex flex-col rounded-lg border border-text/10 bg-white/70 p-lg">
+          <h3 class="text-h3 mb-sm">{workflow.title}</h3>
+          <p class="text-body text-muted mb-md">{workflow.body}</p>
+
+          <div class="mt-auto flex flex-col gap-xs" aria-hidden="true">
+            {workflow.steps.map((step, j) => (
+              <div class="flex items-center gap-xs">
+                <span class="inline-flex max-w-full items-center justify-center rounded-md border border-text/15 bg-white px-3 py-1.5 text-center text-sm font-medium text-text">
+                  {step}
+                </span>
+                {j < workflow.steps.length - 1 && (
+                  <svg class="h-4 w-4 shrink-0 text-brand/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5v14M6 13l6 6 6-6" />
+                  </svg>
+                )}
               </div>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- 7. Outcomes / Proof -->
+  <Section variant="white" id="outcomes" label="Outcomes">
+    <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
+      What changes for the operation.
+    </h2>
+    <p class="text-muted max-w-2xl mb-lg">
+      Success means the business operates better — it never means
+      &ldquo;we delivered more technology.&rdquo;
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+      {outcomes.map((outcome) => (
+        <div class="flex flex-col gap-sm rounded-lg border border-text/10 bg-texture-1 p-md">
+          <h3 class="text-h3">{outcome.title}</h3>
+          <p class="text-sm text-muted">{outcome.body}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- 8. Related Solutions -->
+  <Section variant="texture-2" id="related-solutions" label="Related Solutions">
+    <h2 class="text-h2 mb-md max-w-3xl">Explore adjacent solutions.</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+      {relatedSolutions.map((solution) => (
+        solution.href ? (
+          <a
+            href={solution.href}
+            class="group flex flex-col gap-sm rounded-lg border border-text/10 bg-white/70 p-md transition-all duration-base hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+          >
+            <span class="flex items-center justify-between gap-sm">
+              <span class="text-body font-semibold text-text">{solution.title}</span>
+              <span aria-hidden="true" class="text-brand transition-transform duration-base group-hover:translate-x-0.5">&rarr;</span>
+            </span>
+            <span class="text-sm text-muted">{solution.body}</span>
+          </a>
+        ) : (
+          <article class="flex flex-col gap-sm rounded-lg border border-text/10 bg-white/40 p-md">
+            <span class="text-body font-semibold text-text">{solution.title}</span>
+            <span class="text-sm text-muted">{solution.body}</span>
+          </article>
+        )
+      ))}
+    </div>
+  </Section>
+
+  <!-- 9. FAQ -->
+  <Section variant="white" id="faq" label="FAQ" container="narrow">
+    <h2 class="text-h2 mb-md">Frequently Asked Questions</h2>
+    <p class="text-muted mb-lg">
+      Questions focused on what gets automated, how it fits your existing
+      systems, and how to get started.
+    </p>
+
+    <div class="divide-y divide-text/10 border-y border-text/10">
+      {faqs.map((faq) => (
+        <div class="py-md" data-ops-faq-item>
+          <button
+            type="button"
+            id={`${faq.id}-button`}
+            aria-expanded="false"
+            aria-controls={`${faq.id}-panel`}
+            class="flex w-full items-center justify-between gap-md rounded-sm py-xs text-left text-body font-semibold text-text transition-colors duration-fast hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+          >
+            <span>{faq.question}</span>
+            <span aria-hidden="true" class="shrink-0 text-lg text-brand">+</span>
+          </button>
+          <div id={`${faq.id}-panel`} role="region" aria-labelledby={`${faq.id}-button`} hidden>
+            <div class="pt-sm">
+              {faq.paragraphs.map((paragraph) => (
+                <p class="text-body text-muted mb-sm">{paragraph}</p>
+              ))}
             </div>
-          
+          </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </Section>
 
-      <!-- The problem -->
-      <section class="container mt-xl" data-section="light">
-        <div class="content-container max-w-3xl mx-auto">
-          
-            <h2 class="section-header">Work that shouldn't still be manual</h2>
-            <p class="text-enhanced mb-md">
-              Most growing operations run on a layer of repetitive administrative work: the same steps, copied between systems by the same people, every day. It's the work that keeps the business running but doesn't require judgment. It quietly eats capacity, produces errors, and pulls skilled people away from the decisions only they can make.
-            </p>
-            <p class="text-reduced">
-              This is not a &ldquo;lack of software&rdquo; problem. It's an operations problem: work that used to fit a smaller business now drags on a larger one. The fix isn't more headcount doing the same steps faster — it's taking the steps out of human hands where that's practical.
-            </p>
-          
-        </div>
-      </section>
+  <!-- 10. Final CTA -->
+  <CTABand
+    variant="brand"
+    title="Ready to take manual work off your team's plate?"
+    description="Book a short demo. We'll walk through how Operations Automation would apply to the work your team does every day."
+    ctaLabel="Book a Demo"
+    ctaHref="/book-a-demo"
+  />
 
-      <!-- The work we take on -->
-      <section class="container mt-xl" data-section="dark">
-        <div class="content-container max-w-3xl mx-auto">
-          
-            <h2 class="section-header text-white [&::after]:!bg-white">The work we take on</h2>
-            <p class="text-enhanced text-white/85 mb-lg">
-              Backroom Automation targets recurring, bounded workflows — the ones with defined steps and predictable inputs. We turn them into systems that run reliably without a person in the loop, so people step in only where judgment is genuinely required.
-            </p>
-            <ul class="space-y-sm list-none p-0 mb-lg">
-              <li class="text-white/85"><strong class="text-white">Reconciliation</strong> — matching records across systems, accounts, and reports, and surfacing the mismatches instead of hand-reviewing line by line.</li>
-              <li class="text-white/85"><strong class="text-white">Document processing</strong> — reading invoices, orders, and other documents and turning their contents into clean, usable data without manual re-keying.</li>
-              <li class="text-white/85"><strong class="text-white">Data movement</strong> — moving data between systems accurately and on schedule, without copy-paste.</li>
-              <li class="text-white/85"><strong class="text-white">Multi-system synchronization</strong> — keeping the same record consistent across every system that holds it, so they stop drifting apart.</li>
-              <li class="text-white/85"><strong class="text-white">Exception handling</strong> — catching the out-of-pattern cases and routing them to the right person with enough context to decide quickly.</li>
-            </ul>
-            <p class="text-reduced text-white/80">
-              A note on how far this goes: where automation touches judgment, a person stays accountable. Deterministic steps stay deterministic. Probabilistic systems are used only where they create net value — with defined inputs, outputs, boundaries, and human ownership. We never build autonomous decision-making and hand it an unsupervised lever.
-            </p>
-          
-        </div>
-      </section>
+  <script>
+    document.querySelectorAll('[data-ops-faq-item]').forEach((item) => {
+      const button = item.querySelector('button[aria-expanded]');
+      const panel = item.querySelector('[role="region"]');
+      const indicator = button.querySelector('[aria-hidden="true"]');
 
-      <!-- What this is not -->
-      <section class="container mt-xl" data-section="light">
-        <div class="content-container max-w-3xl mx-auto">
-          
-            <h2 class="section-header">What Backroom Automation is not</h2>
-            <p class="text-enhanced mb-lg">Backroom Automation is a specific discipline. Saying what it excludes plainly protects your time as much as ours.</p>
-            <ul class="space-y-sm list-none p-0 mb-lg">
-              <li class="text-reduced">Not a generic website or custom app shop.</li>
-              <li class="text-reduced">Not staff augmentation or contractor bodies.</li>
-              <li class="text-reduced">Not generic IT support.</li>
-              <li class="text-reduced">Not novelty chatbots.</li>
-              <li class="text-reduced">Not technology for its own sake — if the simplest fix is a process change or no new tool at all, that's what we'll recommend.</li>
-            </ul>
-            <p class="text-enhanced">If the problem doesn't sit in recurring operational work, this is the wrong wedge — and we'll say so.</p>
-          
-        </div>
-      </section>
-
-      <!-- What changes for the operation -->
-      <section class="container mt-xl" data-section="dark">
-        <div class="content-container max-w-3xl mx-auto">
-          
-            <h2 class="section-header text-white [&::after]:!bg-white">What changes for the operation</h2>
-            <p class="text-enhanced text-white/85 mb-lg">Success means the business operates better — it never means &ldquo;we delivered more technology.&rdquo;</p>
-            <ul class="space-y-sm list-none p-0">
-              <li class="text-white/85"><strong class="text-white">Greater operating capacity</strong> — the same team absorbs more volume, or turns its attention to higher-value work.</li>
-              <li class="text-white/85"><strong class="text-white">Fewer errors</strong> — deterministic steps remove the mistakes that manual repetition reliably produces.</li>
-              <li class="text-white/85"><strong class="text-white">Time returned to judgment</strong> — your people spend their hours on decisions and exceptions, not on performed steps.</li>
-            </ul>
-          
-        </div>
-      </section>
-
-      <!-- How we get started -->
-      <section class="container mt-xl" data-section="light">
-        <div class="content-container max-w-3xl mx-auto">
-          
-            <h2 class="section-header">How we get started</h2>
-            <p class="text-enhanced mb-md">
-              We start with business reality and the outcome you need — workflows, systems, data, constraints, and where the friction actually lives. Then we identify the highest-value problem and choose the simplest intervention that solves it: a process change, an integration, an automated workflow, a data system — or no new technology at all. We build only what's justified, and measure whether the operation improved.
-            </p>
-            <p class="text-reduced mb-lg">
-              When the highest-value problem isn't clear yet, we begin with a paid scoping engagement instead. It produces a current-state understanding, an operational model, prioritized interventions, and a first action plan — so we start moving on the right problem rather than guessing. <a href="/solutions/operational-diagnostic" class="text-link">How our scoping call works &rarr;</a>
-            </p>
-            <div class="flex flex-wrap gap-sm">
-              <a href="/contact" class="btn btn-primary">Schedule a Scoping Call</a>
-              <a href="/solutions/inventory-intelligence" class="btn btn-outline">Explore Guava BI</a>
-              <a href="/solutions/inventory-intelligence#waitlist" class="btn btn-outline">Join the Guava BI Waitlist</a>
-            </div>
-          
-        </div>
-      </section>
-
-  </div>
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', String(!expanded));
+        panel.hidden = expanded;
+        indicator.textContent = expanded ? '+' : '\u2212';
+      });
+    });
+  </script>
 </SecondaryLayout>

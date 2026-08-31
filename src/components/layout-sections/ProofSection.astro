@@ -31,19 +31,171 @@ const proofs: Proof[] = [
 ];
 ---
 
-<Section variant="white" id="proof" label="Proof">
+<Section variant="white" id="proof" label="Proof" class="py-lg">
   <h2 class="text-h2 mb-md max-w-3xl">Proof, not promises.</h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
-    {proofs.map((proof) => (
-      <figure class="flex flex-col rounded-lg border border-text/10 bg-texture-1 p-lg">
+  <div
+    class="rounded-lg border border-text/10 bg-texture-1 p-md"
+    data-proof-rotator
+  >
+    {proofs.map((proof, i) => (
+      <figure
+        class="flex flex-col gap-sm sm:flex-row sm:items-baseline sm:justify-between sm:gap-md"
+        data-proof-slide
+        hidden={i !== 0}
+      >
         <blockquote class="text-large text-text">
           <p>{proof.lead}<span class="font-bold text-brand">{proof.metric}</span>{proof.tail}</p>
         </blockquote>
-        <figcaption class="mt-auto pt-md text-sm font-semibold uppercase tracking-wider text-muted">
+        <figcaption class="shrink-0 text-sm font-semibold uppercase tracking-wider text-muted">
           {proof.attribution}
         </figcaption>
       </figure>
     ))}
+
+    <div class="mt-sm flex items-center gap-xs" role="group" aria-label="Proof selection">
+      {proofs.map((proof, i) => (
+        <button
+          type="button"
+          data-proof-dot
+          aria-pressed={i === 0 ? 'true' : 'false'}
+          aria-label={`Show proof: ${proof.attribution}`}
+          class="h-2 w-2 rounded-full bg-text/20 transition-colors duration-base hover:bg-text/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand aria-pressed:bg-brand"
+        ></button>
+      ))}
+    </div>
   </div>
 </Section>
+
+<script>
+  import { gsap } from 'gsap';
+
+  const INTERVAL_MS = 7000;
+  // Mirrors M2 motion tokens (tailwind.config.js): duration-base = 250ms,
+  // easing out-expo = cubic-bezier(0.16, 1, 0.3, 1) → GSAP expo.out.
+  const FADE_DURATION = 0.25;
+  const FADE_EASE = 'expo.out';
+
+  function init() {
+    const root = document.querySelector('[data-proof-rotator]');
+    if (!root) return;
+
+    const slides = Array.from(root.querySelectorAll('[data-proof-slide]'));
+    const dots = Array.from(root.querySelectorAll('[data-proof-dot]'));
+    const dotsWrap = root.querySelector('[role="group"]');
+    if (slides.length < 2) return;
+
+    let current = 0;
+    let timer = null;
+    let reduced = false;
+
+    const stop = () => {
+      if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
+      }
+    };
+
+    const updateDots = () => {
+      dots.forEach((dot, i) => {
+        const active = i === current;
+        dot.setAttribute('aria-pressed', String(active));
+        dot.tabIndex = active ? 0 : -1;
+      });
+    };
+
+    const select = (index, fade) => {
+      const target = (index + slides.length) % slides.length;
+      if (target === current) return;
+
+      const outgoing = slides[current];
+      const incoming = slides[target];
+      current = target;
+      updateDots();
+
+      // Always reset to a single visible slide before transitioning so a
+      // mid-fade interaction can never leave two proof cards stacked.
+      gsap.killTweensOf(slides);
+      slides.forEach((slide) => {
+        if (slide === outgoing) {
+          slide.hidden = false;
+          gsap.set(slide, { autoAlpha: 1 });
+        } else {
+          slide.hidden = true;
+          gsap.set(slide, { clearProps: 'opacity,visibility' });
+        }
+      });
+
+      if (!fade) {
+        incoming.hidden = false;
+        gsap.set(incoming, { autoAlpha: 1 });
+        return;
+      }
+
+      gsap.to(outgoing, {
+        autoAlpha: 0,
+        duration: FADE_DURATION,
+        ease: FADE_EASE,
+        onComplete: () => {
+          outgoing.hidden = true;
+          gsap.set(incoming, { autoAlpha: 0 });
+          incoming.hidden = false;
+          gsap.to(incoming, { autoAlpha: 1, duration: FADE_DURATION, ease: FADE_EASE });
+        },
+      });
+    };
+
+    const next = () => select(current + 1, !reduced);
+
+    const start = () => {
+      if (reduced) return;
+      stop();
+      timer = setInterval(next, INTERVAL_MS);
+    };
+
+    dots.forEach((dot, i) => {
+      dot.tabIndex = i === 0 ? 0 : -1;
+      dot.addEventListener('click', () => {
+        select(i, !reduced);
+        start();
+      });
+    });
+
+    dotsWrap.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+      event.preventDefault();
+      select(current + (event.key === 'ArrowRight' ? 1 : -1), !reduced);
+      start();
+      dots[current]?.focus();
+    });
+
+    // Pause auto-rotation while the user is interacting or the tab is hidden.
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+    root.addEventListener('focusin', stop);
+    root.addEventListener('focusout', start);
+    const onVisibility = () => (document.hidden ? stop() : start());
+    document.addEventListener('visibilitychange', onVisibility);
+
+    const mm = gsap.matchMedia();
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      reduced = false;
+      start();
+    });
+    mm.add('(prefers-reduced-motion: reduce)', () => {
+      reduced = true;
+      stop();
+      // Collapse any half-finished crossfade and rest to a static single slide.
+      slides.forEach((slide, i) => {
+        slide.hidden = i !== current;
+        gsap.set(slide, { clearProps: 'opacity,visibility' });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
+</script>

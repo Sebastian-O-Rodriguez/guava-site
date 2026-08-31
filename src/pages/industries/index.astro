@@ -1,0 +1,85 @@
+---
+import SecondaryLayout from '../../layouts/SecondaryLayout.astro';
+import Section from '../../components/Section.astro';
+import Button from '../../components/Button.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const title = 'Industries — Guava AI';
+const description =
+  'Operational technology for inventory-driven businesses — retail, distribution, wholesale, pharmacy, and multi-location operations.';
+
+const industries = [
+  {
+    id: 'retail',
+    name: 'Retail',
+    useCase: 'Inventory visibility, replenishment, reporting, and multi-location workflows.',
+  },
+  {
+    id: 'distribution',
+    name: 'Distribution',
+    useCase: 'Order flow, purchasing, warehouse visibility, and reconciliation.',
+  },
+  {
+    id: 'wholesale',
+    name: 'Wholesale',
+    useCase: 'Vendor data, pricing, reporting, and operational handoffs.',
+  },
+  {
+    id: 'pharmacy',
+    name: 'Pharmacy',
+    useCase:
+      'Inventory visibility, shrinkage and expiry management, and regulatory automation — bringing new products to market faster across region-specific requirements.',
+  },
+  {
+    id: 'multi-location',
+    name: 'Multi-location',
+    useCase: 'Cross-location reporting, workflow consistency, exceptions, and operational visibility.',
+  },
+];
+---
+
+<SecondaryLayout {title} {description}>
+  <Section variant="white" id="hero">
+    <h1 class="text-h1 mb-md max-w-3xl [text-wrap:balance]">Industries</h1>
+    <p class="text-large text-muted max-w-2xl mb-lg">
+      Guava can work across established businesses with meaningful operational
+      complexity, but inventory-driven companies are an initial specialization.
+      Each industry below shows where Guava starts — and the recurring work it
+      lifts off your team.
+    </p>
+  </Section>
+
+  <Section variant="texture-1" id="industries" label="Industries We Serve">
+    <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
+      One operating system, fitted to your industry.
+    </h2>
+    <p class="text-muted max-w-2xl mb-lg">
+      The same foundation — accurate, current inventory data and workflows that
+      run without a person in the loop — applied to the specifics of each
+      operation.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
+      {industries.map((industry) => (
+        <article
+          id={industry.id}
+          class="flex flex-col gap-sm scroll-mt-24 rounded-lg border border-text/10 bg-white/70 p-md"
+        >
+          <h3 class="text-h3">{industry.name}</h3>
+          <p class="text-sm text-muted">{industry.useCase}</p>
+          <div class="mt-auto pt-sm">
+            <Button variant="primary" href="/book-a-demo">Book a Demo</Button>
+          </div>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <CTABand
+    variant="brand"
+    title="See how Guava fits your operation."
+    description="Book a short demo. We'll walk through how Guava applies to the systems, data, and workflows your team runs every day."
+    ctaLabel="Book a Demo"
+    ctaHref="/book-a-demo"
+  />
+</SecondaryLayout>

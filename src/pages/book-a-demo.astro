@@ -1,5 +1,83 @@
 ---
-// Book a Demo is built as part of post-sprint secondary-page work.
-// Until then, resolve the CTA to the contact route so no link dead-ends.
-return Astro.redirect('/contact', 301);
+import SecondaryLayout from '../layouts/SecondaryLayout.astro';
+
+// Book a Demo signup form.
+//
+// Submission reuses the newsletter/waitlist signup surface: a static,
+// client-only form that posts nowhere. No endpoint is called and no
+// credentials are invented (the subscriber endpoint is unresolved — see
+// Newsletter.astro / GUA-614). When the endpoint lands, give <form> its
+// action + method and keep credentials in env, never in source.
+
+const title = 'Book a Demo — Guava AI';
+const description =
+  'See how Guava turns scattered operational data into visibility you can trust. Book a short demo.';
 ---
+
+<SecondaryLayout {title} {description}>
+  <section class="section-band section-band--white">
+    <div class="container">
+      <h1 class="text-h1 mb-md max-w-3xl">Book a Demo</h1>
+      <p class="text-large text-muted max-w-2xl mb-lg">
+        A short walkthrough of how Guava removes manual work and improves
+        visibility across your operation.
+      </p>
+
+      <form id="demo-form" class="max-w-xl bg-background border border-text/10 rounded-lg p-lg">
+        <div class="mb-md">
+          <label for="first-name" class="form-label">First name</label>
+          <input
+            type="text"
+            id="first-name"
+            name="first_name"
+            class="form-input"
+            autocomplete="given-name"
+            required
+          />
+        </div>
+        <div class="mb-md">
+          <label for="last-name" class="form-label">Last name</label>
+          <input
+            type="text"
+            id="last-name"
+            name="last_name"
+            class="form-input"
+            autocomplete="family-name"
+            required
+          />
+        </div>
+        <div class="mb-md">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-input"
+            autocomplete="email"
+            placeholder="you@company.com"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary w-full">Book a Demo</button>
+        <p
+          class="text-xs text-text/70 mt-sm text-center"
+          id="demo-confirmation"
+          role="status"
+          aria-live="polite"
+          hidden
+        >
+          Thanks — we'll be in touch shortly to book you in.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('demo-form');
+    const confirmation = document.getElementById('demo-confirmation');
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (confirmation) confirmation.hidden = false;
+    });
+  </script>
+</SecondaryLayout>

@@ -9,8 +9,6 @@ const sources = [
   'Manual Work',
 ];
 
-const steps = ['Connect', 'Normalize', 'Automate', 'Surface', 'Act'];
-
 const outputs = [
   { name: 'Connected Data', outcomes: ['Better visibility'] },
   { name: 'Automated Workflows', outcomes: ['Less manual work', 'Fewer handoffs'] },
@@ -57,7 +55,7 @@ const outputs = [
       </svg>
     </div>
 
-    <!-- Guava pipeline -->
+    <!-- Operating loop -->
     <div class="rounded-xl border border-brand/20 bg-white p-md shadow-sm">
       <div class="flex items-center gap-xs mb-sm">
         <span
@@ -65,24 +63,78 @@ const outputs = [
           class="h-2.5 w-2.5 shrink-0 rounded-full"
           style="background: linear-gradient(135deg, #2c3790 0%, #624eab 34%, #b061b6 70%, #f260b6 100%);"
         ></span>
-        <h3 class="text-body font-bold text-brand">Guava</h3>
+        <h3 class="text-body font-bold text-brand">In your operation</h3>
       </div>
+
       <ol class="list-none p-0 m-0">
-        {steps.map((step, i) => (
-          <li class="flex items-stretch gap-sm min-h-[2.75rem]">
-            <div class="flex flex-col items-center self-stretch">
-              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">
-                {i + 1}
-              </span>
-              {i < steps.length - 1 && (
+        <li class="flex items-stretch gap-sm min-h-[2.75rem]">
+          <div class="flex flex-col items-center self-stretch">
+            <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">1</span>
+            <span aria-hidden="true" class="w-px flex-1 bg-brand/30"></span>
+          </div>
+          <span class="flex items-center self-stretch py-xs text-body font-semibold text-text">Connect</span>
+        </li>
+
+        <li class="relative">
+          <div class="absolute -left-4 bottom-0 top-0 w-4 text-brand/70" aria-hidden="true">
+            <svg
+              class="absolute inset-0 h-full w-full"
+              viewBox="0 0 20 100"
+              preserveAspectRatio="none"
+              fill="none"
+            >
+              <path
+                d="M10 97 C 3 62, 3 38, 10 8"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                vector-effect="non-scaling-stroke"
+              />
+            </svg>
+            <svg
+              class="absolute top-0 left-1/2 h-4 w-4 -translate-x-1/2"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 19V5M6 11l6-6 6 6" />
+            </svg>
+          </div>
+
+          <ol class="list-none p-0 m-0">
+            <li class="flex items-stretch gap-sm min-h-[2.75rem]">
+              <div class="flex flex-col items-center self-stretch">
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">2</span>
                 <span aria-hidden="true" class="w-px flex-1 bg-brand/30"></span>
-              )}
-            </div>
-            <span class="flex items-center self-stretch py-xs text-body font-semibold text-text">
-              {step}
-            </span>
-          </li>
-        ))}
+              </div>
+              <span class="flex items-center self-stretch py-xs text-body font-semibold text-text">Unify</span>
+            </li>
+            <li class="flex items-stretch gap-sm min-h-[2.75rem]">
+              <div class="flex flex-col items-center self-stretch">
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">3</span>
+                <span aria-hidden="true" class="w-px flex-1 bg-brand/30"></span>
+              </div>
+              <span class="flex items-center self-stretch py-xs text-body font-semibold text-text">Automate</span>
+            </li>
+            <li class="flex items-stretch gap-sm min-h-[2.75rem]">
+              <div class="flex flex-col items-center self-stretch">
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">4</span>
+                <span aria-hidden="true" class="w-px flex-1 bg-brand/30"></span>
+              </div>
+              <span class="flex items-center self-stretch py-xs text-body font-semibold text-text">Understand</span>
+            </li>
+          </ol>
+        </li>
+
+        <li class="flex items-stretch gap-sm min-h-[2.75rem]">
+          <div class="flex flex-col items-center self-stretch">
+            <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">5</span>
+          </div>
+          <span class="flex items-center self-stretch py-xs text-body font-semibold text-text">Act</span>
+        </li>
       </ol>
     </div>
 
@@ -100,7 +152,7 @@ const outputs = [
 
     <!-- Outputs -->
     <div class="flex flex-col gap-sm">
-      <h3 class="text-sm font-semibold uppercase tracking-wider text-brand">With Guava</h3>
+      <h3 class="text-sm font-semibold uppercase tracking-wider text-brand">In your operation</h3>
       <ul class="list-none p-0 m-0 flex flex-col gap-xs">
         {outputs.map((output) => (
           <li class="rounded-lg border border-brand/20 bg-white/80 p-sm">

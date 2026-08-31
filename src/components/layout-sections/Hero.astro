@@ -3,27 +3,125 @@ import Section from '../Section.astro';
 import Button from '../Button.astro';
 
 const industries = ['Retail', 'Distribution', 'Wholesale', 'Grocery', 'Multi-location'];
-const industryLine = industries.join(' · ');
 ---
 
 <Section variant="white" id="hero" class="flex flex-col justify-center min-h-[85vh]">
   <h1 class="text-h1 mb-md max-w-3xl [text-wrap:balance]">
-    Building <span class="text-brand">smarter operations</span> for businesses
-    that have outgrown their systems.
+    Building smarter systems for{' '}
+    <span class="inline-grid" data-hero-words>
+      {industries.map((industry, i) => (
+        <span
+          class:list={[
+            'col-start-1 row-start-1 text-brand',
+            i !== 0 && 'invisible',
+          ]}
+          data-hero-word
+        >
+          {industry}
+        </span>
+      ))}
+    </span>{' '}
+    businesses
   </h1>
   <p class="text-large text-muted max-w-2xl mb-lg">
-    We connect data, workflows, and software into practical operating systems
-    that reduce manual work, improve visibility, and give your team more room
-    to grow.
+    Connect data, workflows, and software into pragmatic systems that reduce manual work, improve visibility, and give your team more room to grow
   </p>
 
   <div class="flex flex-wrap items-start gap-md">
-    <div class="flex flex-col items-start gap-sm">
-      <Button variant="primary" href="/contact">Let's Talk</Button>
-      <span class="text-sm text-muted">30 minutes. No prep required.</span>
-    </div>
-    <Button variant="outline" href="#how-we-work">See How Guava Works</Button>
+    <Button variant="primary" href="/book-a-demo">Book a Demo</Button>
+    <Button variant="outline" href="#how-we-work">See How We Work</Button>
   </div>
 
-  <p class="mt-xl text-sm text-muted">{industryLine}</p>
 </Section>
+
+<script>
+  import { gsap } from 'gsap';
+
+  // Mirrors M2 motion tokens (tailwind.config.js): duration-base = 250ms,
+  // easing out-expo = cubic-bezier(0.16, 1, 0.3, 1) → GSAP expo.out.
+  const ROTATE_INTERVAL_MS = 3200;
+  const FADE_DURATION = 0.25;
+  const FADE_EASE = 'expo.out';
+
+  function init() {
+    const root = document.querySelector('[data-hero-words]');
+    if (!root) return;
+
+    const words = Array.from(root.querySelectorAll('[data-hero-word]'));
+    if (words.length < 2) return;
+
+    let current = 0;
+    let timer = null;
+    let reduced = false;
+
+    const stop = () => {
+      if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
+      }
+    };
+
+    const select = (index, fade) => {
+      const target = (index + words.length) % words.length;
+      if (target === current) return;
+
+      const outgoing = words[current];
+      const incoming = words[target];
+      current = target;
+
+      // Collapse to a single visible word first so a mid-fade interaction
+      // can never leave two hero words stacked.
+      gsap.killTweensOf(words);
+      words.forEach((word) => {
+        gsap.set(word, { autoAlpha: word === outgoing ? 1 : 0 });
+      });
+
+      if (!fade) {
+        gsap.set(incoming, { autoAlpha: 1 });
+        return;
+      }
+
+      gsap.to(outgoing, {
+        autoAlpha: 0,
+        duration: FADE_DURATION,
+        ease: FADE_EASE,
+        onComplete: () => {
+          gsap.set(incoming, { autoAlpha: 0 });
+          gsap.to(incoming, {
+            autoAlpha: 1,
+            duration: FADE_DURATION,
+            ease: FADE_EASE,
+          });
+        },
+      });
+    };
+
+    const next = () => select(current + 1, !reduced);
+
+    const start = () => {
+      if (reduced) return;
+      stop();
+      timer = setInterval(next, ROTATE_INTERVAL_MS);
+    };
+
+    const mm = gsap.matchMedia();
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      reduced = false;
+      start();
+    });
+    mm.add('(prefers-reduced-motion: reduce)', () => {
+      reduced = true;
+      stop();
+      gsap.killTweensOf(words);
+      words.forEach((word, i) => {
+        gsap.set(word, { autoAlpha: i === current ? 1 : 0 });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
+</script>

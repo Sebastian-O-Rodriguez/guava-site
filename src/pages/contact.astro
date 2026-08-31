@@ -1,6 +1,5 @@
 ---
 import SecondaryLayout from '../layouts/SecondaryLayout.astro';
-import Button from '../components/Button.astro';
 
 const title = 'Contact — Guava AI';
 const description =
@@ -16,7 +15,10 @@ const description =
         exploring our product wedges, or just want a second opinion on an
         operational problem, start here.
       </p>
-      <Button variant="primary" href="/book-a-demo">Book a Demo</Button>
+      <p class="text-muted max-w-2xl">
+        Prefer email? Reach us directly at
+        <a href="mailto:contact@guavaai.ai" class="text-link">contact@guavaai.ai</a>.
+      </p>
     </div>
   </section>
 </SecondaryLayout>
