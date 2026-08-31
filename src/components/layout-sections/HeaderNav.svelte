@@ -4,30 +4,22 @@
 
   // ── Route map — single source of truth for navigation targets ────────
   const solutions = [
-    { label: 'Backroom Automation', href: '/solutions/backroom-automation' },
+    { label: 'Operations Automation', href: '/solutions/backroom-automation' },
     { label: 'Guava BI', href: '/solutions/inventory-intelligence' },
     { label: 'Operational Diagnostic', href: '/solutions/operational-diagnostic' },
   ];
 
-  const industries = [
-    { label: 'Retail', href: '/industries/retail' },
-    { label: 'Distribution', href: '/industries/distribution' },
-    { label: 'Wholesale', href: '/industries/wholesale' },
-    { label: 'Pharmacy', href: '/industries/pharmacy' },
-    { label: 'Multi-location Operations', href: '/industries/multi-location' },
-  ];
-
   const links = [
+    { label: 'Industries', href: '/industries' },
     { label: 'About', href: '/about' },
     { label: 'Insights', href: '/insights' },
     { label: 'Contact', href: '/contact' },
   ];
 
-  const cta = { label: "Let's Talk", href: '/contact' };
+  const cta = { label: 'Book a Demo', href: '/book-a-demo' };
 
   const dropdowns = [
     { id: 'solutions', label: 'Solutions', items: solutions },
-    { id: 'industries', label: 'Industries', items: industries },
   ];
 
   // ── Motion — mirrors GUA-509 tailwind tokens (duration-base 250ms, ease-out-expo) ──
@@ -61,25 +53,41 @@
   // ── State ────────────────────────────────────────────────────────────
   let openId = $state(null);
   let mobileOpen = $state(false);
+  let leaveTimer = null;
+
+  const HOVER_CLOSE_DELAY = 150;
+
+  const clearLeaveTimer = () => {
+    if (leaveTimer) {
+      clearTimeout(leaveTimer);
+      leaveTimer = null;
+    }
+  };
+
+  function open(id) {
+    clearLeaveTimer();
+    openId = id;
+  }
+  function close() {
+    clearLeaveTimer();
+    openId = null;
+  }
 
   const canHover = () =>
     typeof window !== 'undefined' &&
     window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  function open(id) {
-    openId = id;
-  }
-  function close() {
-    openId = null;
-  }
   function toggle(id) {
-    openId = openId === id ? null : id;
+    if (openId === id) close();
+    else open(id);
   }
   function onEnter(id) {
     if (canHover()) open(id);
   }
   function onLeave() {
-    if (canHover()) close();
+    if (!canHover() || openId === null) return;
+    clearLeaveTimer();
+    leaveTimer = setTimeout(close, HOVER_CLOSE_DELAY);
   }
   function onFocusOut(e, id) {
     if (openId !== id) return;
@@ -149,7 +157,10 @@
     };
   });
 
-  onDestroy(unlockScroll);
+  onDestroy(() => {
+    clearLeaveTimer();
+    unlockScroll();
+  });
 
   const mobileLink =
     'block rounded-md -ml-2 px-2 py-sm text-body font-medium text-text hover:bg-texture-1 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand';
@@ -254,16 +265,6 @@
             <p class="text-xs font-semibold uppercase tracking-wider text-muted mb-xs">Solutions</p>
             <ul class="flex flex-col">
               {#each solutions as item}
-                <li>
-                  <a href={item.href} onclick={closeMobile} class={mobileLink}>{item.label}</a>
-                </li>
-              {/each}
-            </ul>
-          </div>
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-muted mb-xs">Industries</p>
-            <ul class="flex flex-col">
-              {#each industries as item}
                 <li>
                   <a href={item.href} onclick={closeMobile} class={mobileLink}>{item.label}</a>
                 </li>

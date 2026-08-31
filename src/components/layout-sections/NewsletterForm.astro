@@ -1,0 +1,40 @@
+---
+// GUA-650 — shared newsletter form plumbing. Single source for the email
+// signup surface, used by both the slim banner (NewsletterBanner.astro) and
+// the full section (Newsletter.astro). Client-only fallback: posts nowhere
+// until the M9b subscriber endpoint lands (GUA-614 parked); no credentials
+// are invented.
+interface Props {
+  /** Unique instance id — banner and full section coexist on the page. */
+  id: string;
+  /** Submit button label. */
+  buttonText?: string;
+  /** Submit button visual variant (matches Button.astro). */
+  buttonVariant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  /** Extra layout classes for the form row. */
+  class?: string;
+}
+
+const {
+  id,
+  buttonText = 'Get Guava Notes',
+  buttonVariant = 'primary',
+  class: className = '',
+} = Astro.props;
+
+const formClass = ['flex flex-col sm:flex-row gap-sm', className].filter(Boolean).join(' ');
+---
+
+<form class={formClass} data-newsletter-form>
+  <label for={`${id}-email`} class="sr-only">Email address</label>
+  <input
+    id={`${id}-email`}
+    name="email"
+    type="email"
+    required
+    placeholder="Email address"
+    autocomplete="email"
+    class="form-input flex-1"
+  />
+  <button type="submit" class={`btn btn-${buttonVariant}`}>{buttonText}</button>
+</form>

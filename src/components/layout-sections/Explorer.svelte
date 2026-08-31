@@ -120,15 +120,44 @@
   </div>
 {/snippet}
 
-{#snippet decisionFlow()}
-  <div class="flex flex-col items-center gap-xs">
-    {@render node('Operational data', 'source')}
-    {@render downArrow()}
-    {@render node('Detect anomaly', 'brand')}
-    {@render downArrow()}
-    {@render node('Surface recommendation', 'brand')}
-    {@render downArrow()}
-    {@render node('Human action', 'accent')}
+{#snippet decisionLoop()}
+  <div class="flex items-stretch justify-center gap-xs">
+    <div class="relative w-5 shrink-0 text-brand-700" aria-hidden="true">
+      <svg
+        class="absolute inset-0 h-full w-full"
+        viewBox="0 0 20 100"
+        preserveAspectRatio="none"
+        fill="none"
+      >
+        <path
+          d="M10 97 C 3 62, 3 38, 10 8"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          vector-effect="non-scaling-stroke"
+        />
+      </svg>
+      <svg
+        class="absolute top-0 left-1/2 h-4 w-4 -translate-x-1/2"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 19V5M6 11l6-6 6 6" />
+      </svg>
+    </div>
+    <div class="flex flex-col items-center gap-xs">
+      {@render node('Operational data', 'source')}
+      {@render downArrow()}
+      {@render node('Detect anomaly', 'brand')}
+      {@render downArrow()}
+      {@render node('Surface recommendation', 'brand')}
+      {@render downArrow()}
+      {@render node('Human action', 'accent')}
+    </div>
   </div>
 {/snippet}
 
@@ -264,8 +293,8 @@
     {@render pipelinesFlow()}
   {:else if item.visual === 'automation-flow'}
     {@render automationFlow()}
-  {:else if item.visual === 'decision-flow'}
-    {@render decisionFlow()}
+  {:else if item.visual === 'decision-loop'}
+    {@render decisionLoop()}
   {:else if item.visual === 'automation'}
     {@render automationSvg()}
   {:else if item.visual === 'unification'}

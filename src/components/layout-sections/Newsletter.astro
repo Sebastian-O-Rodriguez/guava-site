@@ -1,4 +1,6 @@
 ---
+import NewsletterForm from './NewsletterForm.astro';
+
 // NEWS-02/03/04/05 — Guava Notes newsletter signup.
 //
 // The M9b subscriber endpoint is unresolved (GUA-614 parked). Per the
@@ -22,19 +24,7 @@ const enabled = import.meta.env.PUBLIC_NEWSLETTER_ENABLED === 'true';
       </p>
       <p class="text-sm text-muted mb-lg">Get Guava Notes, weekly.</p>
 
-      <form class="flex flex-col sm:flex-row gap-sm max-w-md mx-auto" data-newsletter-form>
-        <label for="newsletter-email" class="sr-only">Email address</label>
-        <input
-          id="newsletter-email"
-          name="email"
-          type="email"
-          required
-          placeholder="Email address"
-          autocomplete="email"
-          class="form-input flex-1"
-        />
-        <button type="submit" class="btn btn-primary">Get Guava Notes</button>
-      </form>
+      <NewsletterForm id="newsletter" class="max-w-md mx-auto" />
     </div>
   </section>
 )}

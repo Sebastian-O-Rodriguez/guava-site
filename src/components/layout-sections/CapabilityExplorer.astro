@@ -20,7 +20,7 @@ const items = [
   {
     id: 'decision',
     label: 'Decision support',
-    visual: 'decision-flow',
+    visual: 'decision-loop',
     description:
       'Operational data watched for anomalies, turned into recommendations a person acts on.',
   },
@@ -28,10 +28,7 @@ const items = [
 ---
 
 <Section variant="texture-1" id="capability-explorer">
-  <h2 class="text-h2 mb-md">Capability Explorer</h2>
-  <p class="text-muted max-w-2xl mb-lg">
-    Technical capability without a feature catalog&nbsp;&mdash; select a
-    capability to preview how it appears in a working operation.
-  </p>
+  <h2 class="text-h2 mb-md">See It in Action</h2>
+  <p class="text-muted max-w-2xl mb-lg">See It in Action</p>
   <Explorer client:visible idPrefix="capability" label="Capabilities" items={items} />
 </Section>

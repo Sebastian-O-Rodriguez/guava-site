@@ -1,23 +1,4 @@
 ---
-import SecondaryLayout from '../../layouts/SecondaryLayout.astro';
-import Button from '../../components/Button.astro';
-
-const title = 'Pharmacy — Guava AI';
-const description =
-  'Operational technology for pharmacy operations where accuracy and compliance are non-negotiable.';
+// Legacy route — consolidated into /industries (GUA-648).
+return Astro.redirect('/industries#pharmacy', 301);
 ---
-
-<SecondaryLayout {title} {description}>
-  <section class="section-band section-band--white">
-    <div class="container">
-      <h1 class="text-h1 mb-md max-w-3xl">Pharmacy</h1>
-      <p class="text-large text-muted max-w-2xl mb-lg">
-        Pharmacy inventory carries consequences: stock levels, expiry windows,
-        and records that must be right. Guava helps pharmacy teams keep data
-        accurate and reconciliation automatic, leaving the clinical judgment to
-        people.
-      </p>
-      <Button variant="primary" href="/book-a-demo">Book a Demo</Button>
-    </div>
-  </section>
-</SecondaryLayout>
