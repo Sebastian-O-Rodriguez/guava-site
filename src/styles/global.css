@@ -5,13 +5,16 @@
 /* Custom components */
 
 @layer base {
-  /* Selection styling */
+  /* Site-wide text selection — pale blue background, dark slate text */
   ::selection {
-    @apply bg-accent-two text-white;
+    @apply bg-selection text-selection-text;
   }
-  /* Button-specific selection style */
-  .btn-primary ::selection {
-    @apply bg-white text-accent-two;
+  /* Subtle grain shared by light surfaces (brand sections stay solid) */
+  :root {
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  body {
+    background-image: var(--grain);
   }
   /* Add base text wrapping for all paragraphs */
   p {
@@ -66,12 +69,15 @@
   }
   .section-band--white {
     @apply bg-background text-text;
+    background-image: var(--grain);
   }
   .section-band--texture-1 {
     @apply bg-texture-1 text-text;
+    background-image: var(--grain);
   }
   .section-band--texture-2 {
     @apply bg-texture-2 text-text;
+    background-image: var(--grain);
   }
   .section-band--brand {
     @apply bg-brand text-white;
@@ -91,7 +97,7 @@
 
   /* Buttons — primary = brand dark green */
   .btn {
-    @apply inline-flex items-center justify-center px-lg py-sm rounded-full font-semibold tracking-tight transition-all duration-base ease-out-expo
+    @apply inline-flex items-center justify-center px-lg py-sm rounded-md font-semibold tracking-tight transition-all duration-base ease-out-expo
           focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2;
   }
   .btn:hover {
@@ -114,32 +120,10 @@
   .text-link {
     @apply text-accent-two/70 hover:text-accent-two hover:underline focus:outline-none focus:ring-2 focus:ring-accent-two/20 transition-colors;
   }
-  
-  /* Card styling - updated with intrinsic sizing */
-  .card {
-    @apply bg-white/5 p-md rounded-lg transition-all duration-300 flex flex-col border border-text/10 break-words flex items-center justify-center text-center;
-    /* Add these for intrinsic sizing */
-    flex: 1 1 300px;
-    min-width: 250px;  /* Prevents cards from being too narrow */
-    max-width: 500px;  /* Prevents cards from being too wide */
-  }
+  /* Card styling is now inline utility classes on the elements themselves:
+     interactive cards/links keep lift+shadow on hover; static informational
+     blocks stay static. No shared .card class remains. */
 
-  .card:hover {
-    @apply -translate-y-1 shadow-accent-two/5 border-accent-two/30 bg-accent/10;
-  }
-
-  .card-2 {
-    @apply bg-accent-two p-md rounded-lg transition-all duration-300 flex flex-col border border-accent-two/20 break-words text-white;
-    /* Add these for intrinsic sizing */
-    width: 1 1 300px;
-    min-width: 250px;
-    max-width: 500px;
-  }
-
-  .card-2:hover {
-    @apply -translate-y-1 border-accent/50 bg-accent-two/90 shadow-lg;
-  }
-  
   /* Form elements */
   .form-input {
     @apply w-full px-md py-sm rounded-md border border-text/20 focus:border-accent-two focus:ring-2 focus:ring-accent-two/20 bg-background;
