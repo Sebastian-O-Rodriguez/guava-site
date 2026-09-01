@@ -5,49 +5,35 @@ const groups = [
     links: [
       { label: 'Operations Automation', href: '/operations-automation' },
       { label: 'Guava BI', href: '/guava-bi' },
-      { label: 'Operational Diagnostic', href: '/solutions/operational-diagnostic' },
     ],
-  },
-  {
-    title: 'Industries',
-    links: [{ label: 'Industries', href: '/industries' }],
   },
   {
     title: 'Company',
     links: [
       { label: 'About', href: '/about' },
+      { label: 'Industries', href: '/industries' },
       { label: 'Contact', href: '/talk-to-guava' },
     ],
   },
   {
-    title: 'Insights',
+    title: 'Resources',
     links: [{ label: 'Insights', href: '/insights' }],
-  },
-  {
-    title: 'Contact',
-    links: [
-      { label: "Let's Talk", href: '/talk-to-guava' },
-      { label: 'Email', href: 'mailto:contact@guavaai.ai' },
-    ],
   },
 ];
 ---
 
 <footer class="section-band section-band--brand">
   <div class="container">
-    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-md pb-lg mb-lg border-b border-white/20">
+    <div class="pb-lg mb-lg border-b border-white/20">
       <a href="/" class="inline-flex items-center gap-sm" aria-label="Guava AI &mdash; Home">
         <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white">
           <img src="/brand/guava-logo-colored.svg" alt="" class="h-6 w-auto" />
         </span>
         <span class="text-lg font-bold tracking-tight text-white">Guava&nbsp;AI</span>
       </a>
-      <p class="text-sm text-white max-w-sm">
-        Technology for businesses that have outgrown how they operate.
-      </p>
     </div>
 
-    <nav class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-md gap-y-lg" aria-label="Footer">
+    <nav class="grid grid-cols-2 md:grid-cols-3 gap-md gap-y-lg" aria-label="Footer">
       {groups.map((group) => (
         <div>
           <h3 class="text-sm font-semibold text-white mb-sm">{group.title}</h3>
@@ -68,7 +54,7 @@ const groups = [
     </nav>
 
     <div class="border-t border-white/20 mt-lg pt-md">
-      <p class="text-sm text-white/85">&copy; 2026 Guava Artificial Intelligence, Ltd. All rights reserved.</p>
+      <p class="text-sm text-white/85">&copy; 2026 Guava Artificial Intelligence, Ltd.</p>
     </div>
   </div>
 </footer>
