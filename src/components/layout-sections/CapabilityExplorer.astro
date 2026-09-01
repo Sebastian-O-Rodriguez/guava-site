@@ -2,33 +2,63 @@
 import Section from '../Section.astro';
 import Explorer from './Explorer.svelte';
 
-const items = [
+interface Props {
+  items?: {
+    id: string;
+    label: string;
+    visual: string;
+    description: string;
+    note?: string;
+  }[];
+  title?: string;
+  subcopy?: string;
+}
+
+const DEFAULT_ITEMS = [
   {
     id: 'pipelines',
     label: 'Pipelines',
-    visual: 'pipeline-flow',
+    visual: 'pipelines',
     description:
-      'POS, ERP, and CSV sources unified into one operational model that feeds reporting and applications.',
+      'Data moving cleanly from fragmented sources into a unified operational model.',
   },
   {
-    id: 'automation',
-    label: 'Automation',
-    visual: 'automation-flow',
-    description:
-      'Documents in, validated, processed, systems updated, with exceptions routed to a person.',
+    id: 'dashboards',
+    label: 'Dashboards',
+    visual: 'dashboards',
+    description: 'Trusted operational metrics and decision-ready reporting.',
   },
   {
-    id: 'decision',
-    label: 'Decisions',
-    visual: 'decision-loop',
+    id: 'chat',
+    label: 'Chat',
+    visual: 'chat',
     description:
-      'Signals detected, context assembled, a decision made, and the system updated.',
+      'Natural-language interaction with operational data where useful.',
+  },
+  {
+    id: 'pulse',
+    label: 'Pulse',
+    visual: 'pulse',
+    description:
+      'Exceptions, anomalies, risks, and opportunities surfaced automatically.',
+  },
+  {
+    id: 'spotlight',
+    label: 'Spotlight',
+    visual: 'spotlight',
+    description: 'High-priority issues and recommendations requiring attention.',
   },
 ];
+
+const {
+  items = DEFAULT_ITEMS,
+  title = 'See It in Action',
+  subcopy = 'Select a capability to preview how it appears in a working operation.',
+} = Astro.props;
 ---
 
 <Section variant="texture-2" id="capability-explorer" label="Capabilities">
-  <h2 class="text-h2 mb-md">How the systems work</h2>
-  <p class="text-muted max-w-2xl mb-lg">A few examples of operational work moving through connected systems.</p>
+  <h2 class="text-h2 mb-md">{title}</h2>
+  <p class="text-muted max-w-2xl mb-lg">{subcopy}</p>
   <Explorer client:visible idPrefix="capability" label="Capabilities" items={items} />
 </Section>
