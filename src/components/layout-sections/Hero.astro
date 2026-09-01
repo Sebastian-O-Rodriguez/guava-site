@@ -5,8 +5,8 @@ import Button from '../Button.astro';
 const industries = ['Retail', 'Distribution', 'Wholesale', 'Grocery', 'Multi-location'];
 ---
 
-<Section variant="white" id="hero" class="flex flex-col justify-center min-h-[85vh]">
-  <h1 class="text-h1 mb-md max-w-3xl [text-wrap:balance]">
+<Section variant="white" id="hero" class="relative flex flex-col justify-center overflow-hidden min-h-[85vh]">
+  <h1 class="relative z-10 text-h1 mb-md max-w-3xl [text-wrap:balance]">
     Building smarter systems for{' '}
     <span class="inline-grid justify-items-center" data-hero-words>
       {industries.map((industry, i) => (
@@ -23,15 +23,21 @@ const industries = ['Retail', 'Distribution', 'Wholesale', 'Grocery', 'Multi-loc
     </span>{' '}
     businesses
   </h1>
-  <p class="text-large text-muted max-w-2xl mb-lg">
+  <p class="relative z-10 text-large text-muted max-w-2xl mb-lg">
     Connect data, workflows, and software into pragmatic systems that reduce manual work, improve visibility, and give your team more room to grow.
   </p>
 
-  <div class="flex flex-wrap items-start gap-md">
+  <div class="relative z-10 flex flex-wrap items-start gap-md">
     <Button variant="primary" href="/talk-to-guava">Talk to Guava</Button>
     <Button variant="outline" href="#how-we-work">See How We Work</Button>
   </div>
 
+  <img
+    src="/brand/guava-logo-colored.svg"
+    alt=""
+    aria-hidden="true"
+    class="pointer-events-none absolute right-0 top-1/2 z-0 -translate-y-1/2 translate-x-1/4 select-none w-[min(58vw,24rem)] md:w-[min(48vw,30rem)] lg:w-[min(42vw,34rem)] xl:w-[min(52vw,38rem)] max-w-none opacity-40 md:opacity-50 lg:opacity-60 xl:opacity-100"
+  />
 </Section>
 
 <script>
