@@ -1,39 +1,48 @@
 ---
 import SecondaryLayout from '../../layouts/SecondaryLayout.astro';
 import Section from '../../components/Section.astro';
-import Button from '../../components/Button.astro';
 import CTABand from '../../components/CTABand.astro';
 
 const title = 'Industries — Guava AI';
 const description =
-  'Operational technology for inventory-driven businesses — retail, distribution, wholesale, pharmacy, and multi-location operations.';
+  'We work with established businesses where inventory, systems, and operational workflows have become difficult to manage by hand. Retail, distribution, wholesale, grocery, pharmacy, and multi-location operations.';
 
 const industries = [
   {
     id: 'retail',
     name: 'Retail',
-    useCase: 'Inventory visibility, replenishment, reporting, and multi-location workflows.',
+    description:
+      'Keep inventory, replenishment, reporting, and store operations aligned across locations. We connect the systems behind the work so teams spend less time reconciling numbers and more time acting on them.',
   },
   {
     id: 'distribution',
     name: 'Distribution',
-    useCase: 'Order flow, purchasing, warehouse visibility, and reconciliation.',
+    description:
+      'Orders, purchasing, warehouse activity, inventory, and reporting all depend on one another. We connect those workflows and automate repetitive handoffs, reconciliation, and reporting.',
   },
   {
     id: 'wholesale',
     name: 'Wholesale',
-    useCase: 'Vendor data, pricing, reporting, and operational handoffs.',
+    description:
+      'Keep vendor data, pricing, inventory, orders, and reporting consistent across the systems your team already uses. Manual updates and recurring reconciliation move into dependable workflows.',
+  },
+  {
+    id: 'grocery',
+    name: 'Grocery',
+    description:
+      'Fast-moving inventory leaves little room for stale reporting or disconnected systems. We improve visibility across locations, replenishment, inventory movement, and recurring exceptions.',
   },
   {
     id: 'pharmacy',
     name: 'Pharmacy',
-    useCase:
-      'Inventory visibility, shrinkage and expiry management, and regulatory automation — bringing new products to market faster across region-specific requirements.',
+    description:
+      'Bring inventory, expiry, shrinkage, reporting, and regulatory workflows into a clearer operating system. Routine work becomes easier to track, automate, and escalate when a person needs to decide.',
   },
   {
     id: 'multi-location',
     name: 'Multi-location',
-    useCase: 'Cross-location reporting, workflow consistency, exceptions, and operational visibility.',
+    description:
+      'Give every location consistent workflows and shared visibility without forcing every team into more manual reporting. Exceptions surface clearly while routine work stays standardized.',
   },
 ];
 ---
@@ -41,22 +50,24 @@ const industries = [
 <SecondaryLayout {title} {description}>
   <Section variant="white" id="hero">
     <h1 class="text-h1 mb-md max-w-3xl [text-wrap:balance]">Industries</h1>
-    <p class="text-large text-muted max-w-2xl mb-lg">
-      Guava can work across established businesses with meaningful operational
-      complexity, but inventory-driven companies are an initial specialization.
-      Each industry below shows where Guava starts — and the recurring work it
-      lifts off your team.
+    <p class="text-large text-muted max-w-2xl">
+      We work with established businesses where inventory, systems, and
+      operational workflows have become difficult to manage by hand.
+    </p>
+    <p class="text-body text-muted max-w-2xl mb-lg">
+      Different operations create different bottlenecks. We build around the
+      systems, workflows, inventory, and decisions your team handles every day.
     </p>
   </Section>
 
   <Section variant="texture-1" id="industries" label="Industries We Serve">
     <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
-      One operating system, fitted to your industry.
+      Built around how your operation works
     </h2>
     <p class="text-muted max-w-2xl mb-lg">
-      The same foundation — accurate, current inventory data and workflows that
-      run without a person in the loop — applied to the specifics of each
-      operation.
+      The details change by industry. The goal does not: less manual work,
+      better visibility, and systems your team can rely on. We automate routine
+      work while keeping judgment with your team.
     </p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
@@ -66,10 +77,7 @@ const industries = [
           class="flex flex-col gap-sm scroll-mt-24 rounded-lg border border-text/10 bg-white/70 p-md"
         >
           <h3 class="text-h3">{industry.name}</h3>
-          <p class="text-sm text-muted">{industry.useCase}</p>
-          <div class="mt-auto pt-sm">
-            <Button variant="primary" href="/talk-to-guava">Book a Demo</Button>
-          </div>
+          <p class="text-sm text-muted">{industry.description}</p>
         </article>
       ))}
     </div>
@@ -77,9 +85,8 @@ const industries = [
 
   <CTABand
     variant="brand"
-    title="See how Guava fits your operation."
-    description="Book a short demo. We'll walk through how Guava applies to the systems, data, and workflows your team runs every day."
-    ctaLabel="Book a Demo"
+    title="Technology should fit the way your operation works"
+    ctaLabel="Talk to Guava"
     ctaHref="/talk-to-guava"
   />
 </SecondaryLayout>
