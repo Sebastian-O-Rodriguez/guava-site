@@ -32,22 +32,17 @@ const proofs: Proof[] = [
 ---
 
 <Section variant="white" id="proof" label="Proof" class="py-lg">
-  <h2 class="text-h2 mb-md max-w-3xl">Proof, not promises.</h2>
-
-  <div
-    class="rounded-lg border border-text/10 bg-texture-1 p-md"
-    data-proof-rotator
-  >
+  <div class="border-b border-text/10 pb-md" data-proof-rotator>
     {proofs.map((proof, i) => (
       <figure
-        class="flex flex-col gap-sm sm:flex-row sm:items-baseline sm:justify-between sm:gap-md"
+        class="flex flex-col gap-sm"
         data-proof-slide
         hidden={i !== 0}
       >
         <blockquote class="text-large text-text">
           <p>{proof.lead}<span class="font-bold text-brand">{proof.metric}</span>{proof.tail}</p>
         </blockquote>
-        <figcaption class="shrink-0 text-sm font-semibold uppercase tracking-wider text-muted">
+        <figcaption class="self-end text-sm font-semibold uppercase tracking-wider text-muted">
           {proof.attribution}
         </figcaption>
       </figure>

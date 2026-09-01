@@ -1,6 +1,5 @@
 ---
 import Section from '../Section.astro';
-import Button from '../Button.astro';
 
 const industries = [
   {
@@ -19,6 +18,11 @@ const industries = [
     useCase: 'Vendor data, pricing, reporting, and operational handoffs.',
   },
   {
+    name: 'Grocery',
+    href: '/industries#grocery',
+    useCase: 'Perishable inventory, ordering, shrink, and store-level reporting.',
+  },
+  {
     name: 'Pharmacy',
     href: '/industries#pharmacy',
     useCase:
@@ -33,13 +37,12 @@ const industries = [
 ---
 
 <Section variant="texture-2" id="industries" label="Industries">
-  <h2 class="text-h2 mb-md max-w-3xl">Initially focused on inventory-driven operations.</h2>
+  <h2 class="text-h2 mb-md max-w-3xl">Built for operations where inventory, systems, and workflows have to stay in sync</h2>
   <p class="text-muted max-w-2xl mb-lg">
-    We work across established businesses with meaningful operational
-    complexity, but inventory-driven companies are an initial specialization.
+    We work with teams managing inventory, locations, orders, vendors, reporting, and the operational work that connects them.
   </p>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md mb-lg">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
     {industries.map((industry) => (
       <a
         href={industry.href}
@@ -53,6 +56,4 @@ const industries = [
       </a>
     ))}
   </div>
-
-  <Button variant="primary" href="/talk-to-guava">See How We Fit Your Operation</Button>
 </Section>

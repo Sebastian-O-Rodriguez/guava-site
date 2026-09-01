@@ -19,16 +19,16 @@ const items = [
   },
   {
     id: 'decision',
-    label: 'Decision support',
+    label: 'Decisions',
     visual: 'decision-loop',
     description:
-      'Operational data watched for anomalies, turned into recommendations a person acts on.',
+      'Signals detected, context assembled, a decision made, and the system updated.',
   },
 ];
 ---
 
 <Section variant="texture-1" id="capability-explorer">
-  <h2 class="text-h2 mb-md">See It in Action</h2>
-  <p class="text-muted max-w-2xl mb-lg">See It in Action</p>
+  <h2 class="text-h2 mb-md">How the systems work</h2>
+  <p class="text-muted max-w-2xl mb-lg">A few examples of operational work moving through connected systems.</p>
   <Explorer client:visible idPrefix="capability" label="Capabilities" items={items} />
 </Section>

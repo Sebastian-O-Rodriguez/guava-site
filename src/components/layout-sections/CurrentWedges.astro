@@ -1,53 +1,35 @@
 ---
 import Section from '../Section.astro';
-import Button from '../Button.astro';
 ---
 
-<Section variant="white" id="current-wedges" label="Solutions Available Today">
-  <h2 class="text-h2 mb-md max-w-3xl">Two solutions. One operating goal.</h2>
+<Section variant="white" id="current-wedges" label="Solutions">
+  <h2 class="text-h2 mb-md max-w-3xl">Ways we make operations easier to run</h2>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
     <article class="flex flex-col rounded-lg border border-text/10 bg-texture-1 p-lg">
       <h3 class="text-h3 mb-xs">Operations Automation</h3>
       <p class="text-body text-muted mb-sm">
-        Operational work accumulates quietly. People copy data between systems,
-        reconcile records, prepare reports, chase approvals, process documents,
-        and manually handle recurring exceptions.
+        Move repetitive workflows, reporting, approvals, document processing, and data movement into reliable systems.
       </p>
-      <p class="text-sm font-semibold text-brand my-sm">
-        Manual work in spreadsheets, approvals, and reports &rarr; moves into
-        reliable systems that run on their own.
-      </p>
-      <p class="text-body text-muted">
-        We identify high-value workflows and move the appropriate burden
-        into reliable systems.
-      </p>
-      <div class="mt-lg">
-        <Button variant="outline" href="/operations-automation">Explore Operations Automation</Button>
-      </div>
+      <a
+        href="/operations-automation"
+        class="inline-flex items-center gap-xs text-sm font-semibold text-brand hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm transition-colors duration-fast"
+      >
+        Explore <span aria-hidden="true">&rarr;</span>
+      </a>
     </article>
 
     <article class="flex flex-col rounded-lg border border-text/10 bg-texture-1 p-lg">
       <h3 class="text-h3 mb-xs">Guava BI</h3>
-      <p class="text-sm font-semibold uppercase tracking-wider text-muted mb-sm">
-        Decision Intelligence
-      </p>
       <p class="text-body text-muted mb-sm">
-        Inventory businesses generate large amounts of operational data. The
-        harder problem is determining what deserves attention and what to do
-        next.
+        Turn inventory data into trusted visibility, important signals, and clearer decisions.
       </p>
-      <p class="text-sm font-semibold text-brand my-sm">
-        Scattered, stale inventory data &rarr; trusted visibility, important
-        signals, actionable recommendations.
-      </p>
-      <p class="text-body text-muted">
-        Built for inventory-driven businesses where small operational signals
-        can materially affect margin, availability, and working capital.
-      </p>
-      <div class="mt-lg">
-        <Button variant="outline" href="/guava-bi">Explore Guava BI</Button>
-      </div>
+      <a
+        href="/guava-bi"
+        class="inline-flex items-center gap-xs text-sm font-semibold text-brand hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm transition-colors duration-fast"
+      >
+        Explore <span aria-hidden="true">&rarr;</span>
+      </a>
     </article>
   </div>
 </Section>
