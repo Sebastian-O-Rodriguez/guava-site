@@ -1,5 +1,6 @@
 ---
 import SecondaryLayout from '../layouts/SecondaryLayout.astro';
+import Section from '../components/Section.astro';
 
 // Unified contact form (single form route — GUA-677).
 //
@@ -15,8 +16,7 @@ const description =
 ---
 
 <SecondaryLayout {title} {description}>
-  <section class="section-band section-band--white">
-    <div class="container">
+  <Section variant="white" id="hero">
       <h1 class="text-h1 mb-md max-w-3xl">Talk to Guava</h1>
       <p class="text-large text-muted max-w-2xl mb-lg">
         A short walkthrough of how we remove manual work and improve
@@ -70,8 +70,7 @@ const description =
           Thanks. We'll be in touch shortly.
         </p>
       </form>
-    </div>
-  </section>
+  </Section>
 
   <script>
     const form = document.getElementById('demo-form');

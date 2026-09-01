@@ -7,7 +7,7 @@ import HowWeWork from '../components/layout-sections/HowWeWork.astro';
 import CapabilityExplorer from '../components/layout-sections/CapabilityExplorer.astro';
 import CurrentWedges from '../components/layout-sections/CurrentWedges.astro';
 import Industries from '../components/layout-sections/Industries.astro';
-import FinalCta from '../components/layout-sections/FinalCta.astro';
+import CTABand from '../components/CTABand.astro';
 import Faq from '../components/layout-sections/Faq.astro';
 import Footer from '../components/layout-sections/Footer.astro';
 import Motion from '../components/layout-sections/Motion.astro';
@@ -25,8 +25,14 @@ const description =
   <CapabilityExplorer />
   <CurrentWedges />
   <Industries />
-  <FinalCta />
   <Faq />
+  <CTABand
+    variant="brand"
+    title="Technology should make the business easier to run"
+    description="If manual work, disconnected systems, stale reports, or slow approvals are limiting the business, we help you determine what should change and build the systems that fix it."
+    ctaLabel="Talk to Guava"
+    ctaHref="/talk-to-guava"
+  />
   <Footer />
 
   <Motion />

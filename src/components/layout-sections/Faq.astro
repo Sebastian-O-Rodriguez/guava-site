@@ -37,17 +37,13 @@ const faqs = [
 ];
 ---
 
-<Section variant="brand" id="faq" container="narrow">
-  <div class="section-label">
-    <span class="section-label__mark" aria-hidden="true"></span>
-    <span class="section-label__text text-white">FAQ</span>
-  </div>
+<Section variant="white" id="faq" label="FAQ" container="narrow">
   <h2 class="text-h2 mb-md">Common questions</h2>
-  <p class="text-white/80 mb-lg">
+  <p class="text-muted mb-lg">
     What working with us looks like.
   </p>
 
-  <div class="divide-y divide-white/20 border-y border-white/20">
+  <div class="divide-y divide-text/10 border-y border-text/10">
     {faqs.map((faq) => (
       <div class="py-md" data-faq-item>
         <button
@@ -55,23 +51,16 @@ const faqs = [
           id={`${faq.id}-button`}
           aria-expanded="false"
           aria-controls={`${faq.id}-panel`}
-          class="flex w-full items-center justify-between gap-md rounded-sm py-xs text-left text-body font-semibold text-white transition-colors duration-fast hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          class="flex w-full items-center justify-between gap-md rounded-sm py-xs text-left text-body font-semibold text-text transition-colors duration-fast hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
         >
           <span>{faq.question}</span>
-          <span aria-hidden="true" class="shrink-0 text-lg text-brand-100">+</span>
+          <span aria-hidden="true" class="shrink-0 text-lg text-brand">+</span>
         </button>
         <div id={`${faq.id}-panel`} role="region" aria-labelledby={`${faq.id}-button`} hidden>
           <div class="pt-sm">
             {faq.paragraphs.map((paragraph) => (
-              <p class="text-body text-white/80 mb-sm">{paragraph}</p>
+              <p class="text-body text-muted mb-sm">{paragraph}</p>
             ))}
-            {faq.list && (
-              <ul class="list-disc pl-md mb-sm space-y-xs">
-                {faq.list.map((item) => (
-                  <li class="text-body text-white/80">{item}</li>
-                ))}
-              </ul>
-            )}
           </div>
         </div>
       </div>
