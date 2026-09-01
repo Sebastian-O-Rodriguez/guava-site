@@ -32,21 +32,31 @@ const proofs: Proof[] = [
 ---
 
 <Section variant="white" id="proof" label="Proof" class="py-lg">
-  <div class="border-b border-text/10 pb-md" data-proof-rotator>
-    {proofs.map((proof, i) => (
-      <figure
-        class="flex flex-col gap-sm"
-        data-proof-slide
-        hidden={i !== 0}
+  <div class="border-b border-text/10 pb-md" data-proof-carousel>
+    <div class="overflow-hidden">
+      <div
+        class="flex transition-transform duration-slow ease-out-expo motion-reduce:transition-none will-change-transform"
+        data-proof-track
       >
-        <blockquote class="text-large text-text">
-          <p>{proof.lead}<span class="font-bold text-brand">{proof.metric}</span>{proof.tail}</p>
-        </blockquote>
-        <figcaption class="self-end text-sm font-semibold uppercase tracking-wider text-muted">
-          {proof.attribution}
-        </figcaption>
-      </figure>
-    ))}
+        {proofs.map((proof, i) => (
+          <figure
+            class="flex w-full shrink-0 flex-col gap-sm"
+            data-proof-slide
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${i + 1} of ${proofs.length}`}
+            aria-hidden={i === 0 ? 'false' : 'true'}
+          >
+            <blockquote class="text-large text-text">
+              <p>{proof.lead}<span class="font-bold text-brand">{proof.metric}</span>{proof.tail}</p>
+            </blockquote>
+            <figcaption class="self-end text-sm font-semibold uppercase tracking-wider text-muted">
+              {proof.attribution}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
 
     <div class="mt-sm flex items-center gap-xs" role="group" aria-label="Proof selection">
       {proofs.map((proof, i) => (
@@ -63,26 +73,24 @@ const proofs: Proof[] = [
 </Section>
 
 <script>
-  import { gsap } from 'gsap';
-
-  const INTERVAL_MS = 7000;
-  // Mirrors M2 motion tokens (tailwind.config.js): duration-base = 250ms,
-  // easing out-expo = cubic-bezier(0.16, 1, 0.3, 1) → GSAP expo.out.
-  const FADE_DURATION = 0.25;
-  const FADE_EASE = 'expo.out';
+  const INTERVAL_MS = 6000;
 
   function init() {
-    const root = document.querySelector('[data-proof-rotator]');
+    const root = document.querySelector('[data-proof-carousel]');
     if (!root) return;
 
+    const track = root.querySelector('[data-proof-track]');
     const slides = Array.from(root.querySelectorAll('[data-proof-slide]'));
     const dots = Array.from(root.querySelectorAll('[data-proof-dot]'));
-    const dotsWrap = root.querySelector('[role="group"]');
-    if (slides.length < 2) return;
+    const controls = root.querySelector('[role="group"][aria-label="Proof selection"]');
+    if (!track || slides.length < 2) return;
 
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let current = 0;
     let timer = null;
-    let reduced = false;
+    let paused = false;
+
+    const reduced = () => motion.matches;
 
     const stop = () => {
       if (timer !== null) {
@@ -91,7 +99,12 @@ const proofs: Proof[] = [
       }
     };
 
-    const updateDots = () => {
+    const render = (index) => {
+      current = ((index % slides.length) + slides.length) % slides.length;
+      track.style.transform = `translate3d(-${current * 100}%, 0, 0)`;
+      slides.forEach((slide, i) => {
+        slide.setAttribute('aria-hidden', String(i !== current));
+      });
       dots.forEach((dot, i) => {
         const active = i === current;
         dot.setAttribute('aria-pressed', String(active));
@@ -99,93 +112,63 @@ const proofs: Proof[] = [
       });
     };
 
-    const select = (index, fade) => {
-      const target = (index + slides.length) % slides.length;
-      if (target === current) return;
-
-      const outgoing = slides[current];
-      const incoming = slides[target];
-      current = target;
-      updateDots();
-
-      // Always reset to a single visible slide before transitioning so a
-      // mid-fade interaction can never leave two proof cards stacked.
-      gsap.killTweensOf(slides);
-      slides.forEach((slide) => {
-        if (slide === outgoing) {
-          slide.hidden = false;
-          gsap.set(slide, { autoAlpha: 1 });
-        } else {
-          slide.hidden = true;
-          gsap.set(slide, { clearProps: 'opacity,visibility' });
-        }
-      });
-
-      if (!fade) {
-        incoming.hidden = false;
-        gsap.set(incoming, { autoAlpha: 1 });
-        return;
-      }
-
-      gsap.to(outgoing, {
-        autoAlpha: 0,
-        duration: FADE_DURATION,
-        ease: FADE_EASE,
-        onComplete: () => {
-          outgoing.hidden = true;
-          gsap.set(incoming, { autoAlpha: 0 });
-          incoming.hidden = false;
-          gsap.to(incoming, { autoAlpha: 1, duration: FADE_DURATION, ease: FADE_EASE });
-        },
-      });
+    const start = () => {
+      if (reduced() || paused || document.hidden) return;
+      stop();
+      timer = setInterval(() => render(current + 1), INTERVAL_MS);
     };
 
-    const next = () => select(current + 1, !reduced);
-
-    const start = () => {
-      if (reduced) return;
-      stop();
-      timer = setInterval(next, INTERVAL_MS);
+    const select = (index) => {
+      render(index);
+      start();
     };
 
     dots.forEach((dot, i) => {
       dot.tabIndex = i === 0 ? 0 : -1;
-      dot.addEventListener('click', () => {
-        select(i, !reduced);
-        start();
+      dot.addEventListener('click', () => select(i));
+    });
+
+    if (controls) {
+      controls.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+        event.preventDefault();
+        select(current + (event.key === 'ArrowRight' ? 1 : -1));
+        dots[current]?.focus();
       });
-    });
+    }
 
-    dotsWrap.addEventListener('keydown', (event) => {
-      if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
-      event.preventDefault();
-      select(current + (event.key === 'ArrowRight' ? 1 : -1), !reduced);
-      start();
-      dots[current]?.focus();
-    });
-
-    // Pause auto-rotation while the user is interacting or the tab is hidden.
-    root.addEventListener('mouseenter', stop);
-    root.addEventListener('mouseleave', start);
-    root.addEventListener('focusin', stop);
-    root.addEventListener('focusout', start);
-    const onVisibility = () => (document.hidden ? stop() : start());
-    document.addEventListener('visibilitychange', onVisibility);
-
-    const mm = gsap.matchMedia();
-    mm.add('(prefers-reduced-motion: no-preference)', () => {
-      reduced = false;
-      start();
-    });
-    mm.add('(prefers-reduced-motion: reduce)', () => {
-      reduced = true;
+    // Pause auto-rotation while the pointer hovers or focus sits inside.
+    root.addEventListener('mouseenter', () => {
+      paused = true;
       stop();
-      // Collapse any half-finished crossfade and rest to a static single slide.
-      slides.forEach((slide, i) => {
-        slide.hidden = i !== current;
-        gsap.set(slide, { clearProps: 'opacity,visibility' });
-      });
     });
+    root.addEventListener('mouseleave', () => {
+      paused = false;
+      start();
+    });
+    root.addEventListener('focusin', () => {
+      paused = true;
+      stop();
+    });
+    root.addEventListener('focusout', () => {
+      if (!root.contains(document.activeElement)) {
+        paused = false;
+        start();
+      }
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop();
+      else start();
+    });
+
+    motion.addEventListener('change', () => {
+      stop();
+      start();
+    });
+
+    render(0);
+    start();
   }
 
   if (document.readyState === 'loading') {
