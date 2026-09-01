@@ -1,5 +1,6 @@
 ---
 import Section from '../Section.astro';
+import Card from '../Card.astro';
 ---
 
 <Section variant="white" id="current-wedges" label="Solutions">
@@ -9,7 +10,7 @@ import Section from '../Section.astro';
   </p>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
-    <article class="flex flex-col rounded-lg border border-text/10 bg-texture-1 p-lg">
+    <Card size="lg">
       <h3 class="text-h3 mb-xs">Operations Automation</h3>
       <p class="text-body text-muted mb-sm">
         Move repetitive workflows, reporting, approvals, document processing, and data movement into reliable systems.
@@ -20,9 +21,9 @@ import Section from '../Section.astro';
       >
         Explore <span aria-hidden="true">&rarr;</span>
       </a>
-    </article>
+    </Card>
 
-    <article class="flex flex-col rounded-lg border border-text/10 bg-texture-1 p-lg">
+    <Card size="lg">
       <h3 class="text-h3 mb-xs">Guava BI</h3>
       <p class="text-body text-muted mb-sm">
         Turn inventory data into trusted visibility, important signals, and clearer decisions.
@@ -33,6 +34,6 @@ import Section from '../Section.astro';
       >
         Explore <span aria-hidden="true">&rarr;</span>
       </a>
-    </article>
+    </Card>
   </div>
 </Section>

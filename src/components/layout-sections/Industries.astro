@@ -1,5 +1,6 @@
 ---
 import Section from '../Section.astro';
+import Card from '../Card.astro';
 
 const industries = [
   {
@@ -44,16 +45,13 @@ const industries = [
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
     {industries.map((industry) => (
-      <a
-        href={industry.href}
-        class="group flex flex-col gap-sm rounded-lg border border-text/10 bg-white/70 p-md transition-all duration-base hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-      >
+      <Card href={industry.href}>
         <span class="flex items-center justify-between gap-sm">
           <span class="text-body font-semibold text-text">{industry.name}</span>
           <span aria-hidden="true" class="text-brand transition-transform duration-base group-hover:translate-x-0.5">&rarr;</span>
         </span>
         <span class="text-sm text-muted">{industry.useCase}</span>
-      </a>
+      </Card>
     ))}
   </div>
 </Section>
