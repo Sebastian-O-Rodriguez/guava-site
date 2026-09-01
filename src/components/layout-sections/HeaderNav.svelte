@@ -6,19 +6,28 @@
   const solutions = [
     { label: 'Operations Automation', href: '/operations-automation' },
     { label: 'Guava BI', href: '/guava-bi' },
+    { label: 'Operational Diagnostic', href: '/solutions/operational-diagnostic' },
+  ];
+
+  const industries = [
+    { label: 'Retail', href: '/industries/retail' },
+    { label: 'Distribution', href: '/industries/distribution' },
+    { label: 'Wholesale', href: '/industries/wholesale' },
+    { label: 'Pharmacy', href: '/industries/pharmacy' },
+    { label: 'Multi-Location Operations', href: '/industries/multi-location' },
   ];
 
   const links = [
-    { label: 'Industries', href: '/industries' },
     { label: 'About', href: '/about' },
     { label: 'Insights', href: '/insights' },
     { label: 'Contact', href: '/talk-to-guava' },
   ];
 
-  const cta = { label: 'Talk to Guava', href: '/talk-to-guava' };
+  const cta = { label: 'Book a Demo', href: '/talk-to-guava' };
 
   const dropdowns = [
     { id: 'solutions', label: 'Solutions', items: solutions },
+    { id: 'industries', label: 'Industries', items: industries },
   ];
 
   // ── Motion — mirrors GUA-509 tailwind tokens (duration-base 250ms, ease-out-expo) ──
@@ -260,16 +269,18 @@
     >
       <div class="container py-md flex flex-col gap-lg">
         <div class="flex flex-col gap-md">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-muted mb-xs">Solutions</p>
-            <ul class="flex flex-col">
-              {#each solutions as item}
-                <li>
-                  <a href={item.href} onclick={closeMobile} class={mobileLink}>{item.label}</a>
-                </li>
-              {/each}
-            </ul>
-          </div>
+          {#each dropdowns as dd}
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wider text-muted mb-xs">{dd.label}</p>
+              <ul class="flex flex-col">
+                {#each dd.items as item}
+                  <li>
+                    <a href={item.href} onclick={closeMobile} class={mobileLink}>{item.label}</a>
+                  </li>
+                {/each}
+              </ul>
+            </div>
+          {/each}
           <ul class="flex flex-col">
             {#each links as link}
               <li>
