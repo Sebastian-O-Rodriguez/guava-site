@@ -121,9 +121,9 @@ export const WAITLIST_FIELDS: WaitlistField[] = [
     placeholder: 'Select your biggest challenge',
     required: true,
     options: [
-      { value: 'visibility', label: 'Visibility — I can\u2019t see what\u2019s happening clearly' },
-      { value: 'detection', label: 'Detection — I don\u2019t know what deserves attention' },
-      { value: 'recommendation', label: 'Recommendation — I know the problems but not what to do' },
+      { value: 'visibility', label: 'Visibility: I can\u2019t see what\u2019s happening clearly' },
+      { value: 'detection', label: 'Detection: I don\u2019t know what deserves attention' },
+      { value: 'recommendation', label: 'Recommendation: I know the problems but not what to do' },
     ],
   },
   {
