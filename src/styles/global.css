@@ -78,6 +78,9 @@
     @apply bg-brand text-white;
     background-image: none;
   }
+  .section-band--brand .section-label__text {
+    @apply text-white;
+  }
 
   /* Section label — shared brand eyebrow above section headings */
   .section-label {

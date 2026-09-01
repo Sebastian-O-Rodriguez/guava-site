@@ -6,6 +6,9 @@ export interface Props {
   url?: string;
 }
 
+import Faq from '../components/layout-sections/Faq.astro';
+import Footer from '../components/layout-sections/Footer.astro';
+
 import '../styles/global.css';
 
 const {
@@ -100,6 +103,8 @@ const {
   <body class="bg-background text-text m-0 p-0 min-h-screen font-sans leading-normal">
     <main class="w-full min-h-screen">
       <slot />
+      <Faq />
+      <Footer />
     </main>
 
     <!-- Cal element-click embed code begins -->

@@ -37,13 +37,13 @@ const faqs = [
 ];
 ---
 
-<Section variant="white" id="faq" label="FAQ" container="narrow">
+<Section variant="brand" id="faq" label="FAQ" container="narrow">
   <h2 class="text-h2 mb-md">Common Questions</h2>
-  <p class="text-muted mb-lg">
+  <p class="text-white/80 mb-lg">
     What working with us looks like.
   </p>
 
-  <div class="divide-y divide-text/10 border-y border-text/10">
+  <div class="divide-y divide-white/20 border-y border-white/20">
     {faqs.map((faq) => (
       <div class="py-md" data-faq-item>
         <button
@@ -51,15 +51,15 @@ const faqs = [
           id={`${faq.id}-button`}
           aria-expanded="false"
           aria-controls={`${faq.id}-panel`}
-          class="flex w-full items-center justify-between gap-md rounded-sm py-xs text-left text-body font-semibold text-text transition-colors duration-fast hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+          class="flex w-full items-center justify-between gap-md rounded-sm py-xs text-left text-body font-semibold text-white transition-colors duration-fast hover:text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
           <span>{faq.question}</span>
-          <span aria-hidden="true" class="shrink-0 text-lg text-brand">+</span>
+          <span aria-hidden="true" class="shrink-0 text-lg text-white">+</span>
         </button>
         <div id={`${faq.id}-panel`} role="region" aria-labelledby={`${faq.id}-button`} hidden>
           <div class="pt-sm">
             {faq.paragraphs.map((paragraph) => (
-              <p class="text-body text-muted mb-sm">{paragraph}</p>
+              <p class="text-body text-white/80 mb-sm">{paragraph}</p>
             ))}
           </div>
         </div>
