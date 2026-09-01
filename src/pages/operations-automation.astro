@@ -16,40 +16,35 @@ const capabilities = [
     label: 'Document Processing',
     visual: 'automation',
     description:
-      'Invoices, orders, and other documents read and turned into clean, usable data — without manual re-keying.',
-    note: 'Documents in, validated, processed, systems updated — with exceptions routed to a person.',
+      'Read invoices, orders, and other documents into clean, validated data — no manual re-keying.',
   },
   {
     id: 'reconciliation',
     label: 'Reconciliation',
     visual: 'unification',
     description:
-      'Records matched across systems, accounts, and reports, with mismatches surfaced instead of hand-reviewed line by line.',
-    note: 'Every system holding the same record stays consistent — drift is caught, not discovered later.',
+      'Match records across systems and surface the mismatches.',
   },
   {
     id: 'data-movement',
     label: 'Data Movement',
     visual: 'pipeline-flow',
     description:
-      'Data moves between systems accurately and on schedule, without copy-paste or manual exports.',
-    note: 'Sources unified into one operational model that feeds reporting and applications.',
+      'Move data between systems on schedule — no copy-paste or manual exports.',
   },
   {
     id: 'reporting',
     label: 'Reporting',
     visual: 'reporting',
     description:
-      'Reporting built to run on its own, from current data, so decisions happen with the numbers that matter.',
-    note: 'Reports arrive on time, from one trusted source, without a person assembling them.',
+      'Run reporting on its own, from current data.',
   },
   {
     id: 'approvals',
     label: 'Approvals',
     visual: 'decision-loop',
     description:
-      'Approval requests routed with the context a decision needs, logged, and pushed back into the systems that depend on them.',
-    note: 'The right person decides, with enough context to decide quickly.',
+      'Route approvals with the context a decision needs.',
   },
 ];
 
@@ -91,59 +86,11 @@ const howItWorks = [
   },
 ];
 
-const exampleWorkflows = [
-  {
-    title: 'Invoice & purchase-order processing',
-    body: 'Documents in, matched against the order, validated, and pushed into the systems that need them. Mismatches go to a person with the context to decide.',
-    steps: ['Document in', 'Matched & validated', 'Systems updated', 'Mismatch to a person'],
-  },
-  {
-    title: 'Multi-system reconciliation',
-    body: 'Records compared across systems and accounts; differences surfaced instead of searched for by hand.',
-    steps: ['ERP', 'POS', 'Bank feed', 'Differences surfaced'],
-  },
-  {
-    title: 'Approval routing',
-    body: 'Requests routed with the context a decision needs, logged, and written back into the systems that depend on them.',
-    steps: ['Request in', 'Routed with context', 'Decision logged', 'Systems updated'],
-  },
-];
-
 const outcomes = [
-  {
-    title: 'Less Manual Work',
-    body: 'Recurring steps stop depending on people\u2019s time and attention.',
-  },
-  {
-    title: 'Fewer Handoffs',
-    body: 'Work stops stalling while it waits to be passed between systems and people.',
-  },
-  {
-    title: 'Better Exception Handling',
-    body: 'Out-of-pattern cases surface with context, instead of being found after the fact.',
-  },
-  {
-    title: 'More Operating Capacity',
-    body: 'The same team absorbs more volume, or turns to the work that needs judgment.',
-  },
-];
-
-const relatedSolutions = [
-  {
-    title: 'Dashboards & Reporting',
-    body: 'Reliable, current reporting and visibility that runs on its own.',
-    href: null,
-  },
-  {
-    title: 'Pipeline Unification',
-    body: 'Connected systems and a single trusted operational model.',
-    href: null,
-  },
-  {
-    title: 'Inventory Intelligence',
-    body: 'Inventory data turned into visibility, signals, and recommendations.',
-    href: '/guava-bi',
-  },
+  'Less manual work',
+  'Fewer handoffs',
+  'Better exception handling',
+  'More capacity',
 ];
 
 const faqs = [
@@ -203,7 +150,7 @@ const faqs = [
           the work only they can do.
         </p>
         <div class="flex flex-wrap items-center gap-md">
-          <Button variant="primary" href="/talk-to-guava">Book a Demo</Button>
+          <Button variant="primary" href="/talk-to-guava">Talk to Guava</Button>
         </div>
       </div>
 
@@ -228,28 +175,27 @@ const faqs = [
               Extracted &amp; validated
             </span>
           </div>
-          <div class="flex justify-center text-brand/70">
-            <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 5v14M6 13l6 6 6-6" />
-            </svg>
-          </div>
-          <div class="flex flex-wrap items-center justify-center gap-xs">
-            <span class="inline-flex max-w-full items-center justify-center rounded-md border border-brand/25 bg-brand-50 px-3 py-1.5 text-center text-sm font-semibold text-brand-700">
-              Systems updated
-            </span>
-            <span class="inline-flex max-w-full items-center justify-center rounded-md bg-brand px-3 py-1.5 text-center text-sm font-semibold text-white">
-              Reports refreshed
-            </span>
-          </div>
-          <div class="flex justify-center text-brand/70">
-            <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 5v14M6 13l6 6 6-6" />
-            </svg>
-          </div>
-          <div class="flex flex-wrap items-center justify-center gap-xs">
-            <span class="inline-flex max-w-full items-center justify-center rounded-md border border-dashed border-text/30 bg-white/80 px-3 py-1.5 text-center text-sm font-medium text-muted">
-              Exception routed to a person
-            </span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-xs">
+            <!-- Auto path -->
+            <div class="flex flex-col gap-xs rounded-lg border border-brand/25 bg-brand-50 p-sm">
+              <span class="inline-flex max-w-full items-center justify-center rounded-md bg-brand px-3 py-1.5 text-center text-sm font-semibold text-white">
+                Processed automatically
+              </span>
+              <div class="flex flex-wrap items-center justify-center gap-xs">
+                <span class="inline-flex max-w-full items-center justify-center rounded-md border border-brand/25 bg-white px-3 py-1.5 text-center text-sm font-semibold text-brand-700">
+                  Systems updated
+                </span>
+                <span class="inline-flex max-w-full items-center justify-center rounded-md border border-brand/25 bg-white px-3 py-1.5 text-center text-sm font-semibold text-brand-700">
+                  Reports refreshed
+                </span>
+              </div>
+            </div>
+            <!-- Exception path -->
+            <div class="flex flex-col items-center justify-center gap-xs rounded-lg border border-dashed border-text/30 bg-white/80 p-sm">
+              <span class="inline-flex max-w-full items-center justify-center rounded-md border border-dashed border-text/30 bg-white/80 px-3 py-1.5 text-center text-sm font-medium text-muted">
+                Exception &rarr; person
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -261,12 +207,6 @@ const faqs = [
     <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
       Built to fit how your operation actually works.
     </h2>
-    <p class="text-muted max-w-2xl mb-lg">
-      Most growing operations run on a layer of repetitive administrative work
-      — the same steps, copied between systems by the same people, every day.
-      It quietly eats capacity and pulls skilled people away from the decisions
-      only they can make. Operations Automation targets that layer.
-    </p>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
       {differentiators.map((item) => (
@@ -278,33 +218,24 @@ const faqs = [
     </div>
   </Section>
 
-  <!-- 3. CTA band -->
-  <CTABand
-    variant="white"
-    title="Where is manual work quietly eating your capacity?"
-    description="Walk us through the workflows, systems, and reporting that slow your team down. We'll identify where automation can create the most leverage."
-    ctaLabel="Book a Demo"
-    ctaHref="/talk-to-guava"
-  />
-
-  <!-- 4. Capability Explorer -->
+  <!-- 3. What we automate -->
   <Section variant="texture-2" id="capability-explorer" label="Capabilities">
-    <h2 class="text-h2 mb-md">Capability Explorer</h2>
+    <h2 class="text-h2 mb-md">What we automate</h2>
     <p class="text-muted max-w-2xl mb-lg">
-      Technical capability without a feature catalog&nbsp;&mdash; select a
-      capability to preview how it appears in a working operation.
+      Common workflows we move out of spreadsheets, inboxes, and manual
+      handoffs.
     </p>
     <Explorer client:visible idPrefix="ops" label="Operations Automation capabilities" items={capabilities} />
   </Section>
 
-  <!-- 5. How It Works -->
-  <Section variant="white" id="how-it-works" label="How It Works">
+  <!-- 4. How we build it -->
+  <Section variant="white" id="how-it-works" label="How we build it">
     <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
-      From how the work runs today, to how it should run.
+      How we build it
     </h2>
     <p class="text-muted max-w-2xl mb-lg">
-      Five steps, in order. Every step is built on the one before it, and each
-      one ends with something you can point at.
+      We start with the work as it runs today, simplify it, then build only
+      what needs to exist.
     </p>
 
     <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-md list-none p-0">
@@ -320,89 +251,25 @@ const faqs = [
     </ol>
   </Section>
 
-  <!-- 6. Example Workflows -->
-  <Section variant="texture-1" id="example-workflows" label="Example Workflows">
-    <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
-      Workflows we take on.
-    </h2>
-    <p class="text-muted max-w-2xl mb-lg">
-      Recurring, bounded workflows — the ones with defined steps and predictable
-      inputs. Each becomes a system that runs without a person in the loop.
-    </p>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
-      {exampleWorkflows.map((workflow) => (
-        <article class="flex flex-col rounded-lg border border-text/10 bg-white/70 p-lg">
-          <h3 class="text-h3 mb-sm">{workflow.title}</h3>
-          <p class="text-body text-muted mb-md">{workflow.body}</p>
-
-          <div class="mt-auto flex flex-col gap-xs" aria-hidden="true">
-            {workflow.steps.map((step, j) => (
-              <div class="flex items-center gap-xs">
-                <span class="inline-flex max-w-full items-center justify-center rounded-md border border-text/15 bg-white px-3 py-1.5 text-center text-sm font-medium text-text">
-                  {step}
-                </span>
-                {j < workflow.steps.length - 1 && (
-                  <svg class="h-4 w-4 shrink-0 text-brand/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 5v14M6 13l6 6 6-6" />
-                  </svg>
-                )}
-              </div>
-            ))}
-          </div>
-        </article>
-      ))}
-    </div>
-  </Section>
-
-  <!-- 7. Outcomes / Proof -->
+  <!-- 5. Outcomes -->
   <Section variant="white" id="outcomes" label="Outcomes">
     <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
       What changes for the operation.
     </h2>
-    <p class="text-muted max-w-2xl mb-lg">
-      Success means the business operates better — it never means
-      &ldquo;we delivered more technology.&rdquo;
-    </p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md list-none p-0">
       {outcomes.map((outcome) => (
-        <div class="flex flex-col gap-sm rounded-lg border border-text/10 bg-texture-1 p-md">
-          <h3 class="text-h3">{outcome.title}</h3>
-          <p class="text-sm text-muted">{outcome.body}</p>
-        </div>
+        <li class="flex items-center gap-sm text-body text-text">
+          <svg class="h-4 w-4 shrink-0 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 13l4 4L19 7" />
+          </svg>
+          {outcome}
+        </li>
       ))}
-    </div>
+    </ul>
   </Section>
 
-  <!-- 8. Related Solutions -->
-  <Section variant="texture-2" id="related-solutions" label="Related Solutions">
-    <h2 class="text-h2 mb-md max-w-3xl">Explore adjacent solutions.</h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
-      {relatedSolutions.map((solution) => (
-        solution.href ? (
-          <a
-            href={solution.href}
-            class="group flex flex-col gap-sm rounded-lg border border-text/10 bg-white/70 p-md transition-all duration-base hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-          >
-            <span class="flex items-center justify-between gap-sm">
-              <span class="text-body font-semibold text-text">{solution.title}</span>
-              <span aria-hidden="true" class="text-brand transition-transform duration-base group-hover:translate-x-0.5">&rarr;</span>
-            </span>
-            <span class="text-sm text-muted">{solution.body}</span>
-          </a>
-        ) : (
-          <article class="flex flex-col gap-sm rounded-lg border border-text/10 bg-white/40 p-md">
-            <span class="text-body font-semibold text-text">{solution.title}</span>
-            <span class="text-sm text-muted">{solution.body}</span>
-          </article>
-        )
-      ))}
-    </div>
-  </Section>
-
-  <!-- 9. FAQ -->
+  <!-- 6. FAQ -->
   <Section variant="white" id="faq" label="FAQ" container="narrow">
     <h2 class="text-h2 mb-md">Frequently Asked Questions</h2>
     <p class="text-muted mb-lg">
@@ -435,7 +302,7 @@ const faqs = [
     </div>
   </Section>
 
-  <!-- 10. Final CTA -->
+  <!-- 7. Final CTA -->
   <CTABand
     variant="brand"
     title="Ready to take manual work off your team's plate?"
