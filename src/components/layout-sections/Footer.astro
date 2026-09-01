@@ -12,12 +12,8 @@ const groups = [
     links: [
       { label: 'About', href: '/about' },
       { label: 'Industries', href: '/industries' },
-      { label: 'Contact', href: '/talk-to-guava' },
+      { label: 'Contact', href: '/book-a-demo' },
     ],
-  },
-  {
-    title: 'Resources',
-    links: [{ label: 'Insights', href: '/insights' }],
   },
 ];
 ---
@@ -33,7 +29,7 @@ const groups = [
       </a>
     </div>
 
-    <nav class="grid grid-cols-2 md:grid-cols-3 gap-md gap-y-lg" aria-label="Footer">
+    <nav class="grid grid-cols-2 gap-md gap-y-lg" aria-label="Footer">
       {groups.map((group) => (
         <div>
           <h3 class="text-sm font-semibold text-white mb-sm">{group.title}</h3>

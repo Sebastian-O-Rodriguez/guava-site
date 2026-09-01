@@ -2,7 +2,8 @@
 import SecondaryLayout from '../layouts/SecondaryLayout.astro';
 import Section from '../components/Section.astro';
 
-// Unified contact form (single form route — GUA-677).
+// Canonical conversion page — GUA-704. Content consolidated into this single
+// demo-booking surface. All "Book a Demo" / conversion CTAs point here.
 //
 // Submission reuses the newsletter/waitlist signup surface: a static,
 // client-only form that posts nowhere. No endpoint is called and no
@@ -10,14 +11,14 @@ import Section from '../components/Section.astro';
 // Newsletter.astro / GUA-614). When the endpoint lands, give <form> its
 // action + method and keep credentials in env, never in source.
 
-const title = 'Talk to Guava | Guava AI';
+const title = 'Book a Demo | Guava AI';
 const description =
-  'See how we turn scattered operational data into visibility you can trust. Start a conversation with us.';
+  'See how we turn scattered operational data into visibility you can trust. Book a short demo.';
 ---
 
 <SecondaryLayout {title} {description}>
   <Section variant="white" id="hero">
-      <h1 class="text-h1 mb-md max-w-3xl">Talk to Guava</h1>
+      <h1 class="text-h1 mb-md max-w-3xl">Book a Demo</h1>
       <p class="text-large text-muted max-w-2xl mb-lg">
         A short walkthrough of how we remove manual work and improve
         visibility across your operation, or a conversation about where to
@@ -59,7 +60,7 @@ const description =
             required
           />
         </div>
-        <button type="submit" class="btn btn-primary w-full">Talk to Guava</button>
+        <button type="submit" class="btn btn-primary w-full">Book a Demo</button>
         <p
           class="text-xs text-text/70 mt-sm text-center"
           id="demo-confirmation"
