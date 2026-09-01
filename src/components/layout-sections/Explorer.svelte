@@ -7,7 +7,7 @@
 
   let active = $state(items[0]?.id ?? '');
   const activeIndex = $derived(Math.max(0, items.findIndex((i) => i.id === active)));
-  const activeItem = $derived(items[activeIndex]);
+  const activeItem = $derived(items.find((i) => i.id === active));
 
   // Brand palette mirrored from tailwind.config.js tokens (SVG visuals).
   const CO = {
@@ -26,7 +26,7 @@
   function select(index) {
     const item = items[index];
     if (!item) return;
-    active = item.id;
+    active = item.id === active ? '' : item.id;
   }
 
   function handleKeydown(e) {
@@ -395,7 +395,7 @@
 </div>
 
 <!-- Tablet + desktop: wrapping tabs + panel -->
-<div class="hidden md:grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-md lg:gap-xl items-start">
+<div class="hidden md:grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-md lg:gap-xl">
   <div
     role="tablist"
     aria-label={label}
