@@ -1,23 +1,110 @@
 ---
 import SecondaryLayout from '../layouts/SecondaryLayout.astro';
+import Section from '../components/Section.astro';
 import Button from '../components/Button.astro';
+import CTABand from '../components/CTABand.astro';
 
-const title = 'About — Guava AI';
+const title = 'About Guava AI';
 const description =
-  'Guava AI is a technology consultancy for businesses that have outgrown how they operate.';
+  'We build dependable operations systems for businesses that have outgrown how they operate. Learn who we are, what we build, and why we exist.';
+
+const capabilities = [
+  {
+    title: 'Connect',
+    body: 'Bring your data and systems into one working whole, so information stops moving between them by hand.',
+  },
+  {
+    title: 'Automate',
+    body: 'Move the recurring, bounded steps into systems that run them reliably, so people step in only where judgment is required.',
+  },
+  {
+    title: 'Surface',
+    body: 'Give your team the visibility to see what is happening, what is blocked, and what needs attention.',
+  },
+];
+
+const principles = [
+  {
+    title: 'Software should fit the work',
+    body: 'We model the workflows you already run and build software around them, not the other way around.',
+  },
+  {
+    title: 'Automation should earn trust',
+    body: 'Where a system runs the work, the inputs, outputs, and boundaries are defined, and a person stays accountable.',
+  },
+  {
+    title: 'Your team keeps ownership',
+    body: 'The systems we build are straightforward to run and maintain, and they keep working after we step away.',
+  },
+];
 ---
 
 <SecondaryLayout {title} {description}>
-  <section class="section-band section-band--white">
-    <div class="container">
-      <h1 class="text-h1 mb-md max-w-3xl">About Guava</h1>
-      <p class="text-large text-muted max-w-2xl mb-lg">
-        Guava is a technology consultancy for businesses that have outgrown how
-        they operate. We take recurring operational burden off people's plates —
-        turning complexity into reliable, everyday systems — so teams spend more
-        time on judgment and less on performed steps.
-      </p>
-      <Button variant="primary" href="/talk-to-guava">Book a Demo</Button>
+  <!-- 1. Who we are -->
+  <Section variant="white" id="hero" label="About Guava">
+    <h1 class="text-h1 mb-md max-w-3xl [text-wrap:balance]">
+      We build dependable systems for operations that have outgrown their tools
+    </h1>
+    <p class="text-large text-muted max-w-2xl mb-lg">
+      We are a technology consultancy for businesses that have outgrown how
+      they operate. We take recurring operational burden off your team's plate,
+      turning complexity into reliable everyday systems, so people spend more
+      time on judgment and less on performed steps.
+    </p>
+
+    <div class="flex flex-wrap items-center gap-md">
+      <Button variant="primary" href="/talk-to-guava">Talk to Guava</Button>
+      <Button variant="outline" href="#what-we-build">See What We Build</Button>
     </div>
-  </section>
+  </Section>
+
+  <!-- 2. What we build -->
+  <Section variant="texture-1" id="what-we-build" label="What We Build">
+    <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
+      Systems that connect, automate, and surface
+    </h2>
+    <p class="text-muted max-w-2xl mb-xl">
+      We build practical operating systems around the software, data, and
+      workflows you already run.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+      {capabilities.map((item) => (
+        <article class="flex flex-col rounded-lg border border-text/10 bg-white/70 p-lg">
+          <h3 class="text-h3 mb-sm">{item.title}</h3>
+          <p class="text-body text-muted">{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- 3. Why we exist -->
+  <Section variant="texture-2" id="why-we-exist" label="Why We Exist">
+    <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
+      Businesses outgrow how they operate
+    </h2>
+    <p class="text-muted max-w-2xl mb-xl">
+      Most growing companies still run on the tools they assembled when they
+      were small. The work gets done, but it asks more of your people than it
+      should. We exist to fix that. Three beliefs shape how we do it.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+      {principles.map((item) => (
+        <article class="flex flex-col rounded-lg border border-text/10 bg-white/70 p-lg">
+          <h3 class="text-h3 mb-sm">{item.title}</h3>
+          <p class="text-body text-muted">{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- 4. Get in touch -->
+  <CTABand
+    variant="brand"
+    title="Let's talk about your operation"
+    description="Book a short conversation. We will walk through how the work runs today and where it breaks, then suggest the simplest next step."
+    ctaLabel="Talk to Guava"
+    ctaHref="/talk-to-guava"
+  />
 </SecondaryLayout>
