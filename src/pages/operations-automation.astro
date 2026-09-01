@@ -1,9 +1,9 @@
 ---
-import SecondaryLayout from '../../layouts/SecondaryLayout.astro';
-import Section from '../../components/Section.astro';
-import Button from '../../components/Button.astro';
-import CTABand from '../../components/CTABand.astro';
-import Explorer from '../../components/layout-sections/Explorer.svelte';
+import SecondaryLayout from '../layouts/SecondaryLayout.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import CTABand from '../components/CTABand.astro';
+import Explorer from '../components/layout-sections/Explorer.svelte';
 
 // Wedge 1 metadata (company_nav_meta_v7.md §4) — display name per GUA-642.
 const title = 'Operations Automation — Reduce Manual Operational Work | Guava AI';
@@ -142,7 +142,7 @@ const relatedSolutions = [
   {
     title: 'Inventory Intelligence',
     body: 'Inventory data turned into visibility, signals, and recommendations.',
-    href: '/solutions/inventory-intelligence',
+    href: '/guava-bi',
   },
 ];
 
@@ -203,7 +203,7 @@ const faqs = [
           the work only they can do.
         </p>
         <div class="flex flex-wrap items-center gap-md">
-          <Button variant="primary" href="/book-a-demo">Book a Demo</Button>
+          <Button variant="primary" href="/talk-to-guava">Book a Demo</Button>
         </div>
       </div>
 
@@ -284,7 +284,7 @@ const faqs = [
     title="Where is manual work quietly eating your capacity?"
     description="Walk us through the workflows, systems, and reporting that slow your team down. We'll identify where automation can create the most leverage."
     ctaLabel="Book a Demo"
-    ctaHref="/book-a-demo"
+    ctaHref="/talk-to-guava"
   />
 
   <!-- 4. Capability Explorer -->
@@ -441,7 +441,7 @@ const faqs = [
     title="Ready to take manual work off your team's plate?"
     description="Book a short demo. We'll walk through how Operations Automation would apply to the work your team does every day."
     ctaLabel="Book a Demo"
-    ctaHref="/book-a-demo"
+    ctaHref="/talk-to-guava"
   />
 
   <script>
