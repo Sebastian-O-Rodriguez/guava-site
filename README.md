@@ -1,29 +1,34 @@
-# Bastie Tech Site
+# Guava AI
 
-A modern, responsive homebase website built with Astro, Svelte, and Tailwind CSS.
+Marketing site for Guava AI — the company site at guavaai.ai.
 
-## Tech Stack
+## Architecture
 
-- [Astro](https://astro.build/) - Static site builder with component islands
-- [Svelte](https://svelte.dev/) - Component framework for interactive UI elements
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+A static site built with Astro, Svelte component islands, Tailwind CSS, and
+GSAP. `astro build` emits pure static HTML/CSS/JS; there is no server adapter,
+database, or API. The site deploys to Cloudflare Pages via
+`wrangler pages deploy` (project `company-site`).
 
-## Project Structure
+```mermaid
+flowchart LR
+    SRC[src/pages/*.astro<br/>+ Svelte islands] --> BUILD[astro build]
+    BUILD --> DIST[static dist/]
+    DIST --> CF[Cloudflare Pages<br/>guavaai.ai]
+```
 
-- `src/components/` - Reusable UI components (Astro and Svelte)
-- `src/layouts/` - Page layouts and templates
-- `src/pages/` - Site pages and routes
-- `src/styles/` - Global styles and Tailwind customizations
-- `public/` - Static assets like images and fonts
+## Status
 
-## Getting Started
+- **State:** active — maintained as the public company presence.
+- **Deployed:** live at https://guavaai.ai (Cloudflare Pages).
+- **Run:** `npm run dev` (local); `npm run deploy` (build + publish).
 
-```bash
-# Install dependencies
-npm install
+## Disclosure
 
-# Start development server
-npm run dev
+This is a frontend-only marketing site: static HTML with client-side Svelte
+islands for interactivity and GSAP for motion. It has no backend, no database,
+and no authentication.
 
-# Build for production
-npm run build
+The waitlist, newsletter, and contact forms are client-side only and currently
+**post nowhere** — the subscriber endpoint is unresolved in the codebase, so
+forms show a confirmation but do not send or store any submission. Nothing in
+the source should be read as claiming otherwise.
