@@ -7,20 +7,15 @@ import HowWeWork from '../components/layout-sections/HowWeWork.astro';
 import CapabilityExplorer from '../components/layout-sections/CapabilityExplorer.astro';
 import CurrentWedges from '../components/layout-sections/CurrentWedges.astro';
 import Industries from '../components/layout-sections/Industries.astro';
-import Newsletter from '../components/layout-sections/Newsletter.astro';
-import NewsletterBanner from '../components/layout-sections/NewsletterBanner.astro';
-import FinalCta from '../components/layout-sections/FinalCta.astro';
-import Faq from '../components/layout-sections/Faq.astro';
-import Footer from '../components/layout-sections/Footer.astro';
+import CTABand from '../components/CTABand.astro';
 import Motion from '../components/layout-sections/Motion.astro';
 
-const title = 'Guava AI — Building smarter operations';
+const title = 'Guava AI | Building Smarter Operations';
 const description =
   'We connect data, workflows, and software into practical operating systems that reduce manual work, improve visibility, and give your team more room to grow.';
 ---
 
 <Layout {title} {description}>
-  <NewsletterBanner />
   <Header />
   <Hero />
   <ProofSection />
@@ -28,10 +23,13 @@ const description =
   <CapabilityExplorer />
   <CurrentWedges />
   <Industries />
-  <Newsletter />
-  <FinalCta />
-  <Faq />
-  <Footer />
+  <CTABand
+    variant="brand"
+    title="Technology Should Make the Business Easier to Run"
+    description="If manual work, disconnected systems, stale reports, or slow approvals are limiting the business, we help you determine what should change and build the systems that fix it."
+    ctaLabel="Talk to Guava"
+    ctaHref="/book-a-demo"
+  />
 
   <Motion />
 </Layout>

@@ -1,173 +1,37 @@
 ---
 import Section from '../Section.astro';
+import Explorer from './Explorer.svelte';
 
-const sources = [
-  'Spreadsheets',
-  'ERP',
-  'POS',
-  'Email',
-  'Manual Work',
-];
-
-const outputs = [
-  { name: 'Connected Data', outcomes: ['Better visibility'] },
-  { name: 'Automated Workflows', outcomes: ['Less manual work', 'Fewer handoffs'] },
-  { name: 'Visibility', outcomes: ['Faster decisions'] },
-  { name: 'Decisions', outcomes: ['Greater capacity'] },
+const items = [
+  {
+    id: 'your-systems',
+    label: 'Your Systems',
+    visual: 'unification',
+    description: 'Spreadsheets, ERP, POS, email, and existing software — the systems you already run.',
+  },
+  {
+    id: 'what-we-do',
+    label: 'What We Do',
+    visual: 'automation',
+    description: 'Connect, automate, and surface the work that matters across your systems.',
+  },
+  {
+    id: 'what-changes',
+    label: 'What Changes',
+    visual: 'dashboards',
+    description: 'Better visibility, less manual work, fewer handoffs, and faster decisions.',
+    note: 'More capacity for the work that matters.',
+  },
 ];
 ---
 
 <Section variant="texture-1" id="how-we-work" label="How We Work">
-  <h2 class="text-h2 mb-md max-w-3xl">Systems that grow with your operation.</h2>
-  <p class="text-muted max-w-2xl mb-xl">
-    Your data, workflows, software, and decisions should work together. We
-    identify where the operation is losing time, visibility, or control, then
-    connect the pieces that matter.
+  <h2 class="text-h2 mb-md max-w-3xl">Systems That Grow With Your Operations</h2>
+  <p class="text-muted max-w-2xl mb-lg">
+    Your data, workflows, software, and decisions should work together.
+    <br />
+    We identify where the operation is losing time, visibility, or control, then connect the pieces that matter.
   </p>
 
-  <div
-    class="grid grid-cols-1 lg:grid-cols-[1fr_2.25rem_1.1fr_2.25rem_1fr] gap-x-md gap-y-sm lg:gap-x-sm lg:gap-y-0 lg:items-stretch"
-  >
-    <!-- Sources -->
-    <div class="flex flex-col gap-sm">
-      <h3 class="text-sm font-semibold uppercase tracking-wider text-muted">
-        Where the work lives
-      </h3>
-      <ul class="list-none p-0 m-0 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-xs">
-        {sources.map((source) => (
-          <li class="flex items-center gap-xs rounded-lg border border-text/10 bg-white/70 px-sm py-xs">
-            <span aria-hidden="true" class="h-2 w-2 shrink-0 rounded-full bg-text/30"></span>
-            <span class="text-sm font-medium text-text">{source}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    <!-- Connector -->
-    <div class="flex items-center justify-center text-brand/70" aria-hidden="true">
-      <svg class="hidden lg:block h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 12h15"></path>
-        <path d="m13 6 6 6-6 6"></path>
-      </svg>
-      <svg class="lg:hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 4v15"></path>
-        <path d="m6 13 6 6 6-6"></path>
-      </svg>
-    </div>
-
-    <!-- Operating loop -->
-    <div class="rounded-xl border border-brand/20 bg-white p-md shadow-sm">
-      <div class="flex items-center gap-xs mb-sm">
-        <span
-          aria-hidden="true"
-          class="h-2.5 w-2.5 shrink-0 rounded-full"
-          style="background: linear-gradient(135deg, #2c3790 0%, #624eab 34%, #b061b6 70%, #f260b6 100%);"
-        ></span>
-        <h3 class="text-body font-bold text-brand">In your operation</h3>
-      </div>
-
-      <ol class="list-none p-0 m-0">
-        <li class="flex items-stretch gap-sm min-h-[2.75rem]">
-          <div class="flex flex-col items-center self-stretch">
-            <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">1</span>
-            <span aria-hidden="true" class="w-px flex-1 bg-brand/30"></span>
-          </div>
-          <span class="flex items-center self-stretch py-xs text-body font-semibold text-text">Connect</span>
-        </li>
-
-        <li class="relative">
-          <div class="absolute -left-4 bottom-0 top-0 w-4 text-brand/70" aria-hidden="true">
-            <svg
-              class="absolute inset-0 h-full w-full"
-              viewBox="0 0 20 100"
-              preserveAspectRatio="none"
-              fill="none"
-            >
-              <path
-                d="M10 97 C 3 62, 3 38, 10 8"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                vector-effect="non-scaling-stroke"
-              />
-            </svg>
-            <svg
-              class="absolute top-0 left-1/2 h-4 w-4 -translate-x-1/2"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M12 19V5M6 11l6-6 6 6" />
-            </svg>
-          </div>
-
-          <ol class="list-none p-0 m-0">
-            <li class="flex items-stretch gap-sm min-h-[2.75rem]">
-              <div class="flex flex-col items-center self-stretch">
-                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">2</span>
-                <span aria-hidden="true" class="w-px flex-1 bg-brand/30"></span>
-              </div>
-              <span class="flex items-center self-stretch py-xs text-body font-semibold text-text">Unify</span>
-            </li>
-            <li class="flex items-stretch gap-sm min-h-[2.75rem]">
-              <div class="flex flex-col items-center self-stretch">
-                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">3</span>
-                <span aria-hidden="true" class="w-px flex-1 bg-brand/30"></span>
-              </div>
-              <span class="flex items-center self-stretch py-xs text-body font-semibold text-text">Automate</span>
-            </li>
-            <li class="flex items-stretch gap-sm min-h-[2.75rem]">
-              <div class="flex flex-col items-center self-stretch">
-                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">4</span>
-                <span aria-hidden="true" class="w-px flex-1 bg-brand/30"></span>
-              </div>
-              <span class="flex items-center self-stretch py-xs text-body font-semibold text-text">Understand</span>
-            </li>
-          </ol>
-        </li>
-
-        <li class="flex items-stretch gap-sm min-h-[2.75rem]">
-          <div class="flex flex-col items-center self-stretch">
-            <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">5</span>
-          </div>
-          <span class="flex items-center self-stretch py-xs text-body font-semibold text-text">Act</span>
-        </li>
-      </ol>
-    </div>
-
-    <!-- Connector -->
-    <div class="flex items-center justify-center text-brand/70" aria-hidden="true">
-      <svg class="hidden lg:block h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 12h15"></path>
-        <path d="m13 6 6 6-6 6"></path>
-      </svg>
-      <svg class="lg:hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 4v15"></path>
-        <path d="m6 13 6 6 6-6"></path>
-      </svg>
-    </div>
-
-    <!-- Outputs -->
-    <div class="flex flex-col gap-sm">
-      <h3 class="text-sm font-semibold uppercase tracking-wider text-brand">In your operation</h3>
-      <ul class="list-none p-0 m-0 flex flex-col gap-xs">
-        {outputs.map((output) => (
-          <li class="rounded-lg border border-brand/20 bg-white/80 p-sm">
-            <p class="text-body font-semibold text-text">{output.name}</p>
-            <p class="mt-xs flex items-center gap-xs text-sm text-muted">
-              <span aria-hidden="true" class="font-semibold text-brand">&rarr;</span>
-              <span>{output.outcomes.join(' · ')}</span>
-            </p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
-
-  <p class="text-body font-medium text-text mt-xl">
-    Systems that evolve with the business instead of holding it back.
-  </p>
+  <Explorer client:visible idPrefix="how-we-work" label="How We Work" items={items} />
 </Section>

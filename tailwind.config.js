@@ -4,11 +4,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // White-first canvas
-        background: '#FFFFFF',
+        // Warm off-white canvas (replaces pure white)
+        background: '#F6F7F4',
         text: '#2C2828',
         secondary: '#343A34',
         muted: '#6B6F6A',
+        // Text selection — pale blue background, dark slate text
+        selection: '#BFDDF5',
+        'selection-text': '#16212A',
         // Brand dark green — the single brand accent
         brand: {
           DEFAULT: '#187B43',

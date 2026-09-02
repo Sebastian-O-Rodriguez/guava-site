@@ -1,6 +1,6 @@
 ---
 import Section from '../Section.astro';
-import Button from '../Button.astro';
+import Card from '../Card.astro';
 
 const industries = [
   {
@@ -19,13 +19,18 @@ const industries = [
     useCase: 'Vendor data, pricing, reporting, and operational handoffs.',
   },
   {
+    name: 'Grocery',
+    href: '/industries#grocery',
+    useCase: 'Perishable inventory, ordering, shrink, and store-level reporting.',
+  },
+  {
     name: 'Pharmacy',
     href: '/industries#pharmacy',
     useCase:
-      'Inventory visibility, shrinkage and expiry management, and regulatory automation — bringing new products to market faster across region-specific requirements.',
+      'Inventory visibility, shrinkage and expiry management, and regulatory automation, bringing new products to market faster across region-specific requirements.',
   },
   {
-    name: 'Multi-location',
+    name: 'Multi-Location',
     href: '/industries#multi-location',
     useCase: 'Cross-location reporting, workflow consistency, exceptions, and operational visibility.',
   },
@@ -33,26 +38,20 @@ const industries = [
 ---
 
 <Section variant="texture-2" id="industries" label="Industries">
-  <h2 class="text-h2 mb-md max-w-3xl">Initially focused on inventory-driven operations.</h2>
+  <h2 class="text-h2 mb-md max-w-3xl">Built for Operations Where Inventory, Systems, and Workflows Have to Stay in Sync</h2>
   <p class="text-muted max-w-2xl mb-lg">
-    We work across established businesses with meaningful operational
-    complexity, but inventory-driven companies are an initial specialization.
+    We work with teams managing inventory, locations, orders, vendors, reporting, and the operational work that connects them.
   </p>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md mb-lg">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
     {industries.map((industry) => (
-      <a
-        href={industry.href}
-        class="group flex flex-col gap-sm rounded-lg border border-text/10 bg-white/70 p-md transition-all duration-base hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-      >
+      <Card href={industry.href}>
         <span class="flex items-center justify-between gap-sm">
           <span class="text-body font-semibold text-text">{industry.name}</span>
           <span aria-hidden="true" class="text-brand transition-transform duration-base group-hover:translate-x-0.5">&rarr;</span>
         </span>
         <span class="text-sm text-muted">{industry.useCase}</span>
-      </a>
+      </Card>
     ))}
   </div>
-
-  <Button variant="primary" href="/contact">See How We Fit Your Operation</Button>
 </Section>

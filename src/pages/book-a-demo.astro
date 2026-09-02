@@ -1,7 +1,9 @@
 ---
 import SecondaryLayout from '../layouts/SecondaryLayout.astro';
+import Section from '../components/Section.astro';
 
-// Book a Demo signup form.
+// Canonical conversion page — GUA-704. Content consolidated into this single
+// demo-booking surface. All "Book a Demo" / conversion CTAs point here.
 //
 // Submission reuses the newsletter/waitlist signup surface: a static,
 // client-only form that posts nowhere. No endpoint is called and no
@@ -9,18 +11,18 @@ import SecondaryLayout from '../layouts/SecondaryLayout.astro';
 // Newsletter.astro / GUA-614). When the endpoint lands, give <form> its
 // action + method and keep credentials in env, never in source.
 
-const title = 'Book a Demo — Guava AI';
+const title = 'Book a Demo | Guava AI';
 const description =
-  'See how Guava turns scattered operational data into visibility you can trust. Book a short demo.';
+  'See how we turn scattered operational data into visibility you can trust. Book a short demo.';
 ---
 
 <SecondaryLayout {title} {description}>
-  <section class="section-band section-band--white">
-    <div class="container">
+  <Section variant="white" id="hero">
       <h1 class="text-h1 mb-md max-w-3xl">Book a Demo</h1>
       <p class="text-large text-muted max-w-2xl mb-lg">
-        A short walkthrough of how Guava removes manual work and improves
-        visibility across your operation.
+        A short walkthrough of how we remove manual work and improve
+        visibility across your operation, or a conversation about where to
+        start.
       </p>
 
       <form id="demo-form" class="max-w-xl bg-background border border-text/10 rounded-lg p-lg">
@@ -66,11 +68,10 @@ const description =
           aria-live="polite"
           hidden
         >
-          Thanks — we'll be in touch shortly to book you in.
+          Thanks. We'll be in touch shortly.
         </p>
       </form>
-    </div>
-  </section>
+  </Section>
 
   <script>
     const form = document.getElementById('demo-form');

@@ -36,42 +36,47 @@
 
       const sections = gsap.utils.toArray('.section-band');
       sections.forEach((section) => {
+        // The footer is a terminal content band, never a reveal target — it must
+        // stay visible and sit flush at the document bottom.
+        if (section.tagName === 'FOOTER') return;
+
         // Leave anything already on screen untouched so the hero never flashes on boot.
         const rect = section.getBoundingClientRect();
         if (rect.top < window.innerHeight && rect.bottom > 0) return;
-
-        // Sections start hidden only when JS is active AND motion is enabled.
-        gsap.set(section, { y: REVEAL_Y, autoAlpha: 0 });
 
         // Section-label mark enters with a subtle one-time scale-up, only when
         // a label actually exists in this section. It stays synced with the
         // section reveal so both settle together — no looping, no re-trigger.
         const mark = section.querySelector('.section-label__mark');
-        if (mark) gsap.set(mark, { scale: MARK_SCALE_FROM, transformOrigin: 'left center' });
 
-        ScrollTrigger.create({
-          trigger: section,
-          start: 'top 88%',
-          once: true,
-          onEnter: () => {
-            gsap.to(section, {
-              y: 0,
-              autoAlpha: 1,
-              duration: DURATION_SLOW,
-              ease: EASE_OUT_EXPO,
-              clearProps: 'all',
-            });
-            if (mark) {
-              gsap.to(mark, {
-                scale: 1,
-                duration: DURATION_SLOW,
-                ease: EASE_OUT_EXPO,
-                delay: 0.1,
-                clearProps: 'transform',
-              });
-            }
+        // Reveal is non-eager: `immediateRender: false` keeps the section in its
+        // natural, visible state until its trigger first fires. A never-fired
+        // trigger (bottom-of-page sections, layout shifts, or any GSAP failure)
+        // can therefore never leave content hidden.
+        const reveal = gsap.timeline({
+          defaults: { duration: DURATION_SLOW, ease: EASE_OUT_EXPO },
+          scrollTrigger: {
+            trigger: section,
+            start: 'top bottom',
+            once: true,
           },
         });
+
+        reveal.fromTo(
+          section,
+          { y: REVEAL_Y, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, immediateRender: false, clearProps: 'all' },
+          0,
+        );
+
+        if (mark) {
+          reveal.fromTo(
+            mark,
+            { scale: MARK_SCALE_FROM, transformOrigin: 'left center' },
+            { scale: 1, immediateRender: false, clearProps: 'transform' },
+            0.1,
+          );
+        }
       });
 
       // Restrained GSAP-assisted anchor scrolling, offset for the sticky header.

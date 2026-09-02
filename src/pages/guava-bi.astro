@@ -1,0 +1,144 @@
+---
+import SecondaryLayout from '../layouts/SecondaryLayout.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import { WAITLIST_FIELDS } from '../lib/forms';
+
+// Wedge 2 / Guava BI metadata (company_nav_meta_v7.md §4).
+const title = 'Guava BI | Guava AI';
+const description =
+  'Guava BI turns operational inventory data into reliable visibility, important signals, and actionable recommendations. Join the waitlist.';
+
+// forms.ts is the waitlist wiring (GUA-686 keeps it untouched). The labels
+// below still reference beta phrasing, so the rendered copy is overridden
+// here to read as a waitlist without changing the form schema.
+const fieldLabelOverrides: Record<string, string> = {
+  closed_beta_ack:
+    'I understand joining the Guava BI waitlist is not a purchase and doesn\u2019t guarantee a seat.',
+  subscribe_updates:
+    'Also subscribe me to occasional product updates (not waitlist access)',
+};
+---
+
+<SecondaryLayout {title} {description}>
+  <!-- 1. Hero -->
+  <Section variant="white" id="hero">
+    <h1 class="text-h1 mb-md max-w-3xl [text-wrap:balance]">
+      See Your Inventory Clearly. Act on It With Confidence.
+    </h1>
+    <p class="text-large text-muted max-w-2xl mb-lg">
+      Guava BI turns operational inventory data into reliable visibility,
+      important signals, and actionable recommendations. Join the waitlist to
+      be part of the first group.
+    </p>
+    <div class="flex flex-wrap items-center gap-md">
+      <Button variant="primary" href="/book-a-demo">Talk to Guava</Button>
+      <Button variant="outline" href="#waitlist">Join the Guava BI Waitlist</Button>
+    </div>
+  </Section>
+
+  <!-- 2. The problem -->
+  <Section variant="texture-1" id="problem" label="The Problem">
+    <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
+      Inventory You Can Actually Trust
+    </h2>
+    <p class="text-muted max-w-2xl mb-md">
+      Inventory-driven operations, including distribution, wholesale, retail,
+      grocery, pharmacy, and multi-location, make daily decisions from data that's
+      scattered across systems, stale by the time it's gathered, or unverified
+      at its source. The result is slow decisions, missed signals, and
+      corrections made after the cost has already landed.
+    </p>
+    <p class="text-muted max-w-2xl">
+      Guava BI starts where the problem is most concrete: turning that data
+      into visibility you can trust, then turning visibility into signals and
+      recommendations you can act on. This is an initial specialization, not a
+      permanent wall. The point is to solve a real, costly problem well.
+    </p>
+  </Section>
+
+  <!-- 3. Join the waitlist -->
+  <Section variant="texture-2" id="waitlist" label="Guava BI Waitlist">
+    <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
+      Join the Waitlist
+    </h2>
+    <p class="text-muted max-w-2xl mb-lg">
+      Admission is limited while we validate the product against real
+      operations. Joining asks only for your role, your inventory function, and
+      the problem you most want solved. There is no payment, no purchase, and
+      no guaranteed seat. We'll reach out if there's a fit.
+    </p>
+
+    <form
+      class="max-w-xl bg-white/70 border border-text/10 rounded-lg p-lg"
+      id="waitlist-form"
+      data-cta="C4"
+      data-event-stem="waitlist_form"
+      data-confirm="waitlist-confirmation"
+      data-confirm-label="Submitted"
+      data-event="guava_bi_waitlist_signup"
+    >
+      {WAITLIST_FIELDS.map((field) => (
+        <Fragment>
+          {field.type === 'checkbox' ? (
+            <div class="mb-md">
+              <label class="flex items-start gap-sm text-reduced cursor-pointer">
+                <input
+                  type="checkbox"
+                  id={field.name}
+                  name={field.name}
+                  value="yes"
+                  required={field.required ?? false}
+                  class="mt-1 accent-[var(--color-accent-two)]"
+                />
+                <span>{fieldLabelOverrides[field.name] ?? field.label}</span>
+              </label>
+            </div>
+          ) : field.type === 'select' ? (
+            <div class="mb-md">
+              <label for={field.name} class="form-label">{field.label}</label>
+              <select id={field.name} name={field.name} class="form-input" required={field.required}>
+                <option value="" disabled selected>{field.placeholder}</option>
+                {field.options?.map((option) => (
+                  <option value={option.value}>{option.label}</option>
+                ))}
+              </select>
+            </div>
+          ) : (
+            <div class="mb-md">
+              <label for={field.name} class="form-label">{field.label}</label>
+              <input
+                type={field.inputType ?? 'text'}
+                id={field.name}
+                name={field.name}
+                class="form-input"
+                placeholder={field.placeholder}
+                required={field.required}
+                autocomplete={
+                  field.name === 'work_email'
+                    ? 'email'
+                    : field.name === 'full_name'
+                      ? 'name'
+                      : field.name === 'company'
+                        ? 'organization'
+                        : undefined
+                }
+              />
+            </div>
+          )}
+        </Fragment>
+      ))}
+      <button type="submit" class="btn btn-primary w-full">
+        Join the Guava BI Waitlist
+      </button>
+      <p class="text-xs text-text/70 mt-sm text-center" id="waitlist-confirmation" role="status" aria-live="polite" hidden>
+        You're on the Guava BI waitlist. We'll email you if there's a fit.
+        We'll never ask for payment here.
+      </p>
+    </form>
+
+    <p class="text-muted mt-lg">
+      Not sure if this is the right fit? <a href="/book-a-demo" class="text-link">Talk to Guava &rarr;</a>
+    </p>
+  </Section>
+</SecondaryLayout>

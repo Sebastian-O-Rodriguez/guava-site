@@ -1,0 +1,28 @@
+---
+interface Props {
+  /** When set, renders an <a> link card with hover affordance. */
+  href?: string;
+  /** Card density: sm = compact grid card, lg = showcase card. */
+  size?: 'sm' | 'lg';
+  /** Extra classes appended to the card. */
+  class?: string;
+}
+
+const {
+  href,
+  size = 'sm',
+  class: className = '',
+} = Astro.props;
+
+const Tag = href ? 'a' : 'article';
+const base =
+  'group flex flex-col gap-sm rounded-lg border border-text/10 bg-white/70 transition-all duration-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand';
+const pad = size === 'lg' ? 'p-lg' : 'p-md';
+const linkHover = href
+  ? 'hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-lg'
+  : '';
+---
+
+<Tag href={href} class:list={[base, pad, linkHover, className]}>
+  <slot />
+</Tag>

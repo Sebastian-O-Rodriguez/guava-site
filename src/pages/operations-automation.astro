@@ -1,0 +1,238 @@
+---
+import SecondaryLayout from '../layouts/SecondaryLayout.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import CTABand from '../components/CTABand.astro';
+import CapabilityExplorer from '../components/layout-sections/CapabilityExplorer.astro';
+
+// Wedge 1 metadata (company_nav_meta_v7.md §4) — display name per GUA-642.
+const title = 'Operations Automation | Guava AI';
+const description =
+  'Reduce the recurring operational work your team shouldn\u2019t do by hand: data handling, reconciliation, approvals, and reporting. We build practical systems that lift the burden.';
+
+const capabilities = [
+  {
+    id: 'pipelines',
+    label: 'Pipelines',
+    visual: 'pipeline-flow',
+    description:
+      'Move data between systems on schedule, with no copy-paste or manual exports.',
+  },
+  {
+    id: 'automation',
+    label: 'Automation',
+    visual: 'automation-flow',
+    description:
+      'Documents in, validated, processed, systems updated, with exceptions routed to a person.',
+  },
+  {
+    id: 'diagnostic',
+    label: 'Diagnostic',
+    visual: 'reporting',
+    description:
+      'Look across the operation to show where time and accuracy are leaking.',
+  },
+  {
+    id: 'reporting',
+    label: 'Reporting',
+    visual: 'dashboards',
+    description:
+      'Trusted operational metrics that refresh from live data, with no manual assembly.',
+  },
+  {
+    id: 'decision-support',
+    label: 'Decision Support',
+    visual: 'decision-loop',
+    description:
+      'Route approvals and exceptions with the context a decision needs.',
+  },
+];
+
+const differentiators = [
+  {
+    title: 'Built for Your Workflows',
+    body: 'We model the workflows you already run, the systems, data, and steps, and automate the work where automation is genuinely practical. Software fits the work, not the other way around.',
+  },
+  {
+    title: 'Handles Real Exceptions',
+    body: 'The interesting part of automation is what doesn\u2019t fit the pattern. Exceptions are caught, given context, and routed to the right person to decide, never silently dropped.',
+  },
+  {
+    title: 'Simple for Your Team',
+    body: 'The systems we build are straightforward to run and maintain. No tool sprawl, no black boxes. Your team keeps ownership, and the work keeps running after we step away.',
+  },
+];
+
+const howItWorks = [
+  {
+    title: 'Understand',
+    body: 'We map how the work actually gets done: the workflows, systems, data, and the places where time and accuracy leak.',
+  },
+  {
+    title: 'Simplify',
+    body: 'Before automating anything, we remove the steps that don\u2019t need to exist. The simplest fix wins.',
+  },
+  {
+    title: 'Connect',
+    body: 'We connect the systems and data the workflow depends on, so information stops being copied by hand.',
+  },
+  {
+    title: 'Automate',
+    body: 'The recurring, bounded steps move into a system that runs them reliably. People step in only where judgment is required.',
+  },
+  {
+    title: 'Measure',
+    body: 'We confirm the operation improved: less manual work, fewer errors, and capacity returned to the team.',
+  },
+];
+
+const outcomes = [
+  'Less manual work',
+  'Fewer handoffs',
+  'Better exception handling',
+  'More capacity',
+];
+
+---
+
+<SecondaryLayout {title} {description}>
+  <!-- 1. Hero -->
+  <Section variant="white" id="hero">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-lg items-center">
+      <div>
+        <h1 class="text-h1 mb-md max-w-2xl [text-wrap:balance]">
+          Less Repetitive Work. More Time for Judgment.
+        </h1>
+        <p class="text-large text-muted max-w-2xl mb-lg">
+          Operations Automation removes the recurring operational and
+          administrative work your team shouldn&rsquo;t be doing by hand, and
+          moves it into dependable systems. Your people get their time back for
+          the work only they can do.
+        </p>
+        <div class="flex flex-wrap items-center gap-md">
+          <Button variant="primary" href="/book-a-demo">Talk to Guava</Button>
+        </div>
+      </div>
+
+      <!-- Large workflow visual -->
+      <div
+        class="rounded-xl border border-text/10 bg-texture-1 p-md"
+        aria-hidden="true"
+      >
+        <div class="flex flex-col gap-xs">
+          <div class="flex flex-wrap items-center justify-center gap-xs">
+            <span class="inline-flex max-w-full items-center justify-center rounded-md border border-text/15 bg-white px-3 py-1.5 text-center text-sm font-medium text-text">
+              Invoice received
+            </span>
+          </div>
+          <div class="flex justify-center text-brand/70">
+            <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M6 13l6 6 6-6" />
+            </svg>
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-xs">
+            <span class="inline-flex max-w-full items-center justify-center rounded-md border border-brand/25 bg-brand-50 px-3 py-1.5 text-center text-sm font-semibold text-brand-700">
+              Extracted &amp; validated
+            </span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-xs">
+            <!-- Auto path -->
+            <div class="flex flex-col gap-xs rounded-lg border border-brand/25 bg-brand-50 p-sm">
+              <span class="inline-flex max-w-full items-center justify-center rounded-md bg-brand px-3 py-1.5 text-center text-sm font-semibold text-white">
+                Processed automatically
+              </span>
+              <div class="flex flex-wrap items-center justify-center gap-xs">
+                <span class="inline-flex max-w-full items-center justify-center rounded-md border border-brand/25 bg-white px-3 py-1.5 text-center text-sm font-semibold text-brand-700">
+                  Systems updated
+                </span>
+                <span class="inline-flex max-w-full items-center justify-center rounded-md border border-brand/25 bg-white px-3 py-1.5 text-center text-sm font-semibold text-brand-700">
+                  Reports refreshed
+                </span>
+              </div>
+            </div>
+            <!-- Exception path -->
+            <div class="flex flex-col items-center justify-center gap-xs rounded-lg border border-dashed border-text/30 bg-white/80 p-sm">
+              <span class="inline-flex max-w-full items-center justify-center rounded-md border border-dashed border-text/30 bg-white/80 px-3 py-1.5 text-center text-sm font-medium text-muted">
+                Exception &rarr; person
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- 2. Problem / Differentiators -->
+  <Section variant="texture-1" id="differentiators" label="Why Operations Automation">
+    <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
+      Built to Fit How Your Operation Actually Works
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+      {differentiators.map((item) => (
+        <article class="flex flex-col rounded-lg border border-text/10 bg-white/70 p-lg">
+          <h3 class="text-h3 mb-sm">{item.title}</h3>
+          <p class="text-body text-muted">{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- 3. What we automate -->
+  <CapabilityExplorer
+    items={capabilities}
+    title="What We Automate"
+    subcopy="Common workflows we move out of spreadsheets, inboxes, and manual handoffs."
+  />
+
+  <!-- 4. How we build it -->
+  <Section variant="white" id="how-it-works" label="How we build it">
+    <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
+      How We Build It
+    </h2>
+    <p class="text-muted max-w-2xl mb-lg">
+      We start with the work as it runs today, simplify it, then build only
+      what needs to exist.
+    </p>
+
+    <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-md list-none p-0">
+      {howItWorks.map((step, i) => (
+        <li class="flex flex-col gap-sm rounded-lg border border-text/10 bg-texture-1 p-md">
+          <span class="text-sm font-semibold tabular-nums text-brand/70">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <h3 class="text-h3">{step.title}</h3>
+          <p class="text-sm text-muted">{step.body}</p>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <!-- 5. Outcomes -->
+  <Section variant="white" id="outcomes" label="Outcomes">
+    <h2 class="text-h2 mb-md max-w-3xl [text-wrap:balance]">
+      What Changes for the Operation
+    </h2>
+
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md list-none p-0">
+      {outcomes.map((outcome) => (
+        <li class="flex items-center gap-sm text-body text-text">
+          <svg class="h-4 w-4 shrink-0 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 13l4 4L19 7" />
+          </svg>
+          {outcome}
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <!-- 7. Final CTA -->
+  <CTABand
+    variant="brand"
+    title="Ready to Take Manual Work Off Your Team's Plate?"
+    description="We'll walk through how Operations Automation would apply to the work your team does every day."
+    ctaLabel="Talk to Guava"
+    ctaHref="/book-a-demo"
+  />
+
+</SecondaryLayout>

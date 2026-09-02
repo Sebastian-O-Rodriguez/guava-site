@@ -6,46 +6,41 @@ const faqs = [
     id: 'faq-1',
     question: 'What kinds of operational problems do we work on?',
     paragraphs: [
-      'We work on operational problems where the current way of working is manual, slow, unreliable, or spread across disconnected systems and individual knowledge.',
-      'Typical starting points include disconnected systems, high volumes of manual data handling, slow or inaccurate reporting, unreliable inventory signals, and processes that stall on exceptions or handoffs.',
+      'Manual, slow, or unreliable work that lives across disconnected systems and individual knowledge.',
+      'Common starting points include disconnected systems, heavy manual data handling, slow or inaccurate reporting, unreliable inventory signals, and processes that stall on exceptions or handoffs.',
     ],
   },
   {
     id: 'faq-2',
     question: 'Can we work with our existing software and systems?',
     paragraphs: [
-      'Yes. Replacing existing systems is not the default. We can work across existing software, databases, spreadsheets, APIs, reporting systems, and internal workflows.',
-      'The objective is to select the simplest intervention that produces the required outcome.',
+      'Yes. We work across existing software, databases, spreadsheets, APIs, reporting systems, and internal workflows. Replacing systems is not the default.',
+      'We choose the simplest intervention that produces the required outcome.',
     ],
   },
   {
     id: 'faq-3',
     question: 'How do you decide what should be automated?',
     paragraphs: [
-      'The workflow should have a meaningful business consequence and enough repeatability or operational burden to justify intervention. We evaluate the process, systems, data, exceptions, risks, and expected outcome before deciding what should be automated.',
-      'Some problems require software. Some require process changes. Some should not be automated at all.',
+      'We automate when a workflow has a meaningful business consequence and enough repeatability or operational burden to justify it.',
+      'We evaluate the process, systems, data, exceptions, risks, and expected outcome first. Some problems need software, some need process changes, and some should not be automated at all.',
     ],
   },
   {
     id: 'faq-4',
     question: 'What happens when we first talk?',
     paragraphs: [
-      'We start with your operating problem, not with a technology. A first conversation is a focused discussion of how the work currently gets done, where it breaks or slows down, and what the outcome needs to be.',
+      'We start with how the work actually gets done today: where it breaks or slows down, and what the outcome needs to be.',
       'From there we explain how we would approach it, what a practical path forward looks like, and whether a focused paid Diagnostic is useful before scoping the build.',
     ],
   },
 ];
 ---
 
-<Section variant="brand" id="faq" container="narrow">
-  <div class="section-label">
-    <span class="section-label__mark" aria-hidden="true"></span>
-    <span class="section-label__text text-white">FAQ</span>
-  </div>
-  <h2 class="text-h2 mb-md">Frequently Asked Questions</h2>
+<Section variant="brand" id="faq" label="FAQ" container="narrow">
+  <h2 class="text-h2 mb-md">Common Questions</h2>
   <p class="text-white/80 mb-lg">
-    Questions focused on operational technology, automation, systems, and
-    getting started.
+    What working with us looks like.
   </p>
 
   <div class="divide-y divide-white/20 border-y border-white/20">
@@ -56,23 +51,16 @@ const faqs = [
           id={`${faq.id}-button`}
           aria-expanded="false"
           aria-controls={`${faq.id}-panel`}
-          class="flex w-full items-center justify-between gap-md rounded-sm py-xs text-left text-body font-semibold text-white transition-colors duration-fast hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          class="flex w-full items-center justify-between gap-md rounded-sm py-xs text-left text-body font-semibold text-white transition-colors duration-fast hover:text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
           <span>{faq.question}</span>
-          <span aria-hidden="true" class="shrink-0 text-lg text-brand-100">+</span>
+          <span aria-hidden="true" class="shrink-0 text-lg text-white">+</span>
         </button>
         <div id={`${faq.id}-panel`} role="region" aria-labelledby={`${faq.id}-button`} hidden>
           <div class="pt-sm">
             {faq.paragraphs.map((paragraph) => (
               <p class="text-body text-white/80 mb-sm">{paragraph}</p>
             ))}
-            {faq.list && (
-              <ul class="list-disc pl-md mb-sm space-y-xs">
-                {faq.list.map((item) => (
-                  <li class="text-body text-white/80">{item}</li>
-                ))}
-              </ul>
-            )}
           </div>
         </div>
       </div>

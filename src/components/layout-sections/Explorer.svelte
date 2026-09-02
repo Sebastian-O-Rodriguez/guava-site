@@ -7,7 +7,7 @@
 
   let active = $state(items[0]?.id ?? '');
   const activeIndex = $derived(Math.max(0, items.findIndex((i) => i.id === active)));
-  const activeItem = $derived(items[activeIndex]);
+  const activeItem = $derived(items.find((i) => i.id === active));
 
   // Brand palette mirrored from tailwind.config.js tokens (SVG visuals).
   const CO = {
@@ -26,7 +26,7 @@
   function select(index) {
     const item = items[index];
     if (!item) return;
-    active = item.id;
+    active = item.id === active ? '' : item.id;
   }
 
   function handleKeydown(e) {
@@ -112,52 +112,26 @@
     {@render downArrow()}
     {@render node('Validate', 'brand')}
     {@render downArrow()}
-    {@render node('Process', 'brand')}
-    {@render downArrow()}
-    {@render node('Update system', 'brand')}
-    {@render downArrow()}
-    {@render node('Route exception to operator', 'dashed')}
+    <div class="flex w-full items-start justify-center gap-md">
+      <div class="flex flex-col items-center gap-xs">
+        {@render node('Processed automatically', 'accent')}
+      </div>
+      <div class="flex flex-col items-center gap-xs">
+        {@render node('Route exception to operator', 'dashed')}
+      </div>
+    </div>
   </div>
 {/snippet}
 
 {#snippet decisionLoop()}
-  <div class="flex items-stretch justify-center gap-xs">
-    <div class="relative w-5 shrink-0 text-brand-700" aria-hidden="true">
-      <svg
-        class="absolute inset-0 h-full w-full"
-        viewBox="0 0 20 100"
-        preserveAspectRatio="none"
-        fill="none"
-      >
-        <path
-          d="M10 97 C 3 62, 3 38, 10 8"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          vector-effect="non-scaling-stroke"
-        />
-      </svg>
-      <svg
-        class="absolute top-0 left-1/2 h-4 w-4 -translate-x-1/2"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M12 19V5M6 11l6-6 6 6" />
-      </svg>
-    </div>
-    <div class="flex flex-col items-center gap-xs">
-      {@render node('Operational data', 'source')}
-      {@render downArrow()}
-      {@render node('Detect anomaly', 'brand')}
-      {@render downArrow()}
-      {@render node('Surface recommendation', 'brand')}
-      {@render downArrow()}
-      {@render node('Human action', 'accent')}
-    </div>
+  <div class="flex flex-col items-center gap-xs">
+    {@render node('Signal detected', 'source')}
+    {@render downArrow()}
+    {@render node('Context assembled', 'brand')}
+    {@render downArrow()}
+    {@render node('Decision', 'accent')}
+    {@render downArrow()}
+    {@render node('System updated', 'brand')}
   </div>
 {/snippet}
 
@@ -288,9 +262,70 @@
   </svg>
 {/snippet}
 
+{#snippet pipelinesSvg()}
+  <svg viewBox="0 0 520 360" class="w-full h-auto" role="presentation" aria-hidden="true">
+    <rect x="32" y="52" width="96" height="36" rx="9" fill="none" stroke={CO.muted} stroke-width="2" />
+    <circle cx="56" cy="70" r="3" fill={CO.muted} />
+    <line x1="72" y1="70" x2="104" y2="70" stroke={CO.muted} stroke-width="2" stroke-linecap="round" />
+    <rect x="32" y="162" width="96" height="36" rx="9" fill="none" stroke={CO.muted} stroke-width="2" />
+    <circle cx="56" cy="180" r="3" fill={CO.muted} />
+    <line x1="72" y1="180" x2="104" y2="180" stroke={CO.muted} stroke-width="2" stroke-linecap="round" />
+    <rect x="32" y="272" width="96" height="36" rx="9" fill="none" stroke={CO.muted} stroke-width="2" />
+    <circle cx="56" cy="290" r="3" fill={CO.muted} />
+    <line x1="72" y1="290" x2="104" y2="290" stroke={CO.muted} stroke-width="2" stroke-linecap="round" />
+    <path d="M128 70 C 190 70, 190 180, 232 180" fill="none" stroke={CO.brand} stroke-width="3" stroke-linecap="round" />
+    <path d="M128 180 L198 180" fill="none" stroke={CO.brand} stroke-width="3" stroke-linecap="round" />
+    <path d="M128 290 C 190 290, 190 180, 232 180" fill="none" stroke={CO.brand} stroke-width="3" stroke-linecap="round" />
+    <path d="M232 180 L276 180" fill="none" stroke={CO.brand} stroke-width="3" stroke-linecap="round" />
+    <path d="M268 176 L282 180 L268 184" fill="none" stroke={CO.brand} stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="286" y="120" width="192" height="120" rx="14" fill={CO.brand50} stroke={CO.brand} stroke-width="2" />
+    <rect x="306" y="144" width="152" height="14" rx="4" fill={CO.brand200} />
+    <rect x="306" y="172" width="128" height="10" rx="4" fill={CO.brand100} />
+    <rect x="306" y="192" width="140" height="10" rx="4" fill={CO.brand100} />
+    <rect x="306" y="212" width="116" height="10" rx="4" fill={CO.brand100} />
+  </svg>
+{/snippet}
+
+{#snippet chatSvg()}
+  <svg viewBox="0 0 520 360" class="w-full h-auto" role="presentation" aria-hidden="true">
+    <rect x="288" y="48" width="196" height="64" rx="16" fill={CO.brand} />
+    <path d="M452 112 L472 112 L458 136 Z" fill={CO.brand} />
+    <rect x="304" y="70" width="120" height="8" rx="4" fill={CO.surface} opacity="0.9" />
+    <rect x="304" y="88" width="80" height="8" rx="4" fill={CO.surface} opacity="0.6" />
+    <rect x="36" y="150" width="212" height="80" rx="16" fill={CO.surface} stroke={CO.brand100} stroke-width="2" />
+    <rect x="56" y="170" width="140" height="8" rx="4" fill={CO.brand} />
+    <rect x="56" y="190" width="176" height="8" rx="4" fill={CO.brand200} />
+    <rect x="56" y="210" width="112" height="8" rx="4" fill={CO.brand200} />
+    <path d="M40 128 L52 140 L66 122" fill="none" stroke={CO.brand} stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="36" y="288" width="396" height="40" rx="20" fill={CO.surface} stroke={CO.line} stroke-width="2" />
+    <circle cx="60" cy="308" r="4" fill={CO.muted} />
+    <rect x="74" y="304" width="120" height="6" rx="3" fill={CO.line} />
+    <circle cx="408" cy="308" r="12" fill={CO.brand} />
+    <path d="M403 308 L413 308 M408 303 L408 313" stroke={CO.surface} stroke-width="2" stroke-linecap="round" />
+  </svg>
+{/snippet}
+
+{#snippet spotlightSvg()}
+  <svg viewBox="0 0 520 360" class="w-full h-auto" role="presentation" aria-hidden="true">
+    <polygon points="260,36 196,132 324,132" fill={CO.brand100} opacity="0.55" />
+    <circle cx="260" cy="36" r="6" fill={CO.brand} />
+    <rect x="36" y="60" width="448" height="56" rx="12" fill="none" stroke={CO.line} stroke-width="2" />
+    <rect x="36" y="124" width="448" height="64" rx="12" fill={CO.brand50} stroke={CO.brand} stroke-width="2" />
+    <rect x="60" y="144" width="120" height="10" rx="5" fill={CO.brand200} />
+    <circle cx="418" cy="156" r="12" fill={CO.brand} />
+    <path d="M412 156 L418 162 L426 150" fill="none" stroke={CO.surface} stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="36" y="196" width="448" height="56" rx="12" fill="none" stroke={CO.line} stroke-width="2" />
+    <rect x="36" y="260" width="448" height="56" rx="12" fill="none" stroke={CO.line} stroke-width="2" />
+    <rect x="404" y="100" width="104" height="22" rx="11" fill={CO.brand} />
+    <rect x="416" y="107" width="80" height="8" rx="4" fill={CO.surface} opacity="0.9" />
+  </svg>
+{/snippet}
+
 {#snippet renderVisual(item)}
   {#if item.visual === 'pipeline-flow'}
     {@render pipelinesFlow()}
+  {:else if item.visual === 'pipelines'}
+    {@render pipelinesSvg()}
   {:else if item.visual === 'automation-flow'}
     {@render automationFlow()}
   {:else if item.visual === 'decision-loop'}
@@ -305,6 +340,10 @@
     {@render pulseSvg()}
   {:else if item.visual === 'dashboards'}
     {@render dashboardsSvg()}
+  {:else if item.visual === 'chat'}
+    {@render chatSvg()}
+  {:else if item.visual === 'spotlight'}
+    {@render spotlightSvg()}
   {:else if item.visual === 'custom'}
     {@render customSvg()}
   {/if}
@@ -356,7 +395,7 @@
 </div>
 
 <!-- Tablet + desktop: wrapping tabs + panel -->
-<div class="hidden md:grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-md lg:gap-xl items-start">
+<div class="hidden md:grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-md lg:gap-xl">
   <div
     role="tablist"
     aria-label={label}
